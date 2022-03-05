@@ -96,8 +96,8 @@ dependencies {
 	
 	annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 	
-	implementation fg.deobf('net.luis.xbackpack:Forge-XBackpack:1.18.1-1.2')
-	implementation fg.deobf('net.luis.xores:Forge-XOres:1.18.1-1.0')
+	implementation fg.deobf('net.luis.xbackpack:Forge-XBackpack:1.18.1-1.3')
+	implementation fg.deobf('net.luis.xores:Forge-XOres:1.18.1-1.2')
 }
 
 jar {
