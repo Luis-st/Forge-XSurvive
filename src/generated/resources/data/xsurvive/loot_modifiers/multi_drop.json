@@ -1,0 +1,8 @@
+{
+  "conditions": [
+    {
+      "condition": "minecraft:match_tool"
+    }
+  ],
+  "type": "xsurvive:multi_drop_modifier"
+}

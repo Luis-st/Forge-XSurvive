@@ -21,7 +21,7 @@ public class XSurviveBlockStateProvider extends BlockStateProvider {
 	
 	@Override
 	public String getName() {
-		return "XSurviveB Block States";
+		return "XSurvive Block States";
 	}
 	
 }

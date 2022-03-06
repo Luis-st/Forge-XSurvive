@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import net.luis.xsurvive.init.XSurviveEnchantments;
+import net.luis.xsurvive.init.XSurviveGlobalLootModifiers;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -17,6 +18,7 @@ public class XSurvive {
 	public XSurvive() {
 		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		XSurviveEnchantments.ENCHANTMENTS.register(modEventBus);
+		XSurviveGlobalLootModifiers.LOOT_MODIFIERS.register(modEventBus);
 	}
 	
 }
