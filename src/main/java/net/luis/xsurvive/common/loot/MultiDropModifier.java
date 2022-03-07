@@ -17,7 +17,7 @@ import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.common.loot.LootModifier;
 
 public class MultiDropModifier extends LootModifier {
-
+	
 	public MultiDropModifier(LootItemCondition[] conditionsIn) {
 		super(conditionsIn);
 	}
@@ -26,40 +26,47 @@ public class MultiDropModifier extends LootModifier {
 	protected List<ItemStack> doApply(List<ItemStack> generatedLoot, LootContext context) {
 		List<ItemStack> loot = Lists.newArrayList();
 		generatedLoot.forEach((stack) -> {
-			int level = 0;
-			if (context.hasParam(LootContextParams.TOOL)) { // TODO: fix error & test count
-				level = EnchantmentHelper.getItemEnchantmentLevel(XSurviveEnchantments.MULTI_DROP.get(), context.getParam(LootContextParams.TOOL));
+			if (context.hasParam(LootContextParams.TOOL)) {
+				loot.addAll(MultiDropModifier.this.multiplyItem(stack, EnchantmentHelper.getItemEnchantmentLevel(XSurviveEnchantments.MULTI_DROP.get(), context.getParam(LootContextParams.TOOL))));
 			} else {
-				XSurvive.LOGGER.error("Could not apply the MultiDrop logic, since there is no Tool or LivingEntity in the LootContext present");
+				XSurvive.LOGGER.error("Could not apply the MultiDrop logic, since there is no Tool in the LootContext present");
 			}
-			if (MultiDropModifier.this.canItemMultiDrop(stack)) { // report this bug
-				if (level == 0) {
-					loot.add(stack);
-				} else if (level == 1) {
-					loot.add(stack);
-					loot.add(stack);
-				} else if (level == 2) {
-					loot.add(stack);
-					loot.add(stack);
-					loot.add(stack);
-				} else if (level == 3) {
-					loot.add(stack);
-					loot.add(stack);
-					loot.add(stack);
-					loot.add(stack);
-				} else {
-					XSurvive.LOGGER.error("Could not apply the MultiDrop logic, since the Enchantment level cannot be larger than 3 but it is {}", level);
-				}
-//				for (int i = 0; i <= level; i++) {
-//					loot.add(stack);
-//				}
-			}
+
 		});
 		return loot;
 	}
 	
-	protected boolean canItemMultiDrop(ItemStack stack) { // TODO: test for nature blocks
-		return true;
+	protected List<ItemStack> multiplyItem(ItemStack stack, int level) {
+		List<ItemStack> loot = Lists.newArrayList();
+		if (level == 0) {
+			loot.add(stack);
+		} else if (!stack.isStackable()) {
+			for (int i = 0; i <= level; i++) {
+				loot.add(stack);
+			}
+		} else {
+			int count = stack.getCount() * (level + 1);
+			if (count > 64) {
+				while (count > 0) {
+					if (count > 64) {
+						loot.add(this.copy(stack, 64));
+						count -= 64;
+					} else {
+						loot.add(this.copy(stack, count));
+						count = 0;
+					}
+				}
+			} else {
+				loot.add(this.copy(stack, count));
+			}
+		}
+		return loot;
+	}
+	
+	protected ItemStack copy(ItemStack stack, int count) {
+		ItemStack lootStack = stack.copy();
+		lootStack.setCount(count);
+		return lootStack;
 	}
 	
 	public static class Serializer extends GlobalLootModifierSerializer<MultiDropModifier> {
