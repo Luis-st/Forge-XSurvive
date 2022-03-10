@@ -1,3 +1,5 @@
 {
-  "enchantment.xsurvive.multi_drop": "Multi Drop"
+  "enchantment.xsurvive.multi_drop": "Multi Drop",
+  "item.xsurvive.enchanted_golden_book": "Enchanted Golden Book",
+  "itemGroup.xsurvive": "XSurvive"
 }
