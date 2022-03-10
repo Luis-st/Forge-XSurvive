@@ -3,7 +3,9 @@
 	"package": "net.luis.xsurvive.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
-		
+		EnchantmentMixin,
+		EnchantmentHelperMixin,
+		AnvilMenuMixin
 	],
 	"client": [
 			

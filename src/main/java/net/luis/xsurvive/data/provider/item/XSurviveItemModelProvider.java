@@ -1,9 +1,18 @@
 package net.luis.xsurvive.data.provider.item;
 
+import java.util.stream.Collectors;
+
 import net.luis.xsurvive.XSurvive;
+import net.luis.xsurvive.init.XSurviveItems;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.TieredItem;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
+import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.client.model.generators.ModelFile.ExistingModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.RegistryObject;
 
 public class XSurviveItemModelProvider extends ItemModelProvider {
 
@@ -13,7 +22,25 @@ public class XSurviveItemModelProvider extends ItemModelProvider {
 
 	@Override
 	protected void registerModels() {
-		
+		for (Item item : XSurviveItems.ITEMS.getEntries().stream().map(RegistryObject::get).collect(Collectors.toList())) {
+			if (item instanceof TieredItem tieredItem) {
+				this.handheldItem(tieredItem);
+			} else {
+				this.generatedItem(item);
+			}
+		}
+	}
+	
+	public void generatedItem(Item item) {
+		ResourceLocation location = item.getRegistryName();
+		ModelFile model = new ExistingModelFile(new ResourceLocation("item/generated"), this.existingFileHelper);
+		this.getBuilder(location.getPath()).parent(model).texture("layer0", new ResourceLocation(XSurvive.MOD_ID, "item/" + location.getPath()));
+	}
+	
+	public void handheldItem(TieredItem tool) {
+		ResourceLocation location = tool.getRegistryName();
+		ModelFile model = new ExistingModelFile(new ResourceLocation("item/handheld"), this.existingFileHelper);
+		this.getBuilder(location.getPath()).parent(model).texture("layer0", new ResourceLocation(XSurvive.MOD_ID, "item/" + location.getPath()));
 	}
 	
 	@Override

@@ -2,8 +2,10 @@ package net.luis.xsurvive.data.provider.language;
 
 import net.luis.xsurvive.XSurvive;
 import net.luis.xsurvive.init.XSurviveEnchantments;
+import net.luis.xsurvive.init.XSurviveItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.minecraftforge.registries.RegistryObject;
@@ -19,6 +21,10 @@ public class XSurviveLanguageProvider extends LanguageProvider {
 		for (Enchantment enchantment : XSurviveEnchantments.ENCHANTMENTS.getEntries().stream().map(RegistryObject::get).toList()) {
 			this.add(enchantment, getName(enchantment.getRegistryName()));
 		}
+		for (Item item : XSurviveItems.ITEMS.getEntries().stream().map(RegistryObject::get).toList()) {
+			this.add(item, getName(item.getRegistryName()));
+		}
+		this.add(XSurvive.TAB.getDisplayName().getString(), XSurvive.MOD_NAME);
 	}
 	
 	protected String getName(ResourceLocation location) { 
