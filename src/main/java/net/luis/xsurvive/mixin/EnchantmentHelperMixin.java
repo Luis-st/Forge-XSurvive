@@ -53,13 +53,18 @@ public abstract class EnchantmentHelperMixin {
 		if (stack.getItem() instanceof EnchantedGoldenBookItem) {
 			if (enchantments.size() == 1) {
 				Enchantment enchantment = enchantments.keySet().stream().toList().get(0);
-				if (enchantment instanceof IEnchantment ench && ench.isAllowedOnGoldenBooks()) {
-					CompoundTag tag = new CompoundTag();
-					tag.putString("enchantment", enchantment.getRegistryName().toString());
-					stack.getOrCreateTag().put(XSurvive.MOD_NAME + "GoldenEnchantments", tag);
+				if (enchantment instanceof IEnchantment ench) {
+					if (ench.isAllowedOnGoldenBooks()) {
+						CompoundTag tag = new CompoundTag();
+						tag.putString("enchantment", enchantment.getRegistryName().toString());
+						stack.getOrCreateTag().put(XSurvive.MOD_NAME + "GoldenEnchantments", tag);
+					} else {
+						XSurvive.LOGGER.info("The Enchantment {} which should be set is no allowed on EnchantedGoldenBookItems", enchantment.getRegistryName());
+					}
 				} else {
-					XSurvive.LOGGER.error("The Enchantment which should be set is no allowed on EnchantedGoldenBookItems");
+					XSurvive.LOGGER.error("Enchantment {} is not a instance of IEnchantment", enchantment.getRegistryName());
 				}
+				
 			} else {
 				XSurvive.LOGGER.error("Fail to set the Enchantment (" + enchantments +") for a EnchantedGoldenBookItem, since the given Map size must be 1");
 			}
@@ -72,7 +77,11 @@ public abstract class EnchantmentHelperMixin {
 	private static void enchantItem(Random rng, ItemStack stack, int cost, boolean treasure, CallbackInfoReturnable<ItemStack> callback) {
 		if (stack.getItem() instanceof EnchantedGoldenBookItem) {
 			List<Enchantment> enchantments = Registry.ENCHANTMENT.stream().filter((enchantment) -> {
-				return enchantment instanceof IEnchantment ench && ench.isAllowedOnGoldenBooks();
+				if (enchantment instanceof IEnchantment ench) {
+					return ench.isAllowedOnGoldenBooks();
+				}
+				XSurvive.LOGGER.error("Enchantment {} is not a instance of IEnchantment", enchantment.getRegistryName());
+				return false;
 			}).collect(Collectors.toList());
 			EnchantmentHelper.setEnchantments(Map.of(enchantments.get(rng.nextInt(enchantments.size())), 1), stack);
 			callback.setReturnValue(stack);

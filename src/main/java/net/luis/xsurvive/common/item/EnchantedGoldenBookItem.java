@@ -55,10 +55,14 @@ public class EnchantedGoldenBookItem extends Item {
 	public void fillItemCategory(CreativeModeTab tab, NonNullList<ItemStack> stacks) {
 		if (tab == XSurvive.TAB || tab == CreativeModeTab.TAB_SEARCH) {
 			for (Enchantment enchantment : Registry.ENCHANTMENT.stream().toList()) {
-				if (enchantment instanceof IEnchantment ench && ench.isAllowedOnGoldenBooks()) {
-					ItemStack stack = new ItemStack(this);
-					this.setEnchantment(stack, enchantment);
-					stacks.add(stack);
+				if (enchantment instanceof IEnchantment ench) {
+					if (ench.isAllowedOnGoldenBooks()) {
+						ItemStack stack = new ItemStack(this);
+						this.setEnchantment(stack, enchantment);
+						stacks.add(stack);
+					}
+				} else {
+					XSurvive.LOGGER.error("Enchantment {} is not a instance of IEnchantment", enchantment.getRegistryName());
 				}
 			}
 		}

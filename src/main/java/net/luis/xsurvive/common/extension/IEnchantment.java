@@ -53,6 +53,7 @@ public interface IEnchantment {
 					IEnchantmentHelper.increaseEnchantment(enchantment, result, false);
 				}
 			}
+			XSurvive.LOGGER.error("Enchantment {} is not a instance of IEnchantment", enchantment.getRegistryName());
 			return new EnchantedItem(result, 10);
 		}
 		XSurvive.LOGGER.error("Can not merge a Item with a other Item, since the right Item must be a EnchantedGoldenBookItem");

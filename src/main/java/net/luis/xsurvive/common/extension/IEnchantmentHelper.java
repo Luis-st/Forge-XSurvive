@@ -3,6 +3,9 @@ package net.luis.xsurvive.common.extension;
 import java.util.List;
 import java.util.Map;
 
+import com.google.common.collect.Lists;
+
+import net.luis.xsurvive.XSurvive;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -16,15 +19,21 @@ public interface IEnchantmentHelper {
 	}
 	
 	public static boolean hasGoldenEnchantment(ItemStack stack) {
-		List<Enchantment> enchantments = EnchantmentHelper.getEnchantments(stack).keySet().stream().toList();
-		for (Enchantment enchantment : enchantments) {
+		return !getGoldenEnchantments(stack).isEmpty();
+	}
+	
+	public static List<Enchantment> getGoldenEnchantments(ItemStack stack) {
+		List<Enchantment> enchantments = Lists.newArrayList();;
+		for (Enchantment enchantment : EnchantmentHelper.getEnchantments(stack).keySet().stream().toList()) {
 			if (enchantment instanceof IEnchantment ench) {
 				if (ench.isAllowedOnGoldenBooks() && Math.max(0, EnchantmentHelper.getItemEnchantmentLevel(enchantment, stack) - enchantment.getMaxLevel()) > 0) {
-					return true;
+					enchantments.add(enchantment);
 				}
+			} else {
+				XSurvive.LOGGER.error("Enchantment {} is not a instance of IEnchantment", enchantment.getRegistryName());
 			}
 		}
-		return false;
+		return enchantments;
 	}
 	
 	public static boolean isMinEnchantment(Enchantment enchantment, ItemStack stack) {
