@@ -25,6 +25,10 @@ public interface IEnchantment {
 		return this.getMaxGoldenBookLevel() >= level && level >= this.getMinGoldenBookLevel();
 	}
 	
+	default boolean isUpgrade() {
+		return this.isAllowedOnGoldenBooks() && this.self().getMinLevel() == this.getMinGoldenBookLevel() && this.self().getMaxLevel() == this.getMaxGoldenBookLevel();
+	}
+	
 	default GoldenEnchantmentInstance createGoldenInstance(int level) {
 		if (this.getMinGoldenBookLevel() > level) {
 			return new GoldenEnchantmentInstance(this.self(), this.getMinGoldenBookLevel());

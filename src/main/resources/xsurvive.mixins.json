@@ -5,7 +5,8 @@
 	"mixins": [
 		"EnchantmentMixin",
 		"EnchantmentHelperMixin",
-		"AnvilMenuMixin"
+		"AnvilMenuMixin",
+		"EnchantedBookItemMixin"
 	],
 	"client": [
 		"client.ItemRendererMixin",
