@@ -6,6 +6,8 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
 public class MultiDropEnchantment extends Enchantment {
 
+	// TODO: add upgradeble via GoldenEnchantments
+	
 	public MultiDropEnchantment(Rarity rarity, EnchantmentCategory category, EquipmentSlot... slots) {
 		super(rarity, category, slots);
 	}
