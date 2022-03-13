@@ -29,7 +29,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
 @Mixin(AnvilMenu.class)
-public abstract class AnvilMenuMixin extends ItemCombinerMenu{
+public abstract class AnvilMenuMixin extends ItemCombinerMenu {
 	
 	public AnvilMenuMixin(MenuType<?> menuType, int id, Inventory inventory, ContainerLevelAccess levelAccess) {
 		super(menuType, id, inventory, levelAccess);
@@ -76,7 +76,7 @@ public abstract class AnvilMenuMixin extends ItemCombinerMenu{
 				this.resultSlots.setItem(0, ItemStack.EMPTY);
 				this.cost.set(0);
 			} else {
-				if (!net.minecraftforge.common.ForgeHooks.onAnvilChange((AnvilMenu) (Object) this, leftStack, rightStack, resultSlots, itemName, repairCost, this.player)) {
+				if (!net.minecraftforge.common.ForgeHooks.onAnvilChange((AnvilMenu) (Object) this, leftStack, rightStack, this.resultSlots, this.itemName, repairCost, this.player)) {
 					return;
 				}
 				enchantedBook = rightStack.getItem() == Items.ENCHANTED_BOOK && !EnchantedBookItem.getEnchantments(rightStack).isEmpty();

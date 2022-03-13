@@ -1,5 +1,22 @@
 {
   "enchantment.xsurvive.multi_drop": "Multi Drop",
+  "item.xsurvive.black_rune": "Black Rune",
+  "item.xsurvive.blue_rune": "Blue Rune",
+  "item.xsurvive.brown_rune": "Brown Rune",
+  "item.xsurvive.cyan_rune": "Cyan Rune",
   "item.xsurvive.enchanted_golden_book": "Enchanted Golden Book",
+  "item.xsurvive.gray_rune": "Gray Rune",
+  "item.xsurvive.green_rune": "Green Rune",
+  "item.xsurvive.light_blue_rune": "Light Blue Rune",
+  "item.xsurvive.light_gray_rune": "Light Gray Rune",
+  "item.xsurvive.lime_rune": "Lime Rune",
+  "item.xsurvive.magenta_rune": "Magenta Rune",
+  "item.xsurvive.orange_rune": "Orange Rune",
+  "item.xsurvive.pink_rune": "Pink Rune",
+  "item.xsurvive.purple_rune": "Purple Rune",
+  "item.xsurvive.rainbow_rune": "Rainbow Rune",
+  "item.xsurvive.red_rune": "Red Rune",
+  "item.xsurvive.white_rune": "White Rune",
+  "item.xsurvive.yellow_rune": "Yellow Rune",
   "itemGroup.xsurvive": "XSurvive"
 }
