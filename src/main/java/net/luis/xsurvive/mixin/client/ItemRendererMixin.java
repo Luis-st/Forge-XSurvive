@@ -20,7 +20,7 @@ import net.minecraft.world.item.ItemStack;
 public abstract class ItemRendererMixin {
 	
 	@Inject(method = "render", at = @At("HEAD"))
-	public void setColorRuneTargetStack(ItemStack stack, ItemTransforms.TransformType transformType, boolean leftHand, PoseStack pose, MultiBufferSource buffer, int combinedLight, int combinedOverlay, BakedModel model, CallbackInfo callback) {
+	public void render(ItemStack stack, ItemTransforms.TransformType transformType, boolean leftHand, PoseStack pose, MultiBufferSource buffer, int combinedLight, int combinedOverlay, BakedModel model, CallbackInfo callback) {
 		RuneColorHandler.setStack(stack);
 	}
 

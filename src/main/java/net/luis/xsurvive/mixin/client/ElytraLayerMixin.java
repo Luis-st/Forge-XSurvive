@@ -19,7 +19,7 @@ import net.minecraft.world.item.ItemStack;
 public abstract class ElytraLayerMixin<T extends LivingEntity, M extends EntityModel<T>> {
 	
 	@Inject(method = "render", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/PoseStack;pushPose()V"), locals = LocalCapture.CAPTURE_FAILHARD)
-	public void setColorRuneTargetStack(PoseStack pose, MultiBufferSource buffer, int packedLight, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float age, float yaw, float pitch, CallbackInfo callback, ItemStack itemstack) {
+	public void render(PoseStack pose, MultiBufferSource buffer, int packedLight, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float age, float yaw, float pitch, CallbackInfo callback, ItemStack itemstack) {
 		RuneColorHandler.setStack(itemstack);
 	}
 	

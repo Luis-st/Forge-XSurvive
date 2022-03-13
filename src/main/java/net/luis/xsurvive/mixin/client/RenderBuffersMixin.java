@@ -16,7 +16,7 @@ import net.minecraft.client.renderer.RenderType;
 public abstract class RenderBuffersMixin {
 	
 	@Inject(method = "put", at = @At("HEAD"))
-	private static void addGlintTypes(Object2ObjectLinkedOpenHashMap<RenderType, BufferBuilder> map, RenderType renderType, CallbackInfo callback) {
+	private static void put(Object2ObjectLinkedOpenHashMap<RenderType, BufferBuilder> map, RenderType renderType, CallbackInfo callback) {
 		XSurviveRenderType.addGlintTypes(map);
 	}
 	

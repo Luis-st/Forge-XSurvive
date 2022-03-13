@@ -16,7 +16,7 @@ import net.minecraft.world.entity.projectile.ThrownTrident;
 public abstract class ThrownTridentRendererMixin {
 	
 	@Inject(method = "render", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/PoseStack;pushPose()V"))
-	private void setColorRuneTargetStack(ThrownTrident trident, float yaw, float partialTicks, PoseStack pose, MultiBufferSource buffer, int packedLight, CallbackInfo callback) {
+	private void render(ThrownTrident trident, float yaw, float partialTicks, PoseStack pose, MultiBufferSource buffer, int packedLight, CallbackInfo callback) {
 		RuneColorHandler.setStack(trident.tridentItem);
 	}
 	

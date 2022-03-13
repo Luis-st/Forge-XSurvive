@@ -16,7 +16,7 @@ import net.minecraft.world.item.ItemStack;
 public abstract class HumanoidArmorLayerMixin<T extends LivingEntity, M extends HumanoidModel<T>, A extends HumanoidModel<T>> {
 	
 	@Inject(method = "getArmorModelHook", at = @At("HEAD"), remap = false)
-	private void setColorRuneTargetStack(T entity, ItemStack stack, EquipmentSlot slot, A model, CallbackInfoReturnable<A> callback) {
+	private void getArmorModelHook(T entity, ItemStack stack, EquipmentSlot slot, A model, CallbackInfoReturnable<A> callback) {
 		RuneColorHandler.setStack(stack);
 	}
 	
