@@ -17,7 +17,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
 
-version = '1.0'
+version = '1.18.2-1.0'
 group = 'net.luis.xsurvive'
 archivesBaseName = 'XSurvive'
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
@@ -25,7 +25,7 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 
 minecraft {
-	mappings channel: 'official', version: '1.18.1'
+	mappings channel: 'official', version: '1.18.2'
 	
 	accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 	
@@ -92,19 +92,19 @@ repositories {
 }
 
 dependencies {
-	minecraft 'net.minecraftforge:forge:1.18.1-39.0.9'
+	minecraft 'net.minecraftforge:forge:1.18.2-40.0.15'
 	
 	annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 	
-	implementation fg.deobf('net.luis.xbackpack:Forge-XBackpack:1.18.1-1.3')
-	implementation fg.deobf('net.luis.xores:Forge-XOres:1.18.1-1.2')
+	implementation fg.deobf('net.luis.xbackpack:Forge-XBackpack:1.18.2-1.4')
+	implementation fg.deobf('net.luis.xores:Forge-XOres:1.18.2-1.3')
 }
 
 jar {
 	manifest {
 		attributes([
 			"Specification-Title"     : "XSurvive",
-			"Specification-Version"   : "1.0", // We are version 1 of ourselves
+			"Specification-Version"   : "1.18.2-1.0",
 			"Implementation-Title"    : project.name,
 			"Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
 		])
