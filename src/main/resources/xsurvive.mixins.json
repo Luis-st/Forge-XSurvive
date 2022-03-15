@@ -6,7 +6,10 @@
 		"EnchantmentMixin",
 		"EnchantmentHelperMixin",
 		"AnvilMenuMixin",
-		"EnchantedBookItemMixin"
+		"EnchantedBookItemMixin",
+		"QuickChargeEnchantmentMixin",
+		"ArrowKnockbackEnchantmentMixin",
+		"ThornsEnchantmentMixin"
 	],
 	"client": [
 		"client.ItemRendererMixin",

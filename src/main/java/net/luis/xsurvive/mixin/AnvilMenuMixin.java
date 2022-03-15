@@ -31,7 +31,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 @Mixin(AnvilMenu.class)
 public abstract class AnvilMenuMixin extends ItemCombinerMenu {
 	
-	public AnvilMenuMixin(MenuType<?> menuType, int id, Inventory inventory, ContainerLevelAccess levelAccess) {
+	private AnvilMenuMixin(MenuType<?> menuType, int id, Inventory inventory, ContainerLevelAccess levelAccess) {
 		super(menuType, id, inventory, levelAccess);
 	}
 	
