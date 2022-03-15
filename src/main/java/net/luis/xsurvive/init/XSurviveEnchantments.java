@@ -1,7 +1,6 @@
 package net.luis.xsurvive.init;
 
 import net.luis.xsurvive.XSurvive;
-import net.luis.xsurvive.common.enchantment.EnderSlayerEnchantment;
 import net.luis.xsurvive.common.enchantment.MultiDropEnchantment;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -18,9 +17,6 @@ public class XSurviveEnchantments {
 	
 	public static final RegistryObject<MultiDropEnchantment> MULTI_DROP = ENCHANTMENTS.register("multi_drop", () -> {
 		return new MultiDropEnchantment(Rarity.VERY_RARE, EnchantmentCategory.DIGGER, EquipmentSlot.MAINHAND);
-	});
-	public static final RegistryObject<EnderSlayerEnchantment> ENDER_SLAYER = ENCHANTMENTS.register("ender_slayer", () -> {
-		return new EnderSlayerEnchantment(Rarity.UNCOMMON, EquipmentSlot.MAINHAND);
 	});
 	
 }
