@@ -7,6 +7,7 @@ import com.google.common.collect.Lists;
 
 import net.luis.xsurvive.XSurvive;
 import net.luis.xsurvive.common.extension.IEnchantment;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -23,6 +24,20 @@ public class EnchantmentHandler {
 		return !getGoldenEnchantments(stack).isEmpty();
 	}
 	
+	public static boolean hasMinEnchantment(Enchantment enchantment, ItemStack stack) {
+		if (hasEnchantment(enchantment, stack)) {
+			return EnchantmentHelper.getItemEnchantmentLevel(enchantment, stack) == enchantment.getMinLevel();
+		}
+		return false;
+	}
+	
+	public static boolean hasMaxEnchantment(Enchantment enchantment, ItemStack stack) {
+		if (hasEnchantment(enchantment, stack)) {
+			return EnchantmentHelper.getItemEnchantmentLevel(enchantment, stack) == enchantment.getMaxLevel();
+		}
+		return false;
+	}
+	
 	public static List<Enchantment> getGoldenEnchantments(ItemStack stack) {
 		List<Enchantment> enchantments = Lists.newArrayList();;
 		for (Enchantment enchantment : EnchantmentHelper.getEnchantments(stack).keySet().stream().toList()) {
@@ -37,18 +52,12 @@ public class EnchantmentHandler {
 		return enchantments;
 	}
 	
-	public static boolean isMinEnchantment(Enchantment enchantment, ItemStack stack) {
-		if (hasEnchantment(enchantment, stack)) {
-			return EnchantmentHelper.getItemEnchantmentLevel(enchantment, stack) == enchantment.getMinLevel();
+	public static int getEnchantmentLevel(Enchantment enchantment, LivingEntity entity) {
+		int level = EnchantmentHelper.getItemEnchantmentLevel(enchantment, entity.getMainHandItem());
+		if (level > 0) {
+			return level;
 		}
-		return false;
-	}
-	
-	public static boolean isMaxEnchantment(Enchantment enchantment, ItemStack stack) {
-		if (hasEnchantment(enchantment, stack)) {
-			return EnchantmentHelper.getItemEnchantmentLevel(enchantment, stack) == enchantment.getMaxLevel();
-		}
-		return false;
+		return EnchantmentHelper.getItemEnchantmentLevel(enchantment, entity.getOffhandItem());
 	}
 	
 	public static void addEnchantment(EnchantmentInstance instance, ItemStack stack, boolean present) {
@@ -83,7 +92,7 @@ public class EnchantmentHandler {
 	
 	public static void increaseEnchantment(Enchantment enchantment, ItemStack stack, boolean golden) {
 		if (hasEnchantment(enchantment, stack)) {
-			if (!isMaxEnchantment(enchantment, stack) || golden) {
+			if (!hasMaxEnchantment(enchantment, stack) || golden) {
 				replaceEnchantment(new EnchantmentInstance(enchantment, EnchantmentHelper.getItemEnchantmentLevel(enchantment, stack) + 1), stack);
 			}
 		} else {
@@ -99,7 +108,7 @@ public class EnchantmentHandler {
 	
 	public static void decreaseEnchantment(Enchantment enchantment, ItemStack stack) {
 		if (hasEnchantment(enchantment, stack)) {
-			if (isMinEnchantment(enchantment, stack)) {
+			if (hasMinEnchantment(enchantment, stack)) {
 				removeEnchantment(enchantment, stack);
 			} else {
 				replaceEnchantment(new EnchantmentInstance(enchantment, EnchantmentHelper.getItemEnchantmentLevel(enchantment, stack) - 1), stack);
