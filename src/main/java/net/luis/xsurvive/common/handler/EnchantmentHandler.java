@@ -1,4 +1,4 @@
-package net.luis.xsurvive.common.extension;
+package net.luis.xsurvive.common.handler;
 
 import java.util.List;
 import java.util.Map;
@@ -6,12 +6,13 @@ import java.util.Map;
 import com.google.common.collect.Lists;
 
 import net.luis.xsurvive.XSurvive;
+import net.luis.xsurvive.common.extension.IEnchantment;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
 
-public interface IEnchantmentHelper {
+public class EnchantmentHandler {
 	
 	public static boolean hasEnchantment(Enchantment enchantment, ItemStack stack) {
 		List<Enchantment> enchantments = EnchantmentHelper.getEnchantments(stack).keySet().stream().toList();
