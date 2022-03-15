@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.function.Supplier;
 
 import net.luis.xsurvive.XSurvive;
-import net.luis.xsurvive.client.render.XSurviveRenderType;
+import net.luis.xsurvive.client.render.handler.XSurviveRenderType;
 import net.luis.xsurvive.common.item.IRuneColorProvider;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.nbt.CompoundTag;
