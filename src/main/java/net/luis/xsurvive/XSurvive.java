@@ -7,6 +7,8 @@ import net.luis.xsurvive.common.XSurviveCreativeModeTab;
 import net.luis.xsurvive.init.XSurviveEnchantments;
 import net.luis.xsurvive.init.XSurviveGlobalLootModifiers;
 import net.luis.xsurvive.init.XSurviveItems;
+import net.luis.xsurvive.init.XSurviveMobEffects;
+import net.luis.xsurvive.init.XSurvivePotions;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -25,6 +27,8 @@ public class XSurvive {
 		XSurviveEnchantments.ENCHANTMENTS.register(modEventBus);
 		XSurviveGlobalLootModifiers.LOOT_MODIFIERS.register(modEventBus);
 		XSurviveItems.ITEMS.register(modEventBus);
+		XSurviveMobEffects.MOB_EFFECTS.register(modEventBus);
+		XSurvivePotions.POTIONS.register(modEventBus);
 	}
 	
 }
