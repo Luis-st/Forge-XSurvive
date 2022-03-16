@@ -22,7 +22,7 @@ public class OnLivingDamageEvent {
 		DamageSource source = event.getSource();
 		float amount = event.getAmount();
 		float newAmount = amount;
-		if (source instanceof EntityDamageSource entitySource && entitySource.getEntity() != null && entitySource.getEntity() instanceof Player player) {
+		if (source instanceof EntityDamageSource entitySource && entitySource.getEntity() instanceof Player player) {
 			int enderSlayer = EnchantmentHandler.getEnchantmentLevel(XSurviveEnchantments.ENDER_SLAYER.get(), player);
 			int impaling = EnchantmentHandler.getEnchantmentLevel(Enchantments.IMPALING, player);
 			if (enderSlayer > 0 && EntityHandler.isAffectedByEnderSlayer(target)) {

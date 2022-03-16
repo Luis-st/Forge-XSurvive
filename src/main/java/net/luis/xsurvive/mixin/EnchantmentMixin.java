@@ -62,8 +62,6 @@ public abstract class EnchantmentMixin implements IEnchantment {
 			return false;
 		} else if (enchantment == Enchantments.AQUA_AFFINITY) {
 			return false;
-		} else if (enchantment == Enchantments.FIRE_ASPECT) {
-			return false;
 		} else if (enchantment == Enchantments.SILK_TOUCH) {
 			return false;
 		} else if (enchantment == Enchantments.FLAMING_ARROWS) {
