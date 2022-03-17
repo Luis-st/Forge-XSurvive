@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
-import net.luis.xsurvive.client.render.item.RuneColorHandler;
+import net.luis.xsurvive.client.render.handler.RuneColorHandler;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.layers.ElytraLayer;

@@ -1,4 +1,4 @@
-package net.luis.xsurvive.client.render.handler;
+package net.luis.xsurvive.client.render;
 
 import java.util.ArrayList;
 import java.util.List;
