@@ -47,7 +47,7 @@ public abstract class EnchantmentMixin implements IEnchantment {
 	
 	@Inject(method = "getFullname", at = @At("RETURN"), cancellable = true)
 	public void getFullname(int level, CallbackInfoReturnable<Component> callback) {
-		if (this.isAllowedOnGoldenBooks() && this.getMaxGoldenBookLevel() >= level && level >= this.getMinGoldenBookLevel()) {
+		if (this.isAllowedOnGoldenBooks() && this.getMaxGoldenBookLevel() >= level && level >= this.getMinGoldenBookLevel()) { // TODO: fix upgrade
 			MutableComponent component = new TranslatableComponent(this.getDescriptionId());
 			component.append(" ").append(new TranslatableComponent("enchantment.level." + level));
 			callback.setReturnValue(component.withStyle(ChatFormatting.DARK_PURPLE));

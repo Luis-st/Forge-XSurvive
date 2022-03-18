@@ -20,9 +20,6 @@ public class OnAnvilEvent {
 	public static void anvilUpdate(AnvilUpdateEvent event) {
 		ItemStack left = event.getLeft();
 		ItemStack right = event.getRight();
-		XSurvive.LOGGER.info("isEnchanted {}", left.isEnchanted());
-		XSurvive.LOGGER.info("instanceof {}", right.getItem() instanceof RuneItem);
-		XSurvive.LOGGER.info("all {}", left.isEnchantable() && right.getItem() instanceof RuneItem rune);
 		if ((left.isEnchantable() || left.isEnchanted()) && right.getItem() instanceof EnchantedGoldenBookItem goldenBook) {
 			Enchantment enchantment = goldenBook.getEnchantment(right);
 			if (enchantment != null && enchantment instanceof IEnchantment ench) {

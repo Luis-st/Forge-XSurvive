@@ -1,11 +1,14 @@
 package net.luis.xsurvive.mixin;
 
-import java.util.Random;
 import java.util.Map.Entry;
+import java.util.Random;
 
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -24,18 +27,19 @@ public abstract class ThornsEnchantmentMixin {
 		return false;
 	}
 	
-	@Overwrite
-	public int getMaxLevel() {
-		return 3;
+	@Inject(method = "getMaxLevel", at = @At("HEAD"), cancellable = true)
+	public void getMaxLevel(CallbackInfoReturnable<Integer> callback) {
+		callback.setReturnValue(4);
+		callback.cancel();
 	}
 	
-	@Overwrite
-	public void doPostHurt(LivingEntity target, Entity attacker, int level) {
+	@Inject(method = "doPostHurt", at = @At("HEAD"), cancellable = true)
+	public void doPostHurt(LivingEntity target, Entity attacker, int level, CallbackInfo callback) {
 		Random rng = target.getRandom();
 		Entry<EquipmentSlot, ItemStack> entry = EnchantmentHelper.getRandomItemWith(Enchantments.THORNS, target);
 		if (shouldHit(level, rng)) {
 			if (attacker != null) {
-				attacker.hurt(DamageSource.thorns(target), getDamage(this.getThornsLevel(target), rng));
+				attacker.hurt(DamageSource.thorns(target), rng.nextInt(this.getThornsLevel(target)));
 			}
 			if (entry != null) {
 				entry.getValue().hurtAndBreak(1, target, (entity) -> {
@@ -43,11 +47,7 @@ public abstract class ThornsEnchantmentMixin {
 				});
 			}
 		}
-	}
-	
-	@Overwrite
-	public static int getDamage(int level, Random rng) {
-		return rng.nextInt(level);
+		callback.cancel();
 	}
 
 	private int getThornsLevel(LivingEntity entity) {

@@ -1,7 +1,9 @@
 package net.luis.xsurvive.mixin;
 
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.MobType;
@@ -41,9 +43,10 @@ public abstract class TridentImpalerEnchantmentMixin extends Enchantment {
 		return super.canApplyAtEnchantingTable(stack);
 	}
 	
-	@Overwrite
-	public float getDamageBonus(int level, MobType mobType) {
-		return 0.0F;
+	@Inject(method = "getDamageBonus", at = @At("HEAD"), cancellable = true)
+	public void getDamageBonus(int level, MobType mobType, CallbackInfoReturnable<Float> callback) {
+		callback.setReturnValue(0.0F);
+		callback.cancel();
 	}
 	
 }

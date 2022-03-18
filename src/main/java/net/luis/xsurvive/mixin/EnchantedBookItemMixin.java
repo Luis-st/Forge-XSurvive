@@ -1,7 +1,9 @@
 package net.luis.xsurvive.mixin;
 
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import net.luis.xsurvive.XSurvive;
 import net.luis.xsurvive.common.extension.IEnchantment;
@@ -16,9 +18,9 @@ import net.minecraft.world.item.enchantment.EnchantmentInstance;
 @Mixin(EnchantedBookItem.class)
 public abstract class EnchantedBookItemMixin {
 	
-	@Overwrite
 	@SuppressWarnings("deprecation")
-	public void fillItemCategory(CreativeModeTab tab, NonNullList<ItemStack> stacks) {
+	@Inject(method = "fillItemCategory", at = @At("HEAD"), cancellable = true)
+	public void fillItemCategory(CreativeModeTab tab, NonNullList<ItemStack> stacks, CallbackInfo callback) {
 		if (tab == CreativeModeTab.TAB_SEARCH) {
 			for (Enchantment enchantment : Registry.ENCHANTMENT) {
 				if (enchantment.category != null) {
@@ -53,7 +55,7 @@ public abstract class EnchantedBookItemMixin {
 				}
 			}
 		}
-
+		callback.cancel();
 	}
 	
 }

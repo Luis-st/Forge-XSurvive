@@ -6,8 +6,10 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.google.common.collect.Lists;
 
@@ -48,8 +50,8 @@ public abstract class AnvilMenuMixin extends ItemCombinerMenu {
 		return 0;
 	}
 	
-	@Overwrite
-	public void createResult() {
+	@Inject(method = "createResult", at = @At("HEAD"), cancellable = true)
+	public void createResult(CallbackInfo callback) {
 		ItemStack leftStack = this.inputSlots.getItem(0);
 		this.cost.set(1);
 		int enchantCost = 0;
@@ -236,6 +238,7 @@ public abstract class AnvilMenuMixin extends ItemCombinerMenu {
 			this.resultSlots.setItem(0, resultStack);
 			this.broadcastChanges();
 		}
+		callback.cancel();
 	}
 	
 }
