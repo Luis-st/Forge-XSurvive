@@ -47,11 +47,17 @@ public abstract class EnchantmentMixin implements IEnchantment {
 	
 	@Inject(method = "getFullname", at = @At("RETURN"), cancellable = true)
 	public void getFullname(int level, CallbackInfoReturnable<Component> callback) {
-		if (this.isAllowedOnGoldenBooks() && this.getMaxGoldenBookLevel() >= level && level >= this.getMinGoldenBookLevel()) { // TODO: fix upgrade
-			MutableComponent component = new TranslatableComponent(this.getDescriptionId());
-			component.append(" ").append(new TranslatableComponent("enchantment.level." + level));
-			callback.setReturnValue(component.withStyle(ChatFormatting.DARK_PURPLE));
-			callback.cancel();
+		if (this.isAllowedOnGoldenBooks()) {
+			if ((this.getMaxGoldenBookLevel() >= level && level >= this.getMinGoldenBookLevel()) || this.isUpgrade()) {
+				MutableComponent component = new TranslatableComponent(this.getDescriptionId());
+				component.append(" ").append(new TranslatableComponent("enchantment.level." + level));
+				if (this.getUpgradeLevel() >= level && level > 0) {
+					callback.setReturnValue(component.withStyle(ChatFormatting.BLUE));
+				} else {
+					callback.setReturnValue(component.withStyle(ChatFormatting.DARK_PURPLE));
+				}
+				callback.cancel();
+			}
 		}
 	}
 	
@@ -74,16 +80,6 @@ public abstract class EnchantmentMixin implements IEnchantment {
 			return false;
 		}
 		return enchantment != XSurviveEnchantments.MULTI_DROP.get();
-	}
-	
-	@Override
-	public int getMinGoldenBookLevel() {
-		return this.getMaxLevel() + 1;
-	}
-	
-	@Override
-	public int getMaxGoldenBookLevel() {
-		return this.getMaxLevel() + 5;
 	}
 	
 }

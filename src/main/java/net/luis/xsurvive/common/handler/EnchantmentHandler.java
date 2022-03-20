@@ -38,8 +38,12 @@ public class EnchantmentHandler {
 		return false;
 	}
 	
+	public static boolean isEnchantmentCompatible(ItemStack stack, Enchantment enchantment) {
+		return EnchantmentHelper.isEnchantmentCompatible(EnchantmentHelper.getEnchantments(stack).keySet(), enchantment);
+	}
+	
 	public static List<Enchantment> getGoldenEnchantments(ItemStack stack) {
-		List<Enchantment> enchantments = Lists.newArrayList();;
+		List<Enchantment> enchantments = Lists.newArrayList();
 		for (Enchantment enchantment : EnchantmentHelper.getEnchantments(stack).keySet().stream().toList()) {
 			if (enchantment instanceof IEnchantment ench) {
 				if (ench.isAllowedOnGoldenBooks() && Math.max(0, EnchantmentHelper.getItemEnchantmentLevel(enchantment, stack) - enchantment.getMaxLevel()) > 0) {

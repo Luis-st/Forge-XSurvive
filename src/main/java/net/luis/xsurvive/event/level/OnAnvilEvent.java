@@ -4,7 +4,7 @@ import net.luis.xsurvive.XSurvive;
 import net.luis.xsurvive.common.enchantment.EnchantedItem;
 import net.luis.xsurvive.common.extension.IEnchantment;
 import net.luis.xsurvive.common.item.EnchantedGoldenBookItem;
-import net.luis.xsurvive.common.item.RuneItem;
+import net.luis.xsurvive.common.item.IRuneColorProvider;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -23,15 +23,18 @@ public class OnAnvilEvent {
 		if ((left.isEnchantable() || left.isEnchanted()) && right.getItem() instanceof EnchantedGoldenBookItem goldenBook) {
 			Enchantment enchantment = goldenBook.getEnchantment(right);
 			if (enchantment != null && enchantment instanceof IEnchantment ench) {
-				event.setCanceled(false);
-				EnchantedItem enchantedItem = IEnchantment.merge(left, right);
+				EnchantedItem enchantedItem = EnchantedItem.EMPTY;
+				if (ench.isUpgrade()) {
+					enchantedItem = IEnchantment.upgrade(left, right);
+				} else {
+					enchantedItem = IEnchantment.merge(left, right);
+				}
 				event.setOutput(enchantedItem.stack());
 				event.setCost(enchantedItem.cost());
 			} else {
 				XSurvive.LOGGER.error("Enchantment {} is not a instance of IEnchantment", enchantment.getRegistryName());
 			}
-		} else if (left.isEnchanted() && right.getItem() instanceof RuneItem rune) {
-			event.setCanceled(false);
+		} else if (left.isEnchanted() && right.getItem() instanceof IRuneColorProvider rune) {
 			ItemStack result = left.copy();
 			int color = rune.getRuneColor(right);
 			if (17 >= color && color >= 0) {
@@ -58,7 +61,7 @@ public class OnAnvilEvent {
 		if (event.getIngredientInput().getItem() instanceof EnchantedGoldenBookItem) {
 			event.setBreakChance(0.0F);
 		} else {
-			event.setBreakChance(0.08F);
+			event.setBreakChance(0.06F);
 		}
 	}
 	

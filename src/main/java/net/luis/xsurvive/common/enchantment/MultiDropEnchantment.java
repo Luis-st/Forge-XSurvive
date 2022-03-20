@@ -57,15 +57,15 @@ public class MultiDropEnchantment extends Enchantment implements IEnchantment {
 	public boolean isAllowedOnGoldenBooks() {
 		return true;
 	}
-
-	@Override
-	public int getMinGoldenBookLevel() {
-		return this.getMinLevel();
-	}
-
+	
 	@Override
 	public int getMaxGoldenBookLevel() {
-		return this.getMaxLevel();
+		return 3;
 	}
-
+	
+	@Override
+	public int getUpgradeLevel() {
+		return 2;
+	}
+	
 }

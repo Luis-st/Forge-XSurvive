@@ -18,16 +18,28 @@ public interface IEnchantment {
 	
 	boolean isAllowedOnGoldenBooks();
 	
-	int getMinGoldenBookLevel();
+	default int getMinGoldenBookLevel() {
+		return this.self().getMaxLevel() + 1;
+	}
 	
-	int getMaxGoldenBookLevel();
+	default int getMaxGoldenBookLevel() {
+		return this.self().getMaxLevel() + 5;
+	}
 	
 	default boolean isGolden(int level) {
 		return this.getMaxGoldenBookLevel() >= level && level >= this.getMinGoldenBookLevel();
 	}
 	
+	default int getUpgradeLevel() {
+		return -1;
+	}
+	
 	default boolean isUpgrade() {
-		return this.isAllowedOnGoldenBooks() && this.self().getMinLevel() == this.getMinGoldenBookLevel() && this.self().getMaxLevel() == this.getMaxGoldenBookLevel();
+		return this.isAllowedOnGoldenBooks() && this.getUpgradeLevel() > 0;
+	}
+	
+	default boolean isUpgradable(int level) {
+		return this.isUpgrade() && this.getUpgradeLevel() > level;
 	}
 	
 	default GoldenEnchantmentInstance createGoldenInstance(int level) {
@@ -47,22 +59,47 @@ public interface IEnchantment {
 				int level = EnchantmentHelper.getItemEnchantmentLevel(enchantment, result);
 				GoldenEnchantmentInstance instance = ench.createGoldenInstance(level + 1);
 				if (!EnchantmentHandler.hasEnchantment(enchantment, result)) {
-					EnchantmentHandler.addEnchantment(new EnchantmentInstance(enchantment, 1), result, false);
+					if (EnchantmentHandler.isEnchantmentCompatible(result, enchantment)) {
+						EnchantmentHandler.addEnchantment(new EnchantmentInstance(enchantment, 1), result, false);
+						return new EnchantedItem(result, 10);
+					}
+					return EnchantedItem.EMPTY;
 				} else if (instance.isGolden() && instance.level > enchantment.getMaxLevel() && level >= enchantment.getMaxLevel()) {
 					if (ench.getMaxGoldenBookLevel() > level) {
 						EnchantmentHandler.replaceEnchantment(instance, result);
 						return new EnchantedItem(result, Math.max(0, level - enchantment.getMaxLevel()) * 10 + 30);
 					}
-					return new EnchantedItem(ItemStack.EMPTY, 0);
+					return EnchantedItem.EMPTY;
 				} else {
 					EnchantmentHandler.increaseEnchantment(enchantment, result, false);
+					return new EnchantedItem(result, 10);
 				}
 			}
 			XSurvive.LOGGER.error("Enchantment {} is not a instance of IEnchantment", enchantment.getRegistryName());
-			return new EnchantedItem(result, 10);
+			return EnchantedItem.EMPTY;
 		}
-		XSurvive.LOGGER.error("Can not merge a Item with a other Item, since the right Item must be a EnchantedGoldenBookItem");
-		return new EnchantedItem(ItemStack.EMPTY, 0);
+		XSurvive.LOGGER.error("Can not merge {} with {}, since the right Item must be a instance of EnchantedGoldenBookItem", left.getItem().getRegistryName(), right.getItem().getRegistryName());
+		return EnchantedItem.EMPTY;
+	}
+	
+	static EnchantedItem upgrade(ItemStack left, ItemStack right) {
+		ItemStack result = left.copy();
+		if (right.getItem() instanceof EnchantedGoldenBookItem goldenBook) {
+			Enchantment enchantment = goldenBook.getEnchantment(right);
+			if (enchantment instanceof IEnchantment ench) {
+				int level = EnchantmentHelper.getItemEnchantmentLevel(enchantment, result);
+				if (ench.isUpgradable(level)) {
+					EnchantmentHandler.increaseEnchantment(enchantment, result, false);
+					return new EnchantedItem(result, 10);
+				} else {
+					return merge(left, right);
+				}
+			}
+			XSurvive.LOGGER.error("Enchantment {} is not a instance of IEnchantment", enchantment.getRegistryName());
+			return EnchantedItem.EMPTY;
+		}
+		XSurvive.LOGGER.error("Can not upgrade {} with {}, since the right Item must be a instance of EnchantedGoldenBookItem", left.getItem().getRegistryName(), right.getItem().getRegistryName());
+		return EnchantedItem.EMPTY;
 	}
 	
 }
