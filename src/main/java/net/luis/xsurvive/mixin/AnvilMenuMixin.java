@@ -207,9 +207,6 @@ public abstract class AnvilMenuMixin extends ItemCombinerMenu {
 			if (renameCost == enchantCost && renameCost > 0 && this.cost.get() >= 60) {
 				this.cost.set(59);
 			}
-			if (this.cost.get() >= 60 && !this.player.getAbilities().instabuild) {
-				resultStack = ItemStack.EMPTY;
-			}
 			if (!rightStack.isEmpty() && !resultStack.isEmpty()) {
 				List<Enchantment> enchantments = Lists.newArrayList();
 				enchantments.addAll(EnchantmentHandler.getGoldenEnchantments(leftStack));

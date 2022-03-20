@@ -16,7 +16,8 @@
 		"client.RenderBuffersMixin",
 		"client.ElytraLayerMixin",
 		"client.HumanoidArmorLayerMixin",
-		"client.ThrownTridentRendererMixin"
+		"client.ThrownTridentRendererMixin",
+		"client.AnvilScreenMixin"
 	],
 	"server": [
 			
