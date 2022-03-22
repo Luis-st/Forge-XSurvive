@@ -1,7 +1,8 @@
 package net.luis.xsurvive;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+
+import com.mojang.logging.LogUtils;
 
 import net.luis.xsurvive.common.XSurviveCreativeModeTab;
 import net.luis.xsurvive.init.XSurviveEnchantments;
@@ -19,7 +20,7 @@ public class XSurvive {
 	
 	public static final String MOD_ID = "xsurvive";
 	public static final String MOD_NAME = "XSurvive";
-	public static final Logger LOGGER = LogManager.getLogger(XSurvive.class);
+	public static final Logger LOGGER = LogUtils.getLogger();
 	public static final CreativeModeTab TAB = new XSurviveCreativeModeTab(XSurvive.MOD_ID);
 	
 	public XSurvive() {
