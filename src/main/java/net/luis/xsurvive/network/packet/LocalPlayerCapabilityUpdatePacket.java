@@ -32,8 +32,8 @@ public class LocalPlayerCapabilityUpdatePacket {
 		public static void handle(LocalPlayerCapabilityUpdatePacket packet, Supplier<Context> context) {
 			LocalPlayer player = Minecraft.getInstance().player;
 			context.get().enqueueWork(() -> {
-//				LocalPlayerCapabilityHandler handler = CapabilityUtil.getLocalPlayer(player);
-//				handler.deserializeFromServer(packet.tag);
+				LocalPlayerCapabilityHandler handler = CapabilityUtil.getLocalPlayer(player);
+				handler.deserializeFromServer(packet.tag);
 			});
 		}
 		

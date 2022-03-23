@@ -2,6 +2,8 @@ package net.luis.xsurvive.network.packet;
 
 import java.util.function.Supplier;
 
+import net.luis.xsurvive.common.capability.CapabilityUtil;
+import net.luis.xsurvive.server.capability.ServerPlayerCapabilityHandler;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
@@ -28,8 +30,8 @@ public class ServerPlayerCapabilityUpdatePacket {
 		public static void handle(ServerPlayerCapabilityUpdatePacket packet, Supplier<Context> context) {
 			ServerPlayer player = context.get().getSender();
 			context.get().enqueueWork(() -> {
-//				ServerPlayerCapabilityHandler handler = CapabilityUtil.getServerPlayer(player);
-//				handler.deserializeFromClient(packet.tag);
+				ServerPlayerCapabilityHandler handler = CapabilityUtil.getServerPlayer(player);
+				handler.deserializeFromClient(packet.tag);
 			});
 		}
 		
