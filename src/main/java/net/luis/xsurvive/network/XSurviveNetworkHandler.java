@@ -24,11 +24,12 @@ public class XSurviveNetworkHandler {
 	protected static SimpleChannel simpleChannel;
 	
 	public static void init() {
+		XSurvive.LOGGER.info("Register {} Network Channel", XSurvive.MOD_NAME);
 		simpleChannel = NetworkRegistry.newSimpleChannel(new ResourceLocation(XSurvive.MOD_ID, "simple_chnanel"), () -> VERSION, VERSION::equals, VERSION::equals);
 		simpleChannel.messageBuilder(LocalPlayerCapabilityUpdatePacket.class, id++, NetworkDirection.PLAY_TO_CLIENT).encoder(LocalPlayerCapabilityUpdatePacket::encode).decoder(LocalPlayerCapabilityUpdatePacket::decode)
-				.consumer(LocalPlayerCapabilityUpdatePacket.Handler::handle);
+				.consumer(LocalPlayerCapabilityUpdatePacket.Handler::handle).add();
 		simpleChannel.messageBuilder(ServerPlayerCapabilityUpdatePacket.class, id++, NetworkDirection.PLAY_TO_SERVER).encoder(ServerPlayerCapabilityUpdatePacket::encode).decoder(ServerPlayerCapabilityUpdatePacket::decode)
-				.consumer(ServerPlayerCapabilityUpdatePacket.Handler::handle);
+				.consumer(ServerPlayerCapabilityUpdatePacket.Handler::handle).add();
 	}
 	
 	public static SimpleChannel getChannel() {
