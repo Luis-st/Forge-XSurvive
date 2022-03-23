@@ -7,7 +7,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexFormat;
 
-import net.luis.xsurvive.client.capability.LocalPlayerCapabilityHandler;
 import net.luis.xsurvive.common.capability.CapabilityUtil;
 import net.luis.xsurvive.init.XSurviveMobEffects;
 import net.minecraft.client.Minecraft;
@@ -32,13 +31,7 @@ public class FrostMobEffectOverlay implements IIngameOverlay {
 		Player player = this.minecraft.player;
 		if (!this.minecraft.options.hideGui && player.hasEffect(XSurviveMobEffects.FROST.get()) && 0 >= player.getPercentFrozen()) {
 			gui.setupOverlayRenderState(true, false);
-//			LocalPlayerCapabilityHandler handler = CapabilityUtil.getLocalPlayer(player);
-//			if (handler != null) {
-//				this.renderFrostMobEffectOverlay(width, height, handler.getFrostPercent());
-//			} else {
-//				this.renderFrostMobEffectOverlay(width, height, 1.0F);
-//			}
-			// TODO: cap which sets the frostPercent
+			this.renderFrostMobEffectOverlay(width, height, CapabilityUtil.getLocalPlayer(player).getFrostPercent());
 		}
 	}
 	
