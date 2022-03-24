@@ -1,0 +1,18 @@
+{
+  "conditions": [
+    {
+      "condition": "minecraft:match_tool",
+      "predicate": {
+        "enchantments": [
+          {
+            "enchantment": "xsurvive:smelting",
+            "levels": {
+              "min": 1
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "type": "xores:smelting_modifier"
+}

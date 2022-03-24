@@ -7,6 +7,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import net.luis.xsurvive.XSurvive;
 import net.luis.xsurvive.common.extension.IEnchantment;
+import net.luis.xsurvive.init.XSurviveEnchantmentCategory;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.Registry;
 import net.minecraft.world.item.CreativeModeTab;
@@ -43,7 +44,8 @@ public abstract class EnchantedBookItemMixin {
 		} else if (tab.getEnchantmentCategories().length != 0) {
 			for (Enchantment enchantment : Registry.ENCHANTMENT) {
 				if (enchantment instanceof IEnchantment ench) {
-					if (tab.hasEnchantmentCategory(enchantment.category) && !ench.isUpgrade()) {
+					boolean flag = tab == CreativeModeTab.TAB_COMBAT || tab == CreativeModeTab.TAB_TOOLS;
+					if ((tab.hasEnchantmentCategory(enchantment.category) || (enchantment.category == XSurviveEnchantmentCategory.TOOLS && flag)) && !ench.isUpgrade()) {
 						stacks.add(EnchantedBookItem.createForEnchantment(new EnchantmentInstance(enchantment, enchantment.getMaxLevel())));
 					}
 				} else {

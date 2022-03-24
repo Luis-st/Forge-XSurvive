@@ -1,6 +1,7 @@
 {
   "replace": false,
   "entries": [
-    "xsurvive:multi_drop"
+    "xsurvive:multi_drop",
+    "xsurvive:smelting"
   ]
 }

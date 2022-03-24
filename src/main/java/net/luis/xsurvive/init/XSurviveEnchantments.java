@@ -6,6 +6,7 @@ import net.luis.xsurvive.common.enchantment.ExperienceEnchantment;
 import net.luis.xsurvive.common.enchantment.FrostAspectEnchantment;
 import net.luis.xsurvive.common.enchantment.MultiDropEnchantment;
 import net.luis.xsurvive.common.enchantment.PoisonAspectEnchantment;
+import net.luis.xsurvive.common.enchantment.SmeltingEnchantment;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantment.Rarity;
@@ -32,7 +33,10 @@ public class XSurviveEnchantments {
 		return new PoisonAspectEnchantment(Rarity.RARE, EquipmentSlot.MAINHAND);
 	});
 	public static final RegistryObject<ExperienceEnchantment> EXPERIENCE = ENCHANTMENTS.register("experience", () -> {
-		return new ExperienceEnchantment(Rarity.UNCOMMON, XSurviveEnchantmentCategory.TOOLS.toCategory(), EquipmentSlot.MAINHAND);
+		return new ExperienceEnchantment(Rarity.UNCOMMON, XSurviveEnchantmentCategory.TOOLS, EquipmentSlot.MAINHAND);
+	});
+	public static final RegistryObject<SmeltingEnchantment> SMELTING = ENCHANTMENTS.register("smelting", () -> {
+		return new SmeltingEnchantment(Rarity.VERY_RARE, EnchantmentCategory.DIGGER, EquipmentSlot.MAINHAND);
 	});
 	
 }
