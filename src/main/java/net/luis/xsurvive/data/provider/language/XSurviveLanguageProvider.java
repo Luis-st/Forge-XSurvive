@@ -23,7 +23,7 @@ public class XSurviveLanguageProvider extends LanguageProvider {
 	@Override
 	protected void addTranslations() {
 		for (Enchantment enchantment : XSurviveEnchantments.ENCHANTMENTS.getEntries().stream().map(RegistryObject::get).toList()) {
-			this.add(enchantment, this.getName(enchantment.getRegistryName()));
+			this.add(enchantment, this.getEnchantmentName(enchantment.getRegistryName()));
 		}
 		for (Item item : XSurviveItems.ITEMS.getEntries().stream().map(RegistryObject::get).toList()) {
 			this.add(item, this.getName(item.getRegistryName()));
@@ -35,6 +35,8 @@ public class XSurviveLanguageProvider extends LanguageProvider {
 			this.add(potion);
 		}
 		this.add(XSurvive.TAB.getDisplayName().getString(), XSurvive.MOD_NAME);
+		this.add("death.attack.curse_of_harming", "%1$s die by his own weapon");
+		this.add("death.attack.curse_of_harming.player", "%1$s die by his own weapon whilst fighting %2$s");
 	}
 	
 	public void add(Potion potion) {
@@ -45,14 +47,6 @@ public class XSurviveLanguageProvider extends LanguageProvider {
 		this.add("item.minecraft.lingering_potion.effect." + potionName, this.getPotionName(location));
 	}
 	
-	protected String getPotionName(ResourceLocation location) {
-		if (location.getPath().startsWith("long_")) {
-			String path = location.getPath();
-			return this.getName(new ResourceLocation(location.getNamespace(), path.replace("long_", "")));
-		}
-		return this.getName(location);
-	}
-	
 	protected String getName(ResourceLocation location) { 
 		String[] nameParts = location.getPath().split("_");
 		String name = "";
@@ -61,6 +55,22 @@ public class XSurviveLanguageProvider extends LanguageProvider {
 			name += startChar + namePart.substring(1, namePart.length()) + " ";
 		}
 		return name.trim();
+	}
+	
+	protected String getEnchantmentName(ResourceLocation location) {
+		String name = this.getName(location);
+		if (name.contains(" Of ")) {
+			return name.replace(" Of ", " of ");
+		}
+		return name;
+	}
+	
+	protected String getPotionName(ResourceLocation location) {
+		if (location.getPath().startsWith("long_")) {
+			String path = location.getPath();
+			return this.getName(new ResourceLocation(location.getNamespace(), path.replace("long_", "")));
+		}
+		return this.getName(location);
 	}
 	
 	@Override

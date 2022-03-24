@@ -15,10 +15,12 @@ public class OnLivingExperienceDropEvent {
 	public static void livingExperienceDrop(LivingExperienceDropEvent event) {
 		Player player = event.getAttackingPlayer();
 		int xp = event.getOriginalExperience();
-		int experience = EnchantmentHandler.getEnchantmentLevel(XSurviveEnchantments.EXPERIENCE.get(), player);
-		int looting = EnchantmentHandler.getEnchantmentLevel(Enchantments.MOB_LOOTING, player);
-		if (player != null && xp > 0 && experience > 0) {
-			event.setDroppedExperience(xp * ((experience + 1) * ((experience * 2) + looting)));
+		if (player != null) {
+			int experience = EnchantmentHandler.getEnchantmentLevel(XSurviveEnchantments.EXPERIENCE.get(), player);
+			int looting = EnchantmentHandler.getEnchantmentLevel(Enchantments.MOB_LOOTING, player);
+			if (player != null && xp > 0 && experience > 0) {
+				event.setDroppedExperience(xp * ((experience + 1) * ((experience * 2) + looting)));
+			}
 		}
 	}
 	

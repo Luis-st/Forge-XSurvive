@@ -13,5 +13,8 @@ public class XSurviveEnchantmentCategory {
 	public static final EnchantmentCategory TOOLS = EnchantmentCategory.create(new ResourceLocation(XSurvive.MOD_ID, "tools").toString(), (item) -> {
 		return item instanceof DiggerItem || item instanceof SwordItem || item instanceof BowItem || item instanceof CrossbowItem;
 	});
+	public static final EnchantmentCategory WEAPONS = EnchantmentCategory.create(new ResourceLocation(XSurvive.MOD_ID, "weapons").toString(), (item) -> {
+		return item instanceof SwordItem || item instanceof BowItem || item instanceof CrossbowItem;
+	});
 	
 }

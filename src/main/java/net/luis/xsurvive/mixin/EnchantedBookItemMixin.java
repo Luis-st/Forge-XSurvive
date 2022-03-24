@@ -44,20 +44,28 @@ public abstract class EnchantedBookItemMixin {
 		} else if (tab.getEnchantmentCategories().length != 0) {
 			for (Enchantment enchantment : Registry.ENCHANTMENT) {
 				if (enchantment instanceof IEnchantment ench) {
-					boolean flag = tab == CreativeModeTab.TAB_COMBAT || tab == CreativeModeTab.TAB_TOOLS;
-					if ((tab.hasEnchantmentCategory(enchantment.category) || (enchantment.category == XSurviveEnchantmentCategory.TOOLS && flag)) && !ench.isUpgrade()) {
+					if (this.isTabForCategory(tab, enchantment) && !ench.isUpgrade()) {
 						stacks.add(EnchantedBookItem.createForEnchantment(new EnchantmentInstance(enchantment, enchantment.getMaxLevel())));
 					}
 				} else {
 					XSurvive.LOGGER.error("Enchantment {} is not a instance of IEnchantment", enchantment.getRegistryName());
 					XSurvive.LOGGER.info("A deprecate vanilla logic is called");
-					if (tab.hasEnchantmentCategory(enchantment.category)) {
+					if (this.isTabForCategory(tab, enchantment)) {
 						stacks.add(EnchantedBookItem.createForEnchantment(new EnchantmentInstance(enchantment, enchantment.getMaxLevel())));
 					}
 				}
 			}
 		}
 		callback.cancel();
+	}
+	
+	protected boolean isTabForCategory(CreativeModeTab tab, Enchantment enchantment) {
+		if (enchantment.category == XSurviveEnchantmentCategory.TOOLS && (tab == CreativeModeTab.TAB_COMBAT || tab == CreativeModeTab.TAB_TOOLS)) {
+			return true;
+		} else if (enchantment.category == XSurviveEnchantmentCategory.WEAPONS && tab == CreativeModeTab.TAB_COMBAT) {
+			return true;
+		}
+		return tab.hasEnchantmentCategory(enchantment.category);
 	}
 	
 }

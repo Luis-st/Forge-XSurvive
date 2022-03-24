@@ -13,14 +13,16 @@ public class OnPlayerCloneEvent {
 	
 	@SubscribeEvent
 	public static void playerClone(PlayerEvent.Clone event) {
-		if (event.getOriginal() instanceof ServerPlayer oldPlayer && event.getPlayer() instanceof ServerPlayer newPlayer) {
-			IPlayerCapability oldHandler = CapabilityUtil.getPlayer(oldPlayer);
-			IPlayerCapability newHandler = CapabilityUtil.getPlayer(newPlayer);
+		if (event.getOriginal() instanceof ServerPlayer original && event.getPlayer() instanceof ServerPlayer player) {
+			original.reviveCaps();
+			IPlayerCapability originalHandler = CapabilityUtil.getPlayer(original);
+			IPlayerCapability handler = CapabilityUtil.getPlayer(player);
 			if (event.isWasDeath()) {
-				newHandler.deserializePersistent(oldHandler.serializePersistent());
+				handler.deserializePersistent(originalHandler.serializePersistent());
 			} else {
-				newHandler.deserialize(oldHandler.serialize());
+				handler.deserialize(originalHandler.serialize());
 			}
+			original.invalidateCaps();
 		}
 	}
 	

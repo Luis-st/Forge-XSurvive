@@ -9,7 +9,8 @@
 		"EnchantedBookItemMixin",
 		"QuickChargeEnchantmentMixin",
 		"ArrowKnockbackEnchantmentMixin",
-		"ThornsEnchantmentMixin"
+		"ThornsEnchantmentMixin",
+		"ItemStackMixin"
 	],
 	"client": [
 		"client.ItemRendererMixin",
