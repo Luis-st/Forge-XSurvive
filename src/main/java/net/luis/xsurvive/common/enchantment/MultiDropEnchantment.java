@@ -14,6 +14,11 @@ public class MultiDropEnchantment extends Enchantment implements IEnchantment {
 	}
 	
 	@Override
+	public int getMaxLevel() {
+		return 2;
+	}
+	
+	@Override
 	public int getMinCost(int cost) {
 		return 20;
 	}
@@ -21,11 +26,6 @@ public class MultiDropEnchantment extends Enchantment implements IEnchantment {
 	@Override
 	public int getMaxCost(int cost) {
 		return 50;
-	}
-	
-	@Override
-	public int getMaxLevel() {
-		return 2;
 	}
 	
 	@Override

@@ -2,6 +2,7 @@ package net.luis.xsurvive.init;
 
 import net.luis.xsurvive.XSurvive;
 import net.luis.xsurvive.common.enchantment.EnderSlayerEnchantment;
+import net.luis.xsurvive.common.enchantment.ExperienceEnchantment;
 import net.luis.xsurvive.common.enchantment.FrostAspectEnchantment;
 import net.luis.xsurvive.common.enchantment.MultiDropEnchantment;
 import net.luis.xsurvive.common.enchantment.PoisonAspectEnchantment;
@@ -29,6 +30,9 @@ public class XSurviveEnchantments {
 	});
 	public static final RegistryObject<PoisonAspectEnchantment> POISON_ASPECT = ENCHANTMENTS.register("poison_aspect", () -> {
 		return new PoisonAspectEnchantment(Rarity.RARE, EquipmentSlot.MAINHAND);
+	});
+	public static final RegistryObject<ExperienceEnchantment> EXPERIENCE = ENCHANTMENTS.register("experience", () -> {
+		return new ExperienceEnchantment(Rarity.UNCOMMON, XSurviveEnchantmentCategory.TOOLS.toCategory(), EquipmentSlot.MAINHAND);
 	});
 	
 }

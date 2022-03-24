@@ -31,7 +31,6 @@ public class MultiDropModifier extends LootModifier {
 			} else {
 				XSurvive.LOGGER.error("Could not apply the MultiDrop logic, since there is no Tool in the LootContext present");
 			}
-
 		});
 		return loot;
 	}

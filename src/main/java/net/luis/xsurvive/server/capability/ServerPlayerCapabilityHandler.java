@@ -35,7 +35,7 @@ public class ServerPlayerCapabilityHandler implements IPlayerCapability {
 	public void tick() {
 		this.tick++;
 		if (this.player.getRemainingFireTicks() > 0 || this.getLevel().dimensionType().ultraWarm()) {
-			if (this.player.removeEffect(XSurviveMobEffects.FROST.get())) { // TODO: add effect which removes the effect slowly in 2 seconds
+			if (this.player.removeEffect(XSurviveMobEffects.FROST.get())) {
 				this.frostTime = 0;
 				this.setChanged();
 			}
