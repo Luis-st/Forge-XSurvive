@@ -9,6 +9,7 @@ import net.luis.xsurvive.common.enchantment.HarmingCurseEnchantment;
 import net.luis.xsurvive.common.enchantment.MultiDropEnchantment;
 import net.luis.xsurvive.common.enchantment.PoisonAspectEnchantment;
 import net.luis.xsurvive.common.enchantment.SmeltingEnchantment;
+import net.luis.xsurvive.common.enchantment.VoidWalkerEnchantment;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantment.Rarity;
@@ -45,6 +46,9 @@ public class XSurviveEnchantments {
 	});
 	public static final RegistryObject<HarmingCurseEnchantment> CURSE_OF_HARMING = ENCHANTMENTS.register("curse_of_harming", () -> {
 		return new HarmingCurseEnchantment(Rarity.VERY_RARE, XSurviveEnchantmentCategory.WEAPONS, EquipmentSlot.MAINHAND);
+	});
+	public static final RegistryObject<VoidWalkerEnchantment> VOID_WALKER = ENCHANTMENTS.register("void_walker", () -> {
+		return new VoidWalkerEnchantment(Rarity.VERY_RARE, EnchantmentCategory.ARMOR_FEET, EquipmentSlot.FEET);
 	});
 	
 }
