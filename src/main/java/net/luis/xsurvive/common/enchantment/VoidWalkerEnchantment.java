@@ -1,11 +1,12 @@
 package net.luis.xsurvive.common.enchantment;
 
+import net.luis.xsurvive.common.extension.IEnchantment;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.Enchantments;
 
-public class VoidWalkerEnchantment extends Enchantment {
+public class VoidWalkerEnchantment extends Enchantment implements IEnchantment {
 
 	public VoidWalkerEnchantment(Rarity rarity, EnchantmentCategory category, EquipmentSlot... slots) {
 		super(rarity, category, slots);
@@ -28,10 +29,10 @@ public class VoidWalkerEnchantment extends Enchantment {
 	
 	@Override
 	protected boolean checkCompatibility(Enchantment enchantment) {
-		if (enchantment != Enchantments.DEPTH_STRIDER) {
-			return true;
-		} else if (enchantment != Enchantments.FROST_WALKER) {
-			return true;
+		if (enchantment == Enchantments.DEPTH_STRIDER) {
+			return false;
+		} else if (enchantment == Enchantments.FROST_WALKER) {
+			return false;
 		}	
 		return super.checkCompatibility(enchantment);
 	}
@@ -39,6 +40,11 @@ public class VoidWalkerEnchantment extends Enchantment {
 	@Override
 	public boolean isTreasureOnly() {
 		return true;
+	}
+
+	@Override
+	public boolean isAllowedOnGoldenBooks() {
+		return false;
 	}
 	
 }
