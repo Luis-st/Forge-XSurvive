@@ -5,6 +5,7 @@ import net.luis.xsurvive.common.enchantment.BreakingCurseEnchantment;
 import net.luis.xsurvive.common.enchantment.EnderSlayerEnchantment;
 import net.luis.xsurvive.common.enchantment.ExperienceEnchantment;
 import net.luis.xsurvive.common.enchantment.FrostAspectEnchantment;
+import net.luis.xsurvive.common.enchantment.GrowthEnchantment;
 import net.luis.xsurvive.common.enchantment.HarmingCurseEnchantment;
 import net.luis.xsurvive.common.enchantment.MultiDropEnchantment;
 import net.luis.xsurvive.common.enchantment.PoisonAspectEnchantment;
@@ -22,6 +23,10 @@ public class XSurviveEnchantments {
 	
 	public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, XSurvive.MOD_ID);
 	
+	
+	protected static final EquipmentSlot[] ARMOR_SLOTS = new EquipmentSlot[] {
+			EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET
+	};
 	
 	public static final RegistryObject<MultiDropEnchantment> MULTI_DROP = ENCHANTMENTS.register("multi_drop", () -> {
 		return new MultiDropEnchantment(Rarity.VERY_RARE, EnchantmentCategory.DIGGER, EquipmentSlot.MAINHAND);
@@ -49,6 +54,9 @@ public class XSurviveEnchantments {
 	});
 	public static final RegistryObject<VoidWalkerEnchantment> VOID_WALKER = ENCHANTMENTS.register("void_walker", () -> {
 		return new VoidWalkerEnchantment(Rarity.VERY_RARE, EnchantmentCategory.ARMOR_FEET, EquipmentSlot.FEET);
+	});
+	public static final RegistryObject<Enchantment> GROWTH = ENCHANTMENTS.register("growth", () -> { 
+		return new GrowthEnchantment(Rarity.UNCOMMON, EnchantmentCategory.ARMOR, ARMOR_SLOTS);
 	});
 	
 }

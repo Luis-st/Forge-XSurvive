@@ -16,7 +16,7 @@ public interface IEnchantment {
 		return (Enchantment) this;
 	}
 	
-	boolean isAllowedOnGoldenBooks();
+	boolean isAllowedOnGoldenBooks(); // REWORK & check which enchntments are usefull
 	
 	default int getMinGoldenBookLevel() {
 		return this.self().getMaxLevel() + 1;

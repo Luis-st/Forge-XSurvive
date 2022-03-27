@@ -49,7 +49,7 @@ public abstract class EnchantmentHelperMixin {
 	}
 	
 	@Inject(method = "setEnchantments", at = @At("TAIL"))
-	private static void setEnchantments(Map<Enchantment, Integer> enchantments, ItemStack stack, CallbackInfo callback) { // REWORK
+	private static void setEnchantments(Map<Enchantment, Integer> enchantments, ItemStack stack, CallbackInfo callback) {
 		if (stack.getItem() instanceof EnchantedGoldenBookItem) {
 			if (enchantments.size() == 1) {
 				Enchantment enchantment = enchantments.keySet().stream().toList().get(0);

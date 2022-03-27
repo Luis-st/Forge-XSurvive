@@ -1,6 +1,9 @@
 package net.luis.xsurvive.common.handler;
 
+import net.luis.xsurvive.init.XSurviveEnchantments;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.AbstractFish;
 import net.minecraft.world.entity.animal.Dolphin;
 import net.minecraft.world.entity.animal.Squid;
@@ -16,6 +19,8 @@ import net.minecraft.world.entity.monster.Guardian;
 import net.minecraft.world.entity.monster.MagmaCube;
 import net.minecraft.world.entity.monster.Shulker;
 import net.minecraft.world.entity.monster.Strider;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
 public class EntityHandler {
 	
@@ -29,5 +34,21 @@ public class EntityHandler {
 		}
 		return entity instanceof AbstractFish || entity instanceof Dolphin || entity instanceof Squid || entity instanceof Guardian || entity instanceof ElderGuardian || entity instanceof Drowned || entity instanceof Turtle;
 	}
+	
+	public static int getGrowthLevel(LivingEntity entity, EquipmentSlot slot, ItemStack stack) {
+		int growth = 0;
+		for (EquipmentSlot equipmentSlot : EquipmentSlot.values()) {
+			if (equipmentSlot.getType() == EquipmentSlot.Type.ARMOR) {
+				if (equipmentSlot == slot) {
+					growth += EnchantmentHelper.getItemEnchantmentLevel(XSurviveEnchantments.GROWTH.get(), stack);
+				} else {
+					growth += EnchantmentHelper.getItemEnchantmentLevel(XSurviveEnchantments.GROWTH.get(), entity.getItemBySlot(equipmentSlot));
+				}
+			}
+		}
+		return growth;
+	}
+	
 
+	
 }
