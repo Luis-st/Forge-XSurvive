@@ -11,6 +11,11 @@ public class GrowthEnchantment extends Enchantment {
 	}
 	
 	@Override
+	public int getMaxLevel() {
+		return 5;
+	}
+	
+	@Override
 	public int getMinCost(int level) {
 		return 1 + (level - 1) * 9;
 	}
@@ -18,11 +23,6 @@ public class GrowthEnchantment extends Enchantment {
 	@Override
 	public int getMaxCost(int level) {
 		return this.getMinCost(level) + 50;
-	}
-	
-	@Override
-	public int getMaxLevel() {
-		return 5;
 	}
 
 }

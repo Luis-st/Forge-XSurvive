@@ -13,6 +13,11 @@ public class VoidWalkerEnchantment extends Enchantment implements IEnchantment {
 	}
 	
 	@Override
+	public int getMaxLevel() {
+		return 1;
+	}
+	
+	@Override
 	public int getMinCost(int level) {
 		return 20;
 	}
@@ -20,11 +25,6 @@ public class VoidWalkerEnchantment extends Enchantment implements IEnchantment {
 	@Override
 	public int getMaxCost(int level) {
 		return 50;
-	}
-	
-	@Override
-	public int getMaxLevel() {
-		return 1;
 	}
 	
 	@Override
