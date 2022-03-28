@@ -9,9 +9,9 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.item.enchantment.ProtectionEnchantment;
 
-public class VoidProtection extends Enchantment {
+public class VoidProtectionEnchantment extends Enchantment {
 
-	public VoidProtection(Rarity rarity, EnchantmentCategory category, EquipmentSlot... slots) {
+	public VoidProtectionEnchantment(Rarity rarity, EnchantmentCategory category, EquipmentSlot... slots) {
 		super(rarity, category, slots);
 	}
 	
