@@ -1,11 +1,10 @@
 package net.luis.xsurvive.common.enchantment;
 
-import net.luis.xsurvive.common.extension.IEnchantment;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
-public class BreakingCurseEnchantment extends Enchantment implements IEnchantment {
+public class BreakingCurseEnchantment extends Enchantment {
 
 	public BreakingCurseEnchantment(Rarity rarity, EnchantmentCategory category, EquipmentSlot... slots) {
 		super(rarity, category, slots);
@@ -34,11 +33,6 @@ public class BreakingCurseEnchantment extends Enchantment implements IEnchantmen
 	@Override
 	public boolean isCurse() {
 		return true;
-	}
-	
-	@Override
-	public boolean isAllowedOnGoldenBooks() {
-		return false;
 	}
 	
 }

@@ -1,12 +1,11 @@
 package net.luis.xsurvive.common.enchantment;
 
-import net.luis.xsurvive.common.extension.IEnchantment;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.Enchantments;
 
-public class SmeltingEnchantment extends Enchantment implements IEnchantment {
+public class SmeltingEnchantment extends Enchantment {
 
 	public SmeltingEnchantment(Rarity rarity, EnchantmentCategory category, EquipmentSlot... slots) {
 		super(rarity, category, slots);
@@ -35,11 +34,6 @@ public class SmeltingEnchantment extends Enchantment implements IEnchantment {
 			return false;
 		}
 		return super.checkCompatibility(enchantment);
-	}
-	
-	@Override
-	public boolean isAllowedOnGoldenBooks() {
-		return false;
 	}
 
 }
