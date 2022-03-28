@@ -16,14 +16,18 @@ public interface IEnchantment {
 		return (Enchantment) this;
 	}
 	
-	boolean isAllowedOnGoldenBooks(); // REWORK & check which enchntments are usefull
+	boolean isAllowedOnGoldenBooks();
 	
 	default int getMinGoldenBookLevel() {
 		return this.self().getMaxLevel() + 1;
 	}
 	
 	default int getMaxGoldenBookLevel() {
-		return this.self().getMaxLevel() + 5;
+		return this.getMinGoldenBookLevel();
+	}
+	
+	default int getAnvilCost(int level) {
+		return Math.max(0, level - this.self().getMaxLevel()) * 10 + 50;
 	}
 	
 	default boolean isGolden(int level) {
@@ -36,10 +40,6 @@ public interface IEnchantment {
 	
 	default boolean isUpgrade() {
 		return this.isAllowedOnGoldenBooks() && this.getUpgradeLevel() > 0;
-	}
-	
-	default boolean isUpgradable(int level) {
-		return this.isUpgrade() && this.getUpgradeLevel() > level;
 	}
 	
 	default GoldenEnchantmentInstance createGoldenInstance(int level) {
@@ -67,7 +67,7 @@ public interface IEnchantment {
 				} else if (instance.isGolden() && instance.level > enchantment.getMaxLevel() && level >= enchantment.getMaxLevel()) {
 					if (ench.getMaxGoldenBookLevel() > level) {
 						EnchantmentHandler.replaceEnchantment(instance, result);
-						return new EnchantedItem(result, Math.max(0, level - enchantment.getMaxLevel()) * 10 + 30);
+						return new EnchantedItem(result, ench.getAnvilCost(level));
 					}
 					return EnchantedItem.EMPTY;
 				} else {
@@ -88,7 +88,7 @@ public interface IEnchantment {
 			Enchantment enchantment = goldenBook.getEnchantment(right);
 			if (enchantment instanceof IEnchantment ench) {
 				int level = EnchantmentHelper.getItemEnchantmentLevel(enchantment, result);
-				if (ench.isUpgradable(level)) {
+				if (ench.isUpgrade() && ench.getUpgradeLevel() > level) {
 					EnchantmentHandler.increaseEnchantment(enchantment, result, false);
 					return new EnchantedItem(result, 10);
 				} else {

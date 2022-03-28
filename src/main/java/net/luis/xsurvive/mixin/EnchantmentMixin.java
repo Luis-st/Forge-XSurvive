@@ -1,10 +1,14 @@
 package net.luis.xsurvive.mixin;
 
+import java.util.List;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import com.google.common.collect.Lists;
 
 import net.luis.xsurvive.common.extension.IEnchantment;
 import net.luis.xsurvive.init.XSurviveEnchantments;
@@ -12,8 +16,11 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.item.enchantment.DamageEnchantment;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.item.enchantment.FireAspectEnchantment;
+import net.minecraft.world.item.enchantment.ProtectionEnchantment;
 
 @Mixin(Enchantment.class)
 public abstract class EnchantmentMixin implements IEnchantment {
@@ -64,22 +71,17 @@ public abstract class EnchantmentMixin implements IEnchantment {
 	@Override
 	public boolean isAllowedOnGoldenBooks() {
 		Enchantment enchantment = (Enchantment) (Object) this;
-		if (this.isCurse()) {
-			return false;
-		} else if (enchantment == Enchantments.AQUA_AFFINITY) {
-			return false;
-		} else if (enchantment == Enchantments.SILK_TOUCH) {
-			return false;
-		} else if (enchantment == Enchantments.FLAMING_ARROWS) {
-			return false;
-		} else if (enchantment == Enchantments.INFINITY_ARROWS) {
-			return false;
-		} else if (enchantment == Enchantments.CHANNELING) {
-			return false;
-		} else if (enchantment == Enchantments.MULTISHOT) {
-			return false;
+		List<Enchantment> goldenEnchantments = Lists.newArrayList(Enchantments.RESPIRATION, Enchantments.DEPTH_STRIDER, Enchantments.SOUL_SPEED, Enchantments.KNOCKBACK, Enchantments.MOB_LOOTING, Enchantments.SWEEPING_EDGE,
+			Enchantments.BLOCK_EFFICIENCY, Enchantments.UNBREAKING, Enchantments.BLOCK_FORTUNE, Enchantments.POWER_ARROWS, Enchantments.PUNCH_ARROWS, Enchantments.FISHING_LUCK, Enchantments.FISHING_SPEED, Enchantments.LOYALTY, Enchantments.RIPTIDE,
+			Enchantments.QUICK_CHARGE, Enchantments.PIERCING, XSurviveEnchantments.GROWTH.get(), XSurviveEnchantments.BLASTING.get(), XSurviveEnchantments.VOID_PROTECTION.get());
+		if (enchantment instanceof ProtectionEnchantment) {
+			return true;
+		} else if (enchantment instanceof DamageEnchantment) {
+			return true;
+		} else if (enchantment instanceof FireAspectEnchantment) {
+			return true;
 		}
-		return enchantment != XSurviveEnchantments.MULTI_DROP.get();
+		return goldenEnchantments.contains(enchantment);
 	}
 	
 }
