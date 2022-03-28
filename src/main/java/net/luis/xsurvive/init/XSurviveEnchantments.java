@@ -1,6 +1,7 @@
 package net.luis.xsurvive.init;
 
 import net.luis.xsurvive.XSurvive;
+import net.luis.xsurvive.common.enchantment.BlastingEnchantment;
 import net.luis.xsurvive.common.enchantment.BreakingCurseEnchantment;
 import net.luis.xsurvive.common.enchantment.EnderSlayerEnchantment;
 import net.luis.xsurvive.common.enchantment.ExperienceEnchantment;
@@ -10,6 +11,7 @@ import net.luis.xsurvive.common.enchantment.HarmingCurseEnchantment;
 import net.luis.xsurvive.common.enchantment.MultiDropEnchantment;
 import net.luis.xsurvive.common.enchantment.PoisonAspectEnchantment;
 import net.luis.xsurvive.common.enchantment.SmeltingEnchantment;
+import net.luis.xsurvive.common.enchantment.ThunderboltEnchantment;
 import net.luis.xsurvive.common.enchantment.VoidWalkerEnchantment;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -44,7 +46,7 @@ public class XSurviveEnchantments {
 		return new ExperienceEnchantment(Rarity.UNCOMMON, XSurviveEnchantmentCategory.TOOLS, EquipmentSlot.MAINHAND);
 	});
 	public static final RegistryObject<SmeltingEnchantment> SMELTING = ENCHANTMENTS.register("smelting", () -> {
-		return new SmeltingEnchantment(Rarity.VERY_RARE, EnchantmentCategory.DIGGER, EquipmentSlot.MAINHAND);
+		return new SmeltingEnchantment(Rarity.RARE, EnchantmentCategory.DIGGER, EquipmentSlot.MAINHAND);
 	});
 	public static final RegistryObject<BreakingCurseEnchantment> CURSE_OF_BREAKING = ENCHANTMENTS.register("curse_of_breaking", () -> {
 		return new BreakingCurseEnchantment(Rarity.VERY_RARE, EnchantmentCategory.BREAKABLE, EquipmentSlot.values());
@@ -56,7 +58,24 @@ public class XSurviveEnchantments {
 		return new VoidWalkerEnchantment(Rarity.VERY_RARE, EnchantmentCategory.ARMOR_FEET, EquipmentSlot.FEET);
 	});
 	public static final RegistryObject<Enchantment> GROWTH = ENCHANTMENTS.register("growth", () -> { 
-		return new GrowthEnchantment(Rarity.UNCOMMON, EnchantmentCategory.ARMOR, ARMOR_SLOTS);
+		return new GrowthEnchantment(Rarity.COMMON, EnchantmentCategory.ARMOR, ARMOR_SLOTS);
 	});
+	public static final RegistryObject<BlastingEnchantment> BLASTING = ENCHANTMENTS.register("blasting", () -> {
+		return new BlastingEnchantment(Rarity.UNCOMMON, EnchantmentCategory.DIGGER, EquipmentSlot.MAINHAND);
+	});
+	public static final RegistryObject<Enchantment> THUNDERBOLT = ENCHANTMENTS.register("thunderbolt", () -> { 
+		return new ThunderboltEnchantment(Rarity.VERY_RARE, EnchantmentCategory.WEAPON, EquipmentSlot.MAINHAND);
+	});
+	
+//	public static final RegistryObject<Enchantment> THUNDERBOLT = ENCHANTMENT.register("thunderbolt", 
+//		() -> new Thunderbolt(Rarity.VERY_RARE, EnchantmentType.WEAPON, EquipmentSlotType.MAINHAND));
+//	public static final RegistryObject<Enchantment> HARVESTING = ENCHANTMENT.register("harvesting", 
+//		() -> new Harvesting(Rarity.COMMON, EnchantmentType.DIGGER, EquipmentSlotType.MAINHAND));
+//	public static final RegistryObject<Enchantment> ELYTRA_PROTECTION = ENCHANTMENT.register("elytra_protection", 
+//		() -> new ElytraProtection(Rarity.VERY_RARE, EnchantmentType.ARMOR_CHEST, EquipmentSlotType.CHEST));
+//	public static final RegistryObject<Enchantment> ELYTRA_FALLING = ENCHANTMENT.register("elytra_falling", 
+//		() -> new ElytraFalling(Rarity.VERY_RARE, EnchantmentType.ARMOR_CHEST, EquipmentSlotType.CHEST));
+//	public static final RegistryObject<Enchantment> BLASTING = ENCHANTMENT.register("blasting", 
+//		() -> new Blasting(Rarity.UNCOMMON, EnchantmentType.DIGGER, EquipmentSlotType.MAINHAND));
 	
 }
