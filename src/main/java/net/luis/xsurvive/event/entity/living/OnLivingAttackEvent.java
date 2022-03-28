@@ -14,9 +14,11 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -50,6 +52,18 @@ public class OnLivingAttackEvent {
 					}
 					player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 30, 4, false, false), lightningBolt);
 				}
+			}
+		}
+		if (target instanceof Player player && source == DamageSource.OUT_OF_WORLD && amount > 0) {
+			int voidProtection = EnchantmentHelper.getItemEnchantmentLevel(XSurviveEnchantments.VOID_PROTECTION.get(), player.getItemBySlot(EquipmentSlot.CHEST));
+			if (voidProtection > 0) {
+				double percent = switch (voidProtection) {
+					case 0 -> 1.0;
+					case 1 -> 0.6666666666666666;
+					case 2 -> 0.3333333333333333;					
+					default -> 0.0;
+				};
+				event.setCanceled(RNG.nextDouble() > percent);
 			}
 		}
 	}

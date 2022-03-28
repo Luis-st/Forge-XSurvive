@@ -31,6 +31,18 @@ public class OnLivingDamageEvent {
 				newAmount = (float) (amount * 2.5);
 			}
 		}
+		if (target instanceof Player player && source == DamageSource.OUT_OF_WORLD && amount > 0) {
+			int voidProtection = EnchantmentHandler.getEnchantmentLevel(XSurviveEnchantments.VOID_PROTECTION.get(), player);
+			if (voidProtection > 0) {
+				float percent = switch (voidProtection) {
+					case 1 -> 0.8F;
+					case 2 -> 0.6F;
+					case 3 -> 0.4F;
+					default -> 0.2F;
+				};
+				newAmount = amount * percent;
+			}
+		}
 		event.setAmount(newAmount);
 	}
 	

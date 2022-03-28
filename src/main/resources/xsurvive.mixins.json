@@ -10,7 +10,8 @@
 		"QuickChargeEnchantmentMixin",
 		"ArrowKnockbackEnchantmentMixin",
 		"ThornsEnchantmentMixin",
-		"ItemStackMixin"
+		"ItemStackMixin",
+		"ProtectionEnchantmentMixin"
 	],
 	"client": [
 		"client.ItemRendererMixin",
