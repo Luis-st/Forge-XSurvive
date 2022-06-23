@@ -5,11 +5,11 @@ import java.util.List;
 import com.google.common.collect.Lists;
 import com.google.gson.JsonObject;
 
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.luis.xsurvive.XSurvive;
 import net.luis.xsurvive.init.XSurviveEnchantments;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
@@ -21,18 +21,18 @@ public class MultiDropModifier extends LootModifier {
 	public MultiDropModifier(LootItemCondition[] conditionsIn) {
 		super(conditionsIn);
 	}
-
+	
 	@Override
-	protected List<ItemStack> doApply(List<ItemStack> generatedLoot, LootContext context) {
-		List<ItemStack> loot = Lists.newArrayList();
+	protected ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
+		ObjectArrayList<ItemStack> loot = new ObjectArrayList<>();
 		generatedLoot.forEach((stack) -> {
 			if (context.hasParam(LootContextParams.TOOL)) {
-				loot.addAll(MultiDropModifier.this.multiplyItem(stack, EnchantmentHelper.getItemEnchantmentLevel(XSurviveEnchantments.MULTI_DROP.get(), context.getParam(LootContextParams.TOOL))));
+				loot.addAll(MultiDropModifier.this.multiplyItem(stack, context.getParam(LootContextParams.TOOL).getEnchantmentLevel(XSurviveEnchantments.MULTI_DROP.get())));
 			} else {
 				XSurvive.LOGGER.error("Could not apply the MultiDrop logic, since there is no Tool in the LootContext present");
 			}
 		});
-		return loot;
+		return null;
 	}
 	
 	protected List<ItemStack> multiplyItem(ItemStack stack, int level) {

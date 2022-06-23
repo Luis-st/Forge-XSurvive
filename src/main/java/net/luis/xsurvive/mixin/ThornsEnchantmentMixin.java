@@ -1,7 +1,6 @@
 package net.luis.xsurvive.mixin;
 
 import java.util.Map.Entry;
-import java.util.Random;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -10,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -23,7 +23,7 @@ import net.minecraft.world.item.enchantment.ThornsEnchantment;
 public abstract class ThornsEnchantmentMixin {
 	
 	@Shadow
-	public static boolean shouldHit(int level, Random rng) {
+	public static boolean shouldHit(int level, RandomSource rng) {
 		return false;
 	}
 	
@@ -35,7 +35,7 @@ public abstract class ThornsEnchantmentMixin {
 	
 	@Inject(method = "doPostHurt", at = @At("HEAD"), cancellable = true)
 	public void doPostHurt(LivingEntity target, Entity attacker, int level, CallbackInfo callback) {
-		Random rng = target.getRandom();
+		RandomSource rng = target.getRandom();
 		Entry<EquipmentSlot, ItemStack> entry = EnchantmentHelper.getRandomItemWith(Enchantments.THORNS, target);
 		if (shouldHit(level, rng)) {
 			if (attacker != null) {
@@ -55,7 +55,7 @@ public abstract class ThornsEnchantmentMixin {
 	}
 	
 	private int getThornsLevel(LivingEntity entity, EquipmentSlot slot) {
-		return EnchantmentHelper.getItemEnchantmentLevel((ThornsEnchantment) (Object) this, entity.getItemBySlot(slot));
+		return entity.getItemBySlot(slot).getEnchantmentLevel((ThornsEnchantment) (Object) this);
 	}
 	
 }

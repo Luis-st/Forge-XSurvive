@@ -20,7 +20,6 @@ import net.minecraft.world.entity.monster.MagmaCube;
 import net.minecraft.world.entity.monster.Shulker;
 import net.minecraft.world.entity.monster.Strider;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
 public class EntityHandler {
 	
@@ -40,9 +39,9 @@ public class EntityHandler {
 		for (EquipmentSlot equipmentSlot : EquipmentSlot.values()) {
 			if (equipmentSlot.getType() == EquipmentSlot.Type.ARMOR) {
 				if (equipmentSlot == slot) {
-					growth += EnchantmentHelper.getItemEnchantmentLevel(XSurviveEnchantments.GROWTH.get(), stack);
+					growth += stack.getEnchantmentLevel(XSurviveEnchantments.GROWTH.get());
 				} else {
-					growth += EnchantmentHelper.getItemEnchantmentLevel(XSurviveEnchantments.GROWTH.get(), entity.getItemBySlot(equipmentSlot));
+					growth += entity.getItemBySlot(equipmentSlot).getEnchantmentLevel(XSurviveEnchantments.GROWTH.get());
 				}
 			}
 		}

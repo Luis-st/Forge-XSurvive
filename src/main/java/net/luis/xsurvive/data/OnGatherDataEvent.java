@@ -22,19 +22,15 @@ public class OnGatherDataEvent {
 	public static void gatherData(GatherDataEvent event) {
 		DataGenerator generator = event.getGenerator();
 		if (event.includeDev()) {
-			if (event.includeClient()) {
-			generator.addProvider(new XSurviveBlockStateProvider(generator, event.getExistingFileHelper()));
-			generator.addProvider(new XSurviveItemModelProvider(generator, event.getExistingFileHelper()));
-			generator.addProvider(new XSurviveLanguageProvider(generator));
-		}
-		if (event.includeServer()) {
-			generator.addProvider(new XSurviveLootTableProvider(generator));
-			generator.addProvider(new XSurviveRecipeProvider(generator));
+			generator.addProvider(event.includeClient(), new XSurviveBlockStateProvider(generator, event.getExistingFileHelper()));
+			generator.addProvider(event.includeClient(), new XSurviveItemModelProvider(generator, event.getExistingFileHelper()));
+			generator.addProvider(event.includeClient(), new XSurviveLanguageProvider(generator));
+			generator.addProvider(event.includeServer(), new XSurviveLootTableProvider(generator));
+			generator.addProvider(event.includeServer(), new XSurviveRecipeProvider(generator));
 			XSurviveBlockTagsProvider blockTagsProvider = new XSurviveBlockTagsProvider(generator, event.getExistingFileHelper());
-			generator.addProvider(blockTagsProvider);
-			generator.addProvider(new XSurviveItemTagsProvider(generator, blockTagsProvider, event.getExistingFileHelper()));
-			generator.addProvider(new XSurviveGlobalLootModifierProvider(generator));
-		}
+			generator.addProvider(event.includeServer(), blockTagsProvider);
+			generator.addProvider(event.includeServer(), new XSurviveItemTagsProvider(generator, blockTagsProvider, event.getExistingFileHelper()));
+			generator.addProvider(event.includeServer(), new XSurviveGlobalLootModifierProvider(generator));
 		}
 	}
 	

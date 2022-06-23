@@ -22,17 +22,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraftforge.registries.ForgeRegistries;
 
 @Mixin(EnchantmentHelper.class)
 public abstract class EnchantmentHelperMixin {
-	
-	@Inject(method = "getItemEnchantmentLevel", at = @At("HEAD"), cancellable = true)
-	private static void getItemEnchantmentLevel(Enchantment enchantment, ItemStack stack, CallbackInfoReturnable<Integer> callback) {
-		if (stack.getItem() instanceof EnchantedGoldenBookItem) {
-			callback.setReturnValue(1);
-			callback.cancel();
-		}
-	}
 	
 	@SuppressWarnings("deprecation")
 	@Inject(method = "getEnchantments", at = @At("HEAD"), cancellable = true)
@@ -56,13 +49,13 @@ public abstract class EnchantmentHelperMixin {
 				if (enchantment instanceof IEnchantment ench) {
 					if (ench.isAllowedOnGoldenBooks()) {
 						CompoundTag tag = new CompoundTag();
-						tag.putString("enchantment", enchantment.getRegistryName().toString());
+						tag.putString("enchantment", ForgeRegistries.ENCHANTMENTS.getKey(enchantment).toString());
 						stack.getOrCreateTag().put(XSurvive.MOD_NAME + "GoldenEnchantments", tag);
 					} else {
-						XSurvive.LOGGER.info("The Enchantment {} which should be set is no allowed on EnchantedGoldenBookItems", enchantment.getRegistryName());
+						XSurvive.LOGGER.info("The Enchantment {} which should be set is no allowed on EnchantedGoldenBookItems", ForgeRegistries.ENCHANTMENTS.getKey(enchantment));
 					}
 				} else {
-					XSurvive.LOGGER.error("Enchantment {} is not a instance of IEnchantment", enchantment.getRegistryName());
+					XSurvive.LOGGER.error("Enchantment {} is not a instance of IEnchantment", ForgeRegistries.ENCHANTMENTS.getKey(enchantment));
 				}
 				
 			} else {
@@ -80,7 +73,7 @@ public abstract class EnchantmentHelperMixin {
 				if (enchantment instanceof IEnchantment ench) {
 					return ench.isAllowedOnGoldenBooks();
 				}
-				XSurvive.LOGGER.error("Enchantment {} is not a instance of IEnchantment", enchantment.getRegistryName());
+				XSurvive.LOGGER.error("Enchantment {} is not a instance of IEnchantment", ForgeRegistries.ENCHANTMENTS.getKey(enchantment));
 				return false;
 			}).collect(Collectors.toList());
 			EnchantmentHelper.setEnchantments(Map.of(enchantments.get(rng.nextInt(enchantments.size())), 1), stack);

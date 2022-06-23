@@ -15,6 +15,7 @@ import net.minecraft.world.item.EnchantedBookItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
+import net.minecraftforge.registries.ForgeRegistries;
 
 @Mixin(EnchantedBookItem.class)
 public abstract class EnchantedBookItemMixin {
@@ -32,7 +33,7 @@ public abstract class EnchantedBookItemMixin {
 							}
 						}
 					} else {
-						XSurvive.LOGGER.error("Enchantment {} is not a instance of IEnchantment", enchantment.getRegistryName());
+						XSurvive.LOGGER.error("Enchantment {} is not a instance of IEnchantment", ForgeRegistries.ENCHANTMENTS.getKey(enchantment));
 						XSurvive.LOGGER.info("A deprecate vanilla logic is called");
 						for (int i = enchantment.getMinLevel(); i <= enchantment.getMaxLevel(); ++i) {
 							stacks.add(EnchantedBookItem.createForEnchantment(new EnchantmentInstance(enchantment, i)));
@@ -48,7 +49,7 @@ public abstract class EnchantedBookItemMixin {
 						stacks.add(EnchantedBookItem.createForEnchantment(new EnchantmentInstance(enchantment, enchantment.getMaxLevel())));
 					}
 				} else {
-					XSurvive.LOGGER.error("Enchantment {} is not a instance of IEnchantment", enchantment.getRegistryName());
+					XSurvive.LOGGER.error("Enchantment {} is not a instance of IEnchantment", ForgeRegistries.ENCHANTMENTS.getKey(enchantment));
 					XSurvive.LOGGER.info("A deprecate vanilla logic is called");
 					if (this.isTabForCategory(tab, enchantment)) {
 						stacks.add(EnchantedBookItem.createForEnchantment(new EnchantmentInstance(enchantment, enchantment.getMaxLevel())));

@@ -12,6 +12,7 @@ import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.client.model.generators.ModelFile.ExistingModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class XSurviveItemModelProvider extends ItemModelProvider {
@@ -32,13 +33,13 @@ public class XSurviveItemModelProvider extends ItemModelProvider {
 	}
 	
 	public void generatedItem(Item item) {
-		ResourceLocation location = item.getRegistryName();
+		ResourceLocation location = ForgeRegistries.ITEMS.getKey(item);
 		ModelFile model = new ExistingModelFile(new ResourceLocation("item/generated"), this.existingFileHelper);
 		this.getBuilder(location.getPath()).parent(model).texture("layer0", new ResourceLocation(XSurvive.MOD_ID, "item/" + location.getPath()));
 	}
 	
 	public void handheldItem(TieredItem tool) {
-		ResourceLocation location = tool.getRegistryName();
+		ResourceLocation location = ForgeRegistries.ITEMS.getKey(tool);
 		ModelFile model = new ExistingModelFile(new ResourceLocation("item/handheld"), this.existingFileHelper);
 		this.getBuilder(location.getPath()).parent(model).texture("layer0", new ResourceLocation(XSurvive.MOD_ID, "item/" + location.getPath()));
 	}

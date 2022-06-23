@@ -13,7 +13,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.screens.inventory.AnvilScreen;
 import net.minecraft.client.gui.screens.inventory.ItemCombinerScreen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -41,7 +40,7 @@ public class AnvilScreenMixin extends ItemCombinerScreen<AnvilMenu> {
 			if (!this.menu.getSlot(2).hasItem()) {
 				component = null;
 			} else {
-				component = new TranslatableComponent("container.repair.cost", cost);
+				component = Component.translatable("container.repair.cost", cost);
 				if (!this.menu.getSlot(2).mayPickup(this.player)) {
 					color = 16736352;
 				}

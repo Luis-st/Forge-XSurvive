@@ -8,7 +8,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.block.AirBlock;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -31,7 +30,7 @@ public class OnPlayerTickEvent {
 				});
 			}
 		}
-		boolean hasVoidWalker = EnchantmentHelper.getItemEnchantmentLevel(XSurviveEnchantments.VOID_WALKER.get(), player.getItemBySlot(EquipmentSlot.FEET)) > 0;
+		boolean hasVoidWalker = player.getItemBySlot(EquipmentSlot.FEET).getEnchantmentLevel(XSurviveEnchantments.VOID_WALKER.get()) > 0;
 		BlockPos pos = new BlockPos(player.getX(), player.getY(), player.getZ());
 		if (hasVoidWalker) {
 			player.fallDistance = 0.0F;

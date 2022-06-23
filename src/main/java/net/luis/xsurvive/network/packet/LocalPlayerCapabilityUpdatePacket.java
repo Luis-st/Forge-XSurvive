@@ -18,12 +18,12 @@ public class LocalPlayerCapabilityUpdatePacket {
 		this.tag = tag;
 	}
 	
-	public static void encode(LocalPlayerCapabilityUpdatePacket packet, FriendlyByteBuf byteBuf) {
-		byteBuf.writeNbt(packet.tag);
+	public LocalPlayerCapabilityUpdatePacket(FriendlyByteBuf byteBuf) {
+		this.tag = byteBuf.readNbt();
 	}
 	
-	public static LocalPlayerCapabilityUpdatePacket decode(FriendlyByteBuf byteBuf) {
-		return new LocalPlayerCapabilityUpdatePacket(byteBuf.readNbt());
+	public void encode(FriendlyByteBuf byteBuf) {
+		byteBuf.writeNbt(this.tag);
 	}
 	
 	public static class Handler {

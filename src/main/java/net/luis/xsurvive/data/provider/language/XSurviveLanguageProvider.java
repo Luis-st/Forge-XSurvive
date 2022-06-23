@@ -12,6 +12,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.common.data.LanguageProvider;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class XSurviveLanguageProvider extends LanguageProvider {
@@ -23,13 +24,13 @@ public class XSurviveLanguageProvider extends LanguageProvider {
 	@Override
 	protected void addTranslations() {
 		for (Enchantment enchantment : XSurviveEnchantments.ENCHANTMENTS.getEntries().stream().map(RegistryObject::get).toList()) {
-			this.add(enchantment, this.getEnchantmentName(enchantment.getRegistryName()));
+			this.add(enchantment, this.getEnchantmentName(ForgeRegistries.ENCHANTMENTS.getKey(enchantment)));
 		}
 		for (Item item : XSurviveItems.ITEMS.getEntries().stream().map(RegistryObject::get).toList()) {
-			this.add(item, this.getName(item.getRegistryName()));
+			this.add(item, this.getName(ForgeRegistries.ITEMS.getKey(item)));
 		}
 		for (MobEffect mobEffect : XSurviveMobEffects.MOB_EFFECTS.getEntries().stream().map(RegistryObject::get).toList()) {
-			this.add(mobEffect, this.getName(mobEffect.getRegistryName()));
+			this.add(mobEffect, this.getName(ForgeRegistries.MOB_EFFECTS.getKey(mobEffect)));
 		}
 		for (Potion potion : XSurvivePotions.POTIONS.getEntries().stream().map(RegistryObject::get).toList()) {
 			this.add(potion);
@@ -40,8 +41,8 @@ public class XSurviveLanguageProvider extends LanguageProvider {
 	}
 	
 	public void add(Potion potion) {
-		ResourceLocation location = potion.getRegistryName();
-		String potionName = potion.getRegistryName().getPath();
+		ResourceLocation location = ForgeRegistries.POTIONS.getKey(potion);
+		String potionName = location.getPath();
 		this.add("item.minecraft.potion.effect." + potionName, this.getPotionName(location));
 		this.add("item.minecraft.splash_potion.effect." + potionName, this.getPotionName(location));
 		this.add("item.minecraft.lingering_potion.effect." + potionName, this.getPotionName(location));

@@ -17,7 +17,7 @@ import net.luis.xsurvive.XSurvive;
 import net.luis.xsurvive.common.extension.IEnchantment;
 import net.luis.xsurvive.common.handler.EnchantmentHandler;
 import net.luis.xsurvive.common.item.EnchantedGoldenBookItem;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AnvilMenu;
 import net.minecraft.world.inventory.ContainerLevelAccess;
@@ -29,6 +29,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraftforge.registries.ForgeRegistries;
 
 @Mixin(AnvilMenu.class)
 public abstract class AnvilMenuMixin extends ItemCombinerMenu {
@@ -133,7 +134,7 @@ public abstract class AnvilMenuMixin extends ItemCombinerMenu {
 									rightLevel = Math.max(rightLevel, resultLevel);
 								}
 							} else {
-								XSurvive.LOGGER.error("Enchantment {} is not a instance of IEnchantment", rightEnchantment.getRegistryName());
+								XSurvive.LOGGER.error("Enchantment {} is not a instance of IEnchantment", ForgeRegistries.ENCHANTMENTS.getKey(rightEnchantment));
 								XSurvive.LOGGER.info("A deprecate vanilla logic is called");
 								rightLevel = resultLevel == rightLevel ? rightLevel + 1 : Math.max(rightLevel, resultLevel);
 							}
@@ -193,7 +194,7 @@ public abstract class AnvilMenuMixin extends ItemCombinerMenu {
 			} else if (!this.itemName.equals(leftStack.getHoverName().getString())) {
 				renameCost = 1;
 				enchantCost += renameCost;
-				resultStack.setHoverName(new TextComponent(this.itemName));
+				resultStack.setHoverName(Component.literal(this.itemName));
 			}
 			if (enchantedBook && !resultStack.isBookEnchantable(rightStack)) {
 				resultStack = ItemStack.EMPTY;

@@ -15,7 +15,6 @@ import net.luis.xsurvive.init.XSurviveEnchantments;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.enchantment.DamageEnchantment;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -56,8 +55,8 @@ public abstract class EnchantmentMixin implements IEnchantment {
 	public void getFullname(int level, CallbackInfoReturnable<Component> callback) {
 		if (this.isAllowedOnGoldenBooks()) {
 			if ((this.getMaxGoldenBookLevel() >= level && level >= this.getMinGoldenBookLevel()) || this.isUpgrade()) {
-				MutableComponent component = new TranslatableComponent(this.getDescriptionId());
-				component.append(" ").append(new TranslatableComponent("enchantment.level." + level));
+				MutableComponent component = Component.translatable(this.getDescriptionId());
+				component.append(" ").append(Component.translatable("enchantment.level." + level));
 				if (this.getUpgradeLevel() >= level && level > 0) {
 					callback.setReturnValue(component.withStyle(ChatFormatting.BLUE));
 				} else {

@@ -7,8 +7,8 @@ import net.luis.xsurvive.common.handler.EnchantmentHandler;
 import net.luis.xsurvive.common.item.EnchantedGoldenBookItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public interface IEnchantment {
 	
@@ -56,7 +56,7 @@ public interface IEnchantment {
 		if (right.getItem() instanceof EnchantedGoldenBookItem goldenBook) {
 			Enchantment enchantment = goldenBook.getEnchantment(right);
 			if (enchantment instanceof IEnchantment ench) {
-				int level = EnchantmentHelper.getItemEnchantmentLevel(enchantment, result);
+				int level = result.getEnchantmentLevel(enchantment);
 				GoldenEnchantmentInstance instance = ench.createGoldenInstance(level + 1);
 				if (!EnchantmentHandler.hasEnchantment(enchantment, result)) {
 					if (EnchantmentHandler.isEnchantmentCompatible(result, enchantment)) {
@@ -75,10 +75,10 @@ public interface IEnchantment {
 					return new EnchantedItem(result, 10);
 				}
 			}
-			XSurvive.LOGGER.error("Enchantment {} is not a instance of IEnchantment", enchantment.getRegistryName());
+			XSurvive.LOGGER.error("Enchantment {} is not a instance of IEnchantment", ForgeRegistries.ENCHANTMENTS.getKey(enchantment));
 			return EnchantedItem.EMPTY;
 		}
-		XSurvive.LOGGER.error("Can not merge {} with {}, since the right Item must be a instance of EnchantedGoldenBookItem", left.getItem().getRegistryName(), right.getItem().getRegistryName());
+		XSurvive.LOGGER.error("Can not merge {} with {}, since the right Item must be a instance of EnchantedGoldenBookItem", ForgeRegistries.ITEMS.getKey(left.getItem()), ForgeRegistries.ITEMS.getKey(left.getItem()));
 		return EnchantedItem.EMPTY;
 	}
 	
@@ -87,7 +87,7 @@ public interface IEnchantment {
 		if (right.getItem() instanceof EnchantedGoldenBookItem goldenBook) {
 			Enchantment enchantment = goldenBook.getEnchantment(right);
 			if (enchantment instanceof IEnchantment ench) {
-				int level = EnchantmentHelper.getItemEnchantmentLevel(enchantment, result);
+				int level = result.getEnchantmentLevel(enchantment);
 				if (ench.isUpgrade() && ench.getUpgradeLevel() > level) {
 					EnchantmentHandler.increaseEnchantment(enchantment, result, false);
 					return new EnchantedItem(result, 10);
@@ -95,10 +95,10 @@ public interface IEnchantment {
 					return merge(left, right);
 				}
 			}
-			XSurvive.LOGGER.error("Enchantment {} is not a instance of IEnchantment", enchantment.getRegistryName());
+			XSurvive.LOGGER.error("Enchantment {} is not a instance of IEnchantment", ForgeRegistries.ENCHANTMENTS.getKey(enchantment));
 			return EnchantedItem.EMPTY;
 		}
-		XSurvive.LOGGER.error("Can not upgrade {} with {}, since the right Item must be a instance of EnchantedGoldenBookItem", left.getItem().getRegistryName(), right.getItem().getRegistryName());
+		XSurvive.LOGGER.error("Can not upgrade {} with {}, since the right Item must be a instance of EnchantedGoldenBookItem", ForgeRegistries.ITEMS.getKey(left.getItem()), ForgeRegistries.ITEMS.getKey(left.getItem()));
 		return EnchantedItem.EMPTY;
 	}
 	

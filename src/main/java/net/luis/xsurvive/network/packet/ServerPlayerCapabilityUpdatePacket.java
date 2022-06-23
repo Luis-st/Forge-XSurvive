@@ -17,12 +17,12 @@ public class ServerPlayerCapabilityUpdatePacket {
 		this.tag = tag;
 	}
 	
-	public static void encode(ServerPlayerCapabilityUpdatePacket packet, FriendlyByteBuf byteBuf) {
-		byteBuf.writeNbt(packet.tag);
+	public ServerPlayerCapabilityUpdatePacket(FriendlyByteBuf byteBuf) {
+		this.tag = byteBuf.readNbt();
 	}
 	
-	public static ServerPlayerCapabilityUpdatePacket decode(FriendlyByteBuf byteBuf) {
-		return new ServerPlayerCapabilityUpdatePacket(byteBuf.readNbt());
+	public void encode(FriendlyByteBuf byteBuf) {
+		byteBuf.writeNbt(this.tag);
 	}
 	
 	public static class Handler {

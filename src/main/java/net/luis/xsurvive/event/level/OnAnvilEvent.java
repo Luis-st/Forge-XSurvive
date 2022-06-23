@@ -12,6 +12,7 @@ import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.entity.player.AnvilRepairEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.registries.ForgeRegistries;
 
 @EventBusSubscriber(modid = XSurvive.MOD_ID)
 public class OnAnvilEvent {
@@ -32,7 +33,7 @@ public class OnAnvilEvent {
 				event.setOutput(enchantedItem.stack());
 				event.setCost(enchantedItem.cost());
 			} else {
-				XSurvive.LOGGER.error("Enchantment {} is not a instance of IEnchantment", enchantment.getRegistryName());
+				XSurvive.LOGGER.error("Enchantment {} is not a instance of IEnchantment", ForgeRegistries.ENCHANTMENTS.getKey(enchantment));
 			}
 		} else if (left.isEnchanted() && right.getItem() instanceof IRuneColorProvider rune) {
 			ItemStack result = left.copy();

@@ -11,7 +11,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -29,8 +28,8 @@ public class OnLivingEquipmentChangeEvent {
 			ItemStack toStack = event.getTo();
 			ItemStack fromStack = event.getFrom();
 			if (event.getSlot() == EquipmentSlot.FEET) {
-				int voidWalkerTo = EnchantmentHelper.getItemEnchantmentLevel(XSurviveEnchantments.VOID_WALKER.get(), toStack);
-				int voidWalkerFrom = EnchantmentHelper.getItemEnchantmentLevel(XSurviveEnchantments.VOID_WALKER.get(), fromStack);
+				int voidWalkerTo = toStack.getEnchantmentLevel(XSurviveEnchantments.VOID_WALKER.get());
+				int voidWalkerFrom = fromStack.getEnchantmentLevel(XSurviveEnchantments.VOID_WALKER.get());
 				AttributeInstance gravityInstance = player.getAttribute(ForgeMod.ENTITY_GRAVITY.get());
 				if (voidWalkerTo > 0 && voidWalkerFrom > 0 && !gravityInstance.hasModifier(GRAVITY_MODIFIER)) {
 					gravityInstance.addTransientModifier(GRAVITY_MODIFIER);

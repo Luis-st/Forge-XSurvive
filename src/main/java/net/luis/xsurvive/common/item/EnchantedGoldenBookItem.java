@@ -11,7 +11,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -19,6 +18,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class EnchantedGoldenBookItem extends Item {
 
@@ -43,9 +43,7 @@ public class EnchantedGoldenBookItem extends Item {
 		if (!enchantments.isEmpty()) {
 			Enchantment enchantment = this.getEnchantment(stack);
 			if (enchantment != null) {
-				TranslatableComponent component = new TranslatableComponent(enchantment.getDescriptionId());
-				component.withStyle(ChatFormatting.DARK_PURPLE);
-				components.add(component);
+				components.add(Component.translatable(enchantment.getDescriptionId()).withStyle(ChatFormatting.DARK_PURPLE));
 			}
 		}
 	}
@@ -62,10 +60,15 @@ public class EnchantedGoldenBookItem extends Item {
 						stacks.add(stack);
 					}
 				} else {
-					XSurvive.LOGGER.error("Enchantment {} is not a instance of IEnchantment", enchantment.getRegistryName());
+					XSurvive.LOGGER.error("Enchantment {} is not a instance of IEnchantment", ForgeRegistries.ENCHANTMENTS.getKey(enchantment));
 				}
 			}
 		}
+	}
+	
+	@Override
+	public int getEnchantmentLevel(ItemStack stack, Enchantment enchantment) {
+		return 1;
 	}
 	
 	@Nullable

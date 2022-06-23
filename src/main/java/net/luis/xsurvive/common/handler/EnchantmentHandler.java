@@ -12,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class EnchantmentHandler {
 	
@@ -26,14 +27,14 @@ public class EnchantmentHandler {
 	
 	public static boolean hasMinEnchantment(Enchantment enchantment, ItemStack stack) {
 		if (hasEnchantment(enchantment, stack)) {
-			return EnchantmentHelper.getItemEnchantmentLevel(enchantment, stack) == enchantment.getMinLevel();
+			return stack.getEnchantmentLevel(enchantment) == enchantment.getMinLevel();
 		}
 		return false;
 	}
 	
 	public static boolean hasMaxEnchantment(Enchantment enchantment, ItemStack stack) {
 		if (hasEnchantment(enchantment, stack)) {
-			return EnchantmentHelper.getItemEnchantmentLevel(enchantment, stack) == enchantment.getMaxLevel();
+			return stack.getEnchantmentLevel(enchantment) == enchantment.getMaxLevel();
 		}
 		return false;
 	}
@@ -46,22 +47,22 @@ public class EnchantmentHandler {
 		List<Enchantment> enchantments = Lists.newArrayList();
 		for (Enchantment enchantment : EnchantmentHelper.getEnchantments(stack).keySet().stream().toList()) {
 			if (enchantment instanceof IEnchantment ench) {
-				if (ench.isAllowedOnGoldenBooks() && Math.max(0, EnchantmentHelper.getItemEnchantmentLevel(enchantment, stack) - enchantment.getMaxLevel()) > 0) {
+				if (ench.isAllowedOnGoldenBooks() && Math.max(0, stack.getEnchantmentLevel(enchantment) - enchantment.getMaxLevel()) > 0) {
 					enchantments.add(enchantment);
 				}
 			} else {
-				XSurvive.LOGGER.error("Enchantment {} is not a instance of IEnchantment", enchantment.getRegistryName());
+				XSurvive.LOGGER.error("Enchantment {} is not a instance of IEnchantment", ForgeRegistries.ENCHANTMENTS.getKey(enchantment));
 			}
 		}
 		return enchantments;
 	}
 	
 	public static int getEnchantmentLevel(Enchantment enchantment, LivingEntity entity) {
-		int level = EnchantmentHelper.getItemEnchantmentLevel(enchantment, entity.getMainHandItem());
+		int level = entity.getMainHandItem().getEnchantmentLevel(enchantment);
 		if (level > 0) {
 			return level;
 		}
-		return EnchantmentHelper.getItemEnchantmentLevel(enchantment, entity.getOffhandItem());
+		return entity.getOffhandItem().getEnchantmentLevel(enchantment);
 	}
 	
 	public static void addEnchantment(EnchantmentInstance instance, ItemStack stack, boolean present) {
@@ -97,7 +98,7 @@ public class EnchantmentHandler {
 	public static void increaseEnchantment(Enchantment enchantment, ItemStack stack, boolean golden) {
 		if (hasEnchantment(enchantment, stack)) {
 			if (!hasMaxEnchantment(enchantment, stack) || golden) {
-				replaceEnchantment(new EnchantmentInstance(enchantment, EnchantmentHelper.getItemEnchantmentLevel(enchantment, stack) + 1), stack);
+				replaceEnchantment(new EnchantmentInstance(enchantment, stack.getEnchantmentLevel(enchantment) + 1), stack);
 			}
 		} else {
 			addEnchantment(new EnchantmentInstance(enchantment, 1), stack, false);
@@ -115,7 +116,7 @@ public class EnchantmentHandler {
 			if (hasMinEnchantment(enchantment, stack)) {
 				removeEnchantment(enchantment, stack);
 			} else {
-				replaceEnchantment(new EnchantmentInstance(enchantment, EnchantmentHelper.getItemEnchantmentLevel(enchantment, stack) - 1), stack);
+				replaceEnchantment(new EnchantmentInstance(enchantment, stack.getEnchantmentLevel(enchantment) - 1), stack);
 			}
 		}
 	}
