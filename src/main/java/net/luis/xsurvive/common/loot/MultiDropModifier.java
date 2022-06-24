@@ -29,10 +29,10 @@ public class MultiDropModifier extends LootModifier {
 			if (context.hasParam(LootContextParams.TOOL)) {
 				loot.addAll(MultiDropModifier.this.multiplyItem(stack, context.getParam(LootContextParams.TOOL).getEnchantmentLevel(XSurviveEnchantments.MULTI_DROP.get())));
 			} else {
-				XSurvive.LOGGER.error("Could not apply the MultiDrop logic, since there is no Tool in the LootContext present");
+				XSurvive.LOGGER.error("Could not apply the MultiDrop logic on LootTable {}, since there is no Tool in the LootContext present", context.getQueriedLootTableId());
 			}
 		});
-		return null;
+		return loot;
 	}
 	
 	protected List<ItemStack> multiplyItem(ItemStack stack, int level) {
