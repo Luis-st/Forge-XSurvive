@@ -1,7 +1,7 @@
 package net.luis.xsurvive.event.entity.living.player;
 
 import net.luis.xsurvive.XSurvive;
-import net.luis.xsurvive.common.capability.CapabilityUtil;
+import net.luis.xsurvive.world.capability.CapabilityUtil;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.event.entity.player.PlayerEvent.PlayerChangedDimensionEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

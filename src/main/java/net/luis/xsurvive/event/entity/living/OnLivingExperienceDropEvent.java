@@ -1,7 +1,7 @@
 package net.luis.xsurvive.event.entity.living;
 
-import net.luis.xsurvive.common.handler.EnchantmentHandler;
-import net.luis.xsurvive.init.XSurviveEnchantments;
+import net.luis.xsurvive.world.item.enchantment.EnchantmentHandler;
+import net.luis.xsurvive.world.item.enchantment.XSurviveEnchantments;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.event.entity.living.LivingExperienceDropEvent;

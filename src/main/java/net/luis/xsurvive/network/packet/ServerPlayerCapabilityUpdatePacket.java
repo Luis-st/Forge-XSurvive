@@ -2,8 +2,8 @@ package net.luis.xsurvive.network.packet;
 
 import java.util.function.Supplier;
 
-import net.luis.xsurvive.common.capability.CapabilityUtil;
 import net.luis.xsurvive.server.capability.ServerPlayerCapabilityHandler;
+import net.luis.xsurvive.world.capability.CapabilityUtil;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;

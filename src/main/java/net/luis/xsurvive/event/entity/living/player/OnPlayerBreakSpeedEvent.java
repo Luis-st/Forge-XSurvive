@@ -1,7 +1,7 @@
 package net.luis.xsurvive.event.entity.living.player;
 
 import net.luis.xsurvive.XSurvive;
-import net.luis.xsurvive.init.XSurviveEnchantments;
+import net.luis.xsurvive.world.item.enchantment.XSurviveEnchantments;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.player.PlayerEvent;

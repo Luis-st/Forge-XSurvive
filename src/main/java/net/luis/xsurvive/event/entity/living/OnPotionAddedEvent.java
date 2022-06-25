@@ -1,9 +1,9 @@
 package net.luis.xsurvive.event.entity.living;
 
 import net.luis.xsurvive.XSurvive;
-import net.luis.xsurvive.common.capability.CapabilityUtil;
-import net.luis.xsurvive.init.XSurviveMobEffects;
 import net.luis.xsurvive.server.capability.ServerPlayerCapabilityHandler;
+import net.luis.xsurvive.world.capability.CapabilityUtil;
+import net.luis.xsurvive.world.effect.XSurviveMobEffects;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraftforge.event.entity.living.PotionEvent.PotionAddedEvent;

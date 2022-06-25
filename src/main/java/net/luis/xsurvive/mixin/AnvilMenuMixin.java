@@ -14,9 +14,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import com.google.common.collect.Lists;
 
 import net.luis.xsurvive.XSurvive;
-import net.luis.xsurvive.common.extension.IEnchantment;
-import net.luis.xsurvive.common.handler.EnchantmentHandler;
-import net.luis.xsurvive.common.item.EnchantedGoldenBookItem;
+import net.luis.xsurvive.world.item.EnchantedGoldenBookItem;
+import net.luis.xsurvive.world.item.enchantment.EnchantmentHandler;
+import net.luis.xsurvive.world.item.enchantment.IEnchantment;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AnvilMenu;

@@ -2,8 +2,8 @@ package net.luis.xsurvive.event.capability;
 
 import net.luis.xsurvive.XSurvive;
 import net.luis.xsurvive.client.capability.LocalPlayerCapabilityHandler;
-import net.luis.xsurvive.common.capability.PlayerCapabilityProvider;
 import net.luis.xsurvive.server.capability.ServerPlayerCapabilityHandler;
+import net.luis.xsurvive.world.capability.PlayerCapabilityProvider;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;

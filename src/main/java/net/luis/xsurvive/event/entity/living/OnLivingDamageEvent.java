@@ -1,9 +1,9 @@
 package net.luis.xsurvive.event.entity.living;
 
 import net.luis.xsurvive.XSurvive;
-import net.luis.xsurvive.common.handler.EnchantmentHandler;
-import net.luis.xsurvive.common.handler.EntityHandler;
-import net.luis.xsurvive.init.XSurviveEnchantments;
+import net.luis.xsurvive.world.item.enchantment.EnchantmentHandler;
+import net.luis.xsurvive.world.item.enchantment.XSurviveEnchantments;
+import net.luis.xsurvive.world.level.entity.EntityHandler;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.EntityDamageSource;
 import net.minecraft.world.entity.Entity;

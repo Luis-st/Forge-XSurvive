@@ -3,8 +3,8 @@ package net.luis.xsurvive.event.entity.living;
 import java.util.UUID;
 
 import net.luis.xsurvive.XSurvive;
-import net.luis.xsurvive.common.handler.EntityHandler;
-import net.luis.xsurvive.init.XSurviveEnchantments;
+import net.luis.xsurvive.world.item.enchantment.XSurviveEnchantments;
+import net.luis.xsurvive.world.level.entity.EntityHandler;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;

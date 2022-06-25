@@ -10,8 +10,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.google.common.collect.Lists;
 
-import net.luis.xsurvive.common.extension.IEnchantment;
-import net.luis.xsurvive.init.XSurviveEnchantments;
+import net.luis.xsurvive.world.item.enchantment.IEnchantment;
+import net.luis.xsurvive.world.item.enchantment.XSurviveEnchantments;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;

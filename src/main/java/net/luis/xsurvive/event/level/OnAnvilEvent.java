@@ -1,10 +1,10 @@
 package net.luis.xsurvive.event.level;
 
 import net.luis.xsurvive.XSurvive;
-import net.luis.xsurvive.common.enchantment.EnchantedItem;
-import net.luis.xsurvive.common.extension.IEnchantment;
-import net.luis.xsurvive.common.item.EnchantedGoldenBookItem;
-import net.luis.xsurvive.common.item.IRuneColorProvider;
+import net.luis.xsurvive.world.item.EnchantedGoldenBookItem;
+import net.luis.xsurvive.world.item.IRuneColorProvider;
+import net.luis.xsurvive.world.item.enchantment.EnchantedItem;
+import net.luis.xsurvive.world.item.enchantment.IEnchantment;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;

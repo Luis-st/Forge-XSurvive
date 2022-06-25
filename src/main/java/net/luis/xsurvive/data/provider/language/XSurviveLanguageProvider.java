@@ -1,10 +1,10 @@
 package net.luis.xsurvive.data.provider.language;
 
 import net.luis.xsurvive.XSurvive;
-import net.luis.xsurvive.init.XSurviveEnchantments;
-import net.luis.xsurvive.init.XSurviveItems;
-import net.luis.xsurvive.init.XSurviveMobEffects;
-import net.luis.xsurvive.init.XSurvivePotions;
+import net.luis.xsurvive.world.effect.XSurviveMobEffects;
+import net.luis.xsurvive.world.item.XSurviveItems;
+import net.luis.xsurvive.world.item.alchemy.XSurvivePotions;
+import net.luis.xsurvive.world.item.enchantment.XSurviveEnchantments;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;

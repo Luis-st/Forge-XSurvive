@@ -4,12 +4,12 @@ import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 
-import net.luis.xsurvive.common.XSurviveCreativeModeTab;
-import net.luis.xsurvive.init.XSurviveEnchantments;
-import net.luis.xsurvive.init.XSurviveGlobalLootModifiers;
-import net.luis.xsurvive.init.XSurviveItems;
-import net.luis.xsurvive.init.XSurviveMobEffects;
-import net.luis.xsurvive.init.XSurvivePotions;
+import net.luis.xsurvive.world.effect.XSurviveMobEffects;
+import net.luis.xsurvive.world.item.XSurviveCreativeModeTab;
+import net.luis.xsurvive.world.item.XSurviveItems;
+import net.luis.xsurvive.world.item.alchemy.XSurvivePotions;
+import net.luis.xsurvive.world.item.enchantment.XSurviveEnchantments;
+import net.luis.xsurvive.world.level.storage.loot.XSurviveGlobalLootModifiers;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;

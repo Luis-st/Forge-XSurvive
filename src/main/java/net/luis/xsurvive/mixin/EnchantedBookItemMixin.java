@@ -6,8 +6,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import net.luis.xsurvive.XSurvive;
-import net.luis.xsurvive.common.extension.IEnchantment;
-import net.luis.xsurvive.init.XSurviveEnchantmentCategory;
+import net.luis.xsurvive.world.item.enchantment.IEnchantment;
+import net.luis.xsurvive.world.item.enchantment.XSurviveEnchantmentCategory;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.Registry;
 import net.minecraft.world.item.CreativeModeTab;

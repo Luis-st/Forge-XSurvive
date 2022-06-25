@@ -3,7 +3,7 @@ package net.luis.xsurvive.data.provider.item;
 import java.util.stream.Collectors;
 
 import net.luis.xsurvive.XSurvive;
-import net.luis.xsurvive.init.XSurviveItems;
+import net.luis.xsurvive.world.item.XSurviveItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;

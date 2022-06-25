@@ -3,8 +3,8 @@ package net.luis.xsurvive.event.entity.living;
 import java.util.Random;
 
 import net.luis.xsurvive.XSurvive;
-import net.luis.xsurvive.common.handler.EnchantmentHandler;
-import net.luis.xsurvive.init.XSurviveEnchantments;
+import net.luis.xsurvive.world.item.enchantment.EnchantmentHandler;
+import net.luis.xsurvive.world.item.enchantment.XSurviveEnchantments;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;

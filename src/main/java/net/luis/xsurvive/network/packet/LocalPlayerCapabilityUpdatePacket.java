@@ -3,7 +3,7 @@ package net.luis.xsurvive.network.packet;
 import java.util.function.Supplier;
 
 import net.luis.xsurvive.client.capability.LocalPlayerCapabilityHandler;
-import net.luis.xsurvive.common.capability.CapabilityUtil;
+import net.luis.xsurvive.world.capability.CapabilityUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.nbt.CompoundTag;

@@ -1,8 +1,8 @@
 package net.luis.xsurvive.event.entity.living.player;
 
 import net.luis.xsurvive.XSurvive;
-import net.luis.xsurvive.common.capability.CapabilityUtil;
-import net.luis.xsurvive.common.capability.IPlayerCapability;
+import net.luis.xsurvive.world.capability.CapabilityUtil;
+import net.luis.xsurvive.world.capability.IPlayerCapability;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

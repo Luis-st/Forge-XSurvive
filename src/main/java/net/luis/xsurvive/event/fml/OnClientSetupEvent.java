@@ -1,7 +1,7 @@
 package net.luis.xsurvive.event.fml;
 
 import net.luis.xsurvive.XSurvive;
-import net.luis.xsurvive.client.render.overlay.FrostMobEffectOverlay;
+import net.luis.xsurvive.client.renderer.gui.overlay.FrostMobEffectOverlay;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.gui.ForgeIngameGui;
