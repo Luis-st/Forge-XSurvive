@@ -15,8 +15,6 @@ public class XSurviveItems {
 	public static final RegistryObject<EnchantedGoldenBookItem> ENCHANTED_GOLDEN_BOOK = ITEMS.register("enchanted_golden_book", () -> {
 		return new EnchantedGoldenBookItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE));
 	});
-	
-	// work in progress
 	public static final RegistryObject<RuneItem> WHITE_RUNE = ITEMS.register("white_rune", () -> {
 		return new RuneItem(new Item.Properties().stacksTo(1).tab(XSurvive.TAB), true, 0);
 	});
