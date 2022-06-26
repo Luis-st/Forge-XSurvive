@@ -71,13 +71,13 @@ public class MultiDropModifier extends LootModifier {
 	public static class Serializer extends GlobalLootModifierSerializer<MultiDropModifier> {
 
 		@Override
-		public MultiDropModifier read(ResourceLocation location, JsonObject object, LootItemCondition[] lootcondition) {
-			return new MultiDropModifier(lootcondition);
+		public MultiDropModifier read(ResourceLocation location, JsonObject object, LootItemCondition[] lootCondition) {
+			return new MultiDropModifier(lootCondition);
 		}
 
 		@Override
 		public JsonObject write(MultiDropModifier instance) {
-			return makeConditions(instance.conditions);
+			return this.makeConditions(instance.conditions);
 		}
 		
 	}

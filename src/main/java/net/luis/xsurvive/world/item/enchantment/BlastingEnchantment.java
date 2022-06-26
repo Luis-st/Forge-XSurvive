@@ -32,8 +32,6 @@ public class BlastingEnchantment extends Enchantment {
 			return false;
 		} else if (enchantment == XSurviveEnchantments.SMELTING.get()) {
 			return false;
-		} else if (enchantment == XSurviveEnchantments.HARVESTING.get()) {
-			return false;
 		}
 		return super.checkCompatibility(enchantment);
 	}
