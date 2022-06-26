@@ -1,0 +1,20 @@
+{
+  "type": "xsurvive:rune_item_modifier",
+  "conditions": [
+    {
+      "condition": "xsurvive:loot_table_ids",
+      "loot_table_ids": [
+        "minecraft:chests/stronghold_library",
+        "minecraft:chests/stronghold_crossing",
+        "minecraft:chests/stronghold_corridor",
+        "minecraft:chests/bastion_bridge",
+        "minecraft:chests/bastion_hoglin_stable",
+        "minecraft:chests/bastion_other",
+        "minecraft:chests/bastion_treasure",
+        "minecraft:chests/end_city_treasure",
+        "minecraft:chests/ancient_city",
+        "minecraft:chests/ancient_city_ice_box"
+      ]
+    }
+  ]
+}

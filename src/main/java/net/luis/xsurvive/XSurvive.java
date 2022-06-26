@@ -10,6 +10,7 @@ import net.luis.xsurvive.world.item.XSurviveItems;
 import net.luis.xsurvive.world.item.alchemy.XSurvivePotions;
 import net.luis.xsurvive.world.item.enchantment.XSurviveEnchantments;
 import net.luis.xsurvive.world.level.storage.loot.XSurviveGlobalLootModifiers;
+import net.luis.xsurvive.world.level.storage.loot.predicates.XSurviveLootItemConditions;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -26,6 +27,7 @@ public class XSurvive {
 	public XSurvive() {
 		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		XSurviveEnchantments.ENCHANTMENTS.register(modEventBus);
+		XSurviveLootItemConditions.LOOT_ITEM_CONDITIONS.register(modEventBus);
 		XSurviveGlobalLootModifiers.LOOT_MODIFIERS.register(modEventBus);
 		XSurviveItems.ITEMS.register(modEventBus);
 		XSurviveMobEffects.MOB_EFFECTS.register(modEventBus);

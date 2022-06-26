@@ -1,0 +1,15 @@
+{
+  "type": "xsurvive:golden_book_modifier",
+  "conditions": [
+    {
+      "condition": "xsurvive:loot_table_ids",
+      "loot_table_ids": [
+        "minecraft:chests/stronghold_library",
+        "minecraft:chests/bastion_treasure",
+        "minecraft:chests/end_city_treasure",
+        "minecraft:chests/ancient_city",
+        "minecraft:chests/ancient_city_ice_box"
+      ]
+    }
+  ]
+}

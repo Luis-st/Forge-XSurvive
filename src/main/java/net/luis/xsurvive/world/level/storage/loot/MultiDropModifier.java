@@ -18,8 +18,8 @@ import net.minecraftforge.common.loot.LootModifier;
 
 public class MultiDropModifier extends LootModifier {
 	
-	public MultiDropModifier(LootItemCondition[] conditionsIn) {
-		super(conditionsIn);
+	public MultiDropModifier(LootItemCondition[] conditions) {
+		super(conditions);
 	}
 	
 	@Override
