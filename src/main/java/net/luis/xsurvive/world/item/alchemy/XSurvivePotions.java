@@ -17,7 +17,10 @@ public class XSurvivePotions {
 		return new Potion(new MobEffectInstance(XSurviveMobEffects.FROST.get(), 3600));
 	});
 	public static final RegistryObject<Potion> LONG_FORST = POTIONS.register("long_frost", () -> {
-		return new Potion(new MobEffectInstance(XSurviveMobEffects.FROST.get(), 9600, 1));
+		return new Potion(new MobEffectInstance(XSurviveMobEffects.FROST.get(), 9600));
+	});
+	public static final RegistryObject<Potion> STRONG_FORST = POTIONS.register("strong_frost", () -> {
+		return new Potion(new MobEffectInstance(XSurviveMobEffects.FROST.get(), 1800, 1));
 	});
 	
 }

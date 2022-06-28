@@ -46,6 +46,7 @@ public class XSurviveLanguageProvider extends LanguageProvider {
 		this.add("item.minecraft.potion.effect." + potionName, this.getPotionName(location));
 		this.add("item.minecraft.splash_potion.effect." + potionName, this.getPotionName(location));
 		this.add("item.minecraft.lingering_potion.effect." + potionName, this.getPotionName(location));
+		this.add("item.minecraft.tipped_arrow.effect." + potionName, "Arrow of " + this.getPotionName(location));
 	}
 	
 	protected String getName(ResourceLocation location) { 
@@ -70,6 +71,9 @@ public class XSurviveLanguageProvider extends LanguageProvider {
 		if (location.getPath().startsWith("long_")) {
 			String path = location.getPath();
 			return this.getName(new ResourceLocation(location.getNamespace(), path.replace("long_", "")));
+		} else if (location.getPath().startsWith("strong_")) {
+			String path = location.getPath();
+			return this.getName(new ResourceLocation(location.getNamespace(), path.replace("strong_", "")));
 		}
 		return this.getName(location);
 	}

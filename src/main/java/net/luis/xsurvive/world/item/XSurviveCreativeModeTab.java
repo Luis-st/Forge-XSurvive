@@ -11,7 +11,7 @@ public class XSurviveCreativeModeTab extends CreativeModeTab {
 
 	@Override
 	public ItemStack makeIcon() {
-		return ItemStack.EMPTY;
+		return new ItemStack(XSurviveItems.ENCHANTED_GOLDEN_BOOK.get());
 	}
 
 }
