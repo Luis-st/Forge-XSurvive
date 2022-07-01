@@ -38,6 +38,30 @@ public class XSurviveLanguageProvider extends LanguageProvider {
 		this.add(XSurvive.TAB.getDisplayName().getString(), XSurvive.MOD_NAME);
 		this.add("death.attack.curse_of_harming", "%1$s die by his own weapon");
 		this.add("death.attack.curse_of_harming.player", "%1$s die by his own weapon whilst fighting %2$s");
+		this.add("screen.select_world.create", "New World");
+		this.add("screen.select_world.start", "Start Server");
+		this.add("screen.create_server.invalid_server", "There is no valid server installation for version %1$s");
+		this.add("screen.select_server_world.create", "New Server World");
+		this.add("screen.select_server_world.continue", "Continue");
+		this.add("screen.create_server.invalid_selection", "No world has been selected");
+		
+		this.add("screen.create_server.world_name", "World Name");
+		this.add("screen.create_server.world_seed", "Seed");
+		this.add("screen.create_server.world_type", "World Type");
+		this.add("screen.create_server.gamemode", "Gamemode");
+		this.add("screen.create_server.difficulty", "Difficulty");
+		this.add("screen.create_server.hardcore", "Hardcore");
+		this.add("screen.create_server.pvp", "Enable PvP");
+		this.add("screen.create_server.spawn_animals", "Spawn Animals");		
+		this.add("screen.create_server.spawn_npcs", "Spawn NPCS");
+		this.add("screen.create_server.spawn_monsters", "Spawn Monsters");
+		this.add("screen.create_server.generate_structures", "Generate Structures");
+		this.add("screen.create_server.allow_nether", "Allow Nether");
+		this.add("screen.create_server.view_distance", "View Distance");
+		this.add("screen.create_server.simulation_distance", "Simulation Distance");
+		this.add("screen.create_server.max_players", "Max Players");		
+		this.add("screen.create_server.white_list", "Enable Whitelist");
+		this.add("screen.create_server.enable_command_block", "Enable Command Block");
 	}
 	
 	public void add(Potion potion) {
