@@ -33,6 +33,7 @@ public class ServerPlayerCapabilityUpdatePacket {
 				ServerPlayerCapabilityHandler handler = CapabilityUtil.getServerPlayer(player);
 				handler.deserializeFromClient(packet.tag);
 			});
+			context.get().setPacketHandled(true);
 		}
 		
 	}

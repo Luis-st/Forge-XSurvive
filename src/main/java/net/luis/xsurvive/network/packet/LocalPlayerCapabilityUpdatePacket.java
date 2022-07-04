@@ -2,12 +2,11 @@ package net.luis.xsurvive.network.packet;
 
 import java.util.function.Supplier;
 
-import net.luis.xsurvive.client.capability.LocalPlayerCapabilityHandler;
-import net.luis.xsurvive.world.capability.CapabilityUtil;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.LocalPlayer;
+import net.luis.xsurvive.client.XSurviveClientNetworkHandler;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.network.NetworkEvent.Context;
 
 public class LocalPlayerCapabilityUpdatePacket {
@@ -28,13 +27,11 @@ public class LocalPlayerCapabilityUpdatePacket {
 	
 	public static class Handler {
 		
-		@SuppressWarnings("resource")
 		public static void handle(LocalPlayerCapabilityUpdatePacket packet, Supplier<Context> context) {
-			LocalPlayer player = Minecraft.getInstance().player;
 			context.get().enqueueWork(() -> {
-				LocalPlayerCapabilityHandler handler = CapabilityUtil.getLocalPlayer(player);
-				handler.deserializeFromServer(packet.tag);
+				DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> XSurviveClientNetworkHandler.handleCapabilityUpdate(packet.tag));
 			});
+			context.get().setPacketHandled(true);
 		}
 		
 	}
