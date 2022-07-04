@@ -1,7 +1,7 @@
 package net.luis.xsurvive.data.provider.loot;
 
-import net.luis.xores.common.loot.SmeltingModifier;
-import net.luis.xores.init.XOresGlobalLootModifiers;
+import net.luis.xores.world.level.storage.loot.SmeltingModifier;
+import net.luis.xores.world.level.storage.loot.XOresGlobalLootModifiers;
 import net.luis.xsurvive.XSurvive;
 import net.luis.xsurvive.world.item.enchantment.XSurviveEnchantments;
 import net.luis.xsurvive.world.level.storage.loot.GoldenBookModifier;

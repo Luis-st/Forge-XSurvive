@@ -1,6 +1,6 @@
 package net.luis.xsurvive.world.item.enchantment;
 
-import net.luis.xores.common.item.ElytraChestplateItem;
+import net.luis.xores.world.item.ElytraChestplateItem;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ElytraItem;
 import net.minecraft.world.item.ItemStack;

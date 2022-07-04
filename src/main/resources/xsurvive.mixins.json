@@ -2,6 +2,7 @@
 	"required": true,
 	"package": "net.luis.xsurvive.mixin",
 	"compatibilityLevel": "JAVA_17",
+	"refmap": "mixins.xsurvive.refmap.json",
 	"mixins": [
 		"EnchantmentMixin",
 		"EnchantmentHelperMixin",

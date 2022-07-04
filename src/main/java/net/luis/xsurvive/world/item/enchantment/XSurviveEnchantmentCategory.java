@@ -1,6 +1,6 @@
 package net.luis.xsurvive.world.item.enchantment;
 
-import net.luis.xores.common.item.ElytraChestplateItem;
+import net.luis.xores.world.item.ElytraChestplateItem;
 import net.luis.xsurvive.XSurvive;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BowItem;
