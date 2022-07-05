@@ -41,13 +41,10 @@ public abstract class EnchantmentMixin implements IEnchantment {
 		Enchantment ench = (Enchantment) (Object) this;
 		if ((ench == Enchantments.INFINITY_ARROWS && enchantment == Enchantments.MENDING) || (ench == Enchantments.MENDING && enchantment == Enchantments.INFINITY_ARROWS)) {
 			callback.setReturnValue(true);
-			callback.cancel();
 		} else if ((ench == Enchantments.PIERCING && enchantment == Enchantments.MULTISHOT) || (ench == Enchantments.MULTISHOT && enchantment == Enchantments.PIERCING)) {
 			callback.setReturnValue(true);
-			callback.cancel();
 		} else if ((ench == Enchantments.LOYALTY && enchantment == Enchantments.CHANNELING) || (ench == Enchantments.CHANNELING && enchantment == Enchantments.LOYALTY)) {
 			callback.setReturnValue(true);
-			callback.cancel();
 		}
 	}
 	
@@ -62,7 +59,6 @@ public abstract class EnchantmentMixin implements IEnchantment {
 				} else {
 					callback.setReturnValue(component.withStyle(ChatFormatting.DARK_PURPLE));
 				}
-				callback.cancel();
 			}
 		}
 	}

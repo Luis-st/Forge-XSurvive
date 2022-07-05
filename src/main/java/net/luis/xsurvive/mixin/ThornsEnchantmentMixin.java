@@ -30,7 +30,6 @@ public abstract class ThornsEnchantmentMixin {
 	@Inject(method = "getMaxLevel", at = @At("HEAD"), cancellable = true)
 	public void getMaxLevel(CallbackInfoReturnable<Integer> callback) {
 		callback.setReturnValue(4);
-		callback.cancel();
 	}
 	
 	@Inject(method = "doPostHurt", at = @At("HEAD"), cancellable = true)

@@ -37,7 +37,6 @@ public abstract class EnchantmentHelperMixin {
 				enchantments.put(Registry.ENCHANTMENT.get(ResourceLocation.tryParse(tag.getString("enchantment"))), 1);
 			}
 			callback.setReturnValue(enchantments);
-			callback.cancel();
 		}
 	}
 	
@@ -78,7 +77,6 @@ public abstract class EnchantmentHelperMixin {
 			}).collect(Collectors.toList());
 			EnchantmentHelper.setEnchantments(Map.of(enchantments.get(rng.nextInt(enchantments.size())), 1), stack);
 			callback.setReturnValue(stack);
-			callback.cancel();
 		}
 	}
 	

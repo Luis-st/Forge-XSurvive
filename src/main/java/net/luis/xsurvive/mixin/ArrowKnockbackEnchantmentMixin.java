@@ -13,7 +13,6 @@ public abstract class ArrowKnockbackEnchantmentMixin {
 	@Inject(method = "getMaxLevel", at = @At("HEAD"), cancellable = true)
 	public void getMaxLevel(CallbackInfoReturnable<Integer> callback) {
 		callback.setReturnValue(3);
-		callback.cancel();
 	}
 	
 }

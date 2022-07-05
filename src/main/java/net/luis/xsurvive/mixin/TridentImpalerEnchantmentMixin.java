@@ -46,7 +46,6 @@ public abstract class TridentImpalerEnchantmentMixin extends Enchantment {
 	@Inject(method = "getDamageBonus", at = @At("HEAD"), cancellable = true)
 	public void getDamageBonus(int level, MobType mobType, CallbackInfoReturnable<Float> callback) {
 		callback.setReturnValue(0.0F);
-		callback.cancel();
 	}
 	
 }
