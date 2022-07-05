@@ -12,7 +12,13 @@
 		"ArrowKnockbackEnchantmentMixin",
 		"ThornsEnchantmentMixin",
 		"ItemStackMixin",
-		"ProtectionEnchantmentMixin"
+		"ProtectionEnchantmentMixin",
+		"GuardianMixin",
+		"ElderGuardianMixin",
+		"EnderDragonMixin",
+		"EndCrystalMixin",
+		"WitherBossMixin",
+		"WitherSkullMixin"
 	],
 	"client": [
 		"client.ItemRendererMixin",

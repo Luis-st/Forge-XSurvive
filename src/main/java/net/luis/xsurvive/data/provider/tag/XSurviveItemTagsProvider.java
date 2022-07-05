@@ -1,6 +1,8 @@
 package net.luis.xsurvive.data.provider.tag;
 
 import net.luis.xsurvive.XSurvive;
+import net.luis.xsurvive.tag.XSurviveBlockTags;
+import net.luis.xsurvive.tag.XSurviveItemTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
@@ -14,7 +16,7 @@ public class XSurviveItemTagsProvider extends ItemTagsProvider {
 	
 	@Override
 	protected void addTags() {
-		
+		this.copy(XSurviveBlockTags.OCEAN_MONUMENT_BLOCKS, XSurviveItemTags.OCEAN_MONUMENT_BLOCKS);
 	}
 
 	@Override
