@@ -4,7 +4,7 @@ license="All rights reserved"
 
 [[mods]]
 modId="xsurvive"
-version="1.19-1.1"
+version="1.19-1.2"
 displayName="XSurvive"
 credits="Thanks for downloading my Mod"
 authors="Luis"
@@ -38,5 +38,5 @@ ordering="BEFORE"
 [[dependencies.xsurvive]]
 modId="xores"
 mandatory=true
-versionRange="[1.19-1.4,)"
+versionRange="[1.19-1.5,)"
 ordering="BEFORE"

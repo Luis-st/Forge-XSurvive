@@ -18,7 +18,8 @@
 		"EnderDragonMixin",
 		"EndCrystalMixin",
 		"WitherBossMixin",
-		"WitherSkullMixin"
+		"WitherSkullMixin",
+		"BlockItemMixin"
 	],
 	"client": [
 		"client.ItemRendererMixin",
