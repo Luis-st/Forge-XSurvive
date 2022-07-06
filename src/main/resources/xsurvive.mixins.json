@@ -20,7 +20,8 @@
 		"WitherBossMixin",
 		"WitherSkullMixin",
 		"BlockItemMixin",
-		"WitherSkullBlockMixin"
+		"WitherSkullBlockMixin",
+		"NoiseBasedChunkGeneratorMixin"
 	],
 	"client": [
 		"client.ItemRendererMixin",
