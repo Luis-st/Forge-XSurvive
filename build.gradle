@@ -150,7 +150,7 @@ publishing {
 	
 	repositories {
 		maven {
-			url "file://${project.projectDir}/maven"
+			url "file://C:/Users/luiss/.m2/repository"
 		}
 	}
 }
