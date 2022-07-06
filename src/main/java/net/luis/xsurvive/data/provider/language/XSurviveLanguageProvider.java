@@ -40,7 +40,7 @@ public class XSurviveLanguageProvider extends LanguageProvider {
 		this.add("death.attack.curse_of_harming.player", "%1$s die by his own weapon whilst fighting %2$s");
 	}
 	
-	public void add(Potion potion) {
+	protected void add(Potion potion) {
 		ResourceLocation location = ForgeRegistries.POTIONS.getKey(potion);
 		String potionName = location.getPath();
 		this.add("item.minecraft.potion.effect." + potionName, this.getPotionName(location));

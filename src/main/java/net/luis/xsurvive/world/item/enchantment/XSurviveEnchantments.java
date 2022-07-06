@@ -14,10 +14,9 @@ public class XSurviveEnchantments {
 	public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, XSurvive.MOD_ID);
 	
 	
-	protected static final EquipmentSlot[] ARMOR_SLOTS = new EquipmentSlot[] {
+	private static final EquipmentSlot[] ARMOR_SLOTS = new EquipmentSlot[] {
 			EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET
 	};
-	
 	public static final RegistryObject<MultiDropEnchantment> MULTI_DROP = ENCHANTMENTS.register("multi_drop", () -> {
 		return new MultiDropEnchantment(Rarity.VERY_RARE, EnchantmentCategory.DIGGER, EquipmentSlot.MAINHAND);
 	});

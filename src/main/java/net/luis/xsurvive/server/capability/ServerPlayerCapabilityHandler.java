@@ -10,12 +10,12 @@ import net.minecraft.server.level.ServerPlayer;
 
 public class ServerPlayerCapabilityHandler implements IPlayerCapability {
 	
-	protected final ServerPlayer player;
-	protected int tick;
-	protected int frostTime;
-	protected int startFrostTime;
-	protected int lastSync;
-	protected boolean changed = false;
+	private final ServerPlayer player;
+	private int tick;
+	private int frostTime;
+	private int startFrostTime;
+	private int lastSync;
+	private boolean changed = false;
 	
 	public ServerPlayerCapabilityHandler(ServerPlayer player) {
 		this.player = player;

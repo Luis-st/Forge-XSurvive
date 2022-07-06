@@ -8,8 +8,8 @@ import net.minecraftforge.common.util.LazyOptional;
 
 public class PlayerCapabilityProvider implements ICapabilitySerializable<CompoundTag> {
 	
-	protected final IPlayerCapability playerCapability;
-	protected final LazyOptional<IPlayerCapability> optional;
+	private final IPlayerCapability playerCapability;
+	private final LazyOptional<IPlayerCapability> optional;
 	
 	public PlayerCapabilityProvider(IPlayerCapability playerCapability) {
 		this.playerCapability = playerCapability;

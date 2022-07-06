@@ -11,7 +11,7 @@ import net.minecraftforge.network.NetworkEvent.Context;
 
 public class LocalPlayerCapabilityUpdatePacket {
 	
-	protected final CompoundTag tag;
+	private final CompoundTag tag;
 	
 	public LocalPlayerCapabilityUpdatePacket(CompoundTag tag) {
 		this.tag = tag;

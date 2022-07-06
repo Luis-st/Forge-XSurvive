@@ -20,12 +20,12 @@ public class XSurviveBrewingRecipe implements IBrewingRecipe {
 	
 	public static final List<Item> DEFAULT_INPUT = Lists.newArrayList(Items.POTION, Items.SPLASH_POTION, Items.LINGERING_POTION);
 	
-	protected final List<Item> input;
-	protected final Item ingredient;
-	protected final Potion potion;
-	protected final boolean waterApplyable;
-	protected final Optional<PotionUpgrade> timeUpgrade; 
-	protected final Optional<PotionUpgrade> powerUpgrade;
+	private final List<Item> input;
+	private final Item ingredient;
+	private final Potion potion;
+	private final boolean waterApplyable;
+	private final Optional<PotionUpgrade> timeUpgrade; 
+	private final Optional<PotionUpgrade> powerUpgrade;
 	
 	protected XSurviveBrewingRecipe(List<Item> input, Item ingredient, Potion potion, boolean waterApplyable, Optional<PotionUpgrade> timeUpgrade, Optional<PotionUpgrade> powerUpgrade) {
 		this.input = input.isEmpty() ? DEFAULT_INPUT : input;
@@ -156,12 +156,12 @@ public class XSurviveBrewingRecipe implements IBrewingRecipe {
 	
 	public static class Builder {
 		
-		protected final List<Item> input;
-		protected final Item ingredient;
-		protected final Potion potion;
-		protected boolean waterApplyable = false;
-		protected Optional<PotionUpgrade> timeUpgrade = Optional.empty();
-		protected Optional<PotionUpgrade> powerUpgrade = Optional.empty();
+		private final List<Item> input;
+		private final Item ingredient;
+		private final Potion potion;
+		private boolean waterApplyable = false;
+		private Optional<PotionUpgrade> timeUpgrade = Optional.empty();
+		private Optional<PotionUpgrade> powerUpgrade = Optional.empty();
 		
 		public Builder(Item ingredient, Potion potion) {
 			this.input = Lists.newArrayList();
@@ -208,7 +208,7 @@ public class XSurviveBrewingRecipe implements IBrewingRecipe {
 		
 	}
 	
-	protected static record PotionUpgrade(Potion basePotion, Item upgradeItem, Potion resultPotion) {
+	private static record PotionUpgrade(Potion basePotion, Item upgradeItem, Potion resultPotion) {
 		
 	}
 

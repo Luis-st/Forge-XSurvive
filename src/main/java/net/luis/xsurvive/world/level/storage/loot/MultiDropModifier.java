@@ -35,7 +35,7 @@ public class MultiDropModifier extends LootModifier {
 		return loot;
 	}
 	
-	protected List<ItemStack> multiplyItem(ItemStack stack, int level) {
+	private List<ItemStack> multiplyItem(ItemStack stack, int level) {
 		List<ItemStack> loot = Lists.newArrayList();
 		if (level == 0) {
 			loot.add(stack);
@@ -62,7 +62,7 @@ public class MultiDropModifier extends LootModifier {
 		return loot;
 	}
 	
-	protected ItemStack copy(ItemStack stack, int count) {
+	private ItemStack copy(ItemStack stack, int count) {
 		ItemStack lootStack = stack.copy();
 		lootStack.setCount(count);
 		return lootStack;

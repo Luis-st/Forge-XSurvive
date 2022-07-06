@@ -7,10 +7,10 @@ import net.minecraft.nbt.CompoundTag;
 
 public class LocalPlayerCapabilityHandler implements IPlayerCapability {
 	
-	protected final LocalPlayer player;
-	protected int tick;
-	protected int frostTime;
-	protected int startFrostTime;
+	private final LocalPlayer player;
+	private int tick;
+	private int frostTime;
+	private int startFrostTime;
 	
 	public LocalPlayerCapabilityHandler(LocalPlayer player) {
 		this.player = player;

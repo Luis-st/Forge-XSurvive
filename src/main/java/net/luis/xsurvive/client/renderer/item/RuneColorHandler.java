@@ -12,7 +12,7 @@ import net.minecraft.world.item.ItemStack;
 
 public class RuneColorHandler {
 	
-	protected static final ThreadLocal<ItemStack> STACK = new ThreadLocal<>();
+	private static final ThreadLocal<ItemStack> STACK = new ThreadLocal<>();
 	
 	public static ItemStack getStack() {
 		return STACK.get();
@@ -22,7 +22,7 @@ public class RuneColorHandler {
 		STACK.set(stack);
 	}
 	
-	protected static int getColor() {
+	private static int getColor() {
 		ItemStack stack = getStack();
 		if (stack != null && !stack.isEmpty()) {
 			if (stack.getItem() instanceof IRuneColorProvider provider) {
@@ -65,7 +65,7 @@ public class RuneColorHandler {
 		return renderType(XSurviveRenderType.armorEntityGlint, RenderType::armorEntityGlint);
 	}
 	
-	protected static RenderType renderType(List<RenderType> renderTypes, Supplier<RenderType> vanillaRenderType) {
+	private static RenderType renderType(List<RenderType> renderTypes, Supplier<RenderType> vanillaRenderType) {
 		int color = getColor();
 		if (17 >= color && color >= 0) {
 			return renderTypes.get(color) ;

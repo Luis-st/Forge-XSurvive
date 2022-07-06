@@ -5,8 +5,8 @@ import net.minecraft.world.item.ItemStack;
 
 public class RuneItem extends Item implements IRuneColorProvider {
 	
-	protected final boolean foil;
-	protected final int color;
+	private final boolean foil;
+	private final int color;
 	
 	public RuneItem(Properties properties, boolean foil, int color) {
 		super(properties);

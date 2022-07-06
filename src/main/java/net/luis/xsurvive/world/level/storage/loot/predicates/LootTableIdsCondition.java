@@ -3,7 +3,6 @@ package net.luis.xsurvive.world.level.storage.loot.predicates;
 import java.util.List;
 
 import com.google.common.collect.Lists;
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonElement;
@@ -17,7 +16,7 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
 
 public class LootTableIdsCondition implements LootItemCondition {
 	
-	protected final List<ResourceLocation> lootTables;
+	private final List<ResourceLocation> lootTables;
 	
 	public LootTableIdsCondition(List<ResourceLocation> lootTables) {
 		this.lootTables = lootTables;
@@ -35,7 +34,7 @@ public class LootTableIdsCondition implements LootItemCondition {
 	
 	public static class Builder implements LootItemCondition.Builder {
 		
-		protected final List<ResourceLocation> lootTables;;
+		private final List<ResourceLocation> lootTables;;
 		
 		public Builder(String lootTable) {
 			this(new ResourceLocation(lootTable));
@@ -63,8 +62,6 @@ public class LootTableIdsCondition implements LootItemCondition {
 	}
 	
 	public static class Serializer implements net.minecraft.world.level.storage.loot.Serializer<LootTableIdsCondition> {
-		
-		public static final Gson GSON = new Gson();
 		
 		@Override
 		public void serialize(JsonObject object, LootTableIdsCondition instance, JsonSerializationContext context) {

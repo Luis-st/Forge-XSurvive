@@ -19,9 +19,9 @@ import net.minecraftforge.network.simple.SimpleChannel;
 
 public class XSurviveNetworkHandler {
 	
-	protected static final String VERSION = "1";
-	protected static int id = 0;
-	protected static SimpleChannel simpleChannel;
+	private static final String VERSION = "1";
+	private static int id = 0;
+	private static SimpleChannel simpleChannel;
 	
 	public static void init() {
 		XSurvive.LOGGER.info("Register {} Network Channel", XSurvive.MOD_NAME);

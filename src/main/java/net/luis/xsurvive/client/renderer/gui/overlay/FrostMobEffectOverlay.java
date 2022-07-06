@@ -18,9 +18,9 @@ import net.minecraftforge.client.gui.IIngameOverlay;
 
 public class FrostMobEffectOverlay implements IIngameOverlay {
 	
-	protected static final ResourceLocation FROST_EFFECT = new ResourceLocation("textures/misc/powder_snow_outline.png");
+	private static final ResourceLocation FROST_EFFECT = new ResourceLocation("textures/misc/powder_snow_outline.png");
 	
-	protected final Minecraft minecraft;
+	private final Minecraft minecraft;
 	
 	public FrostMobEffectOverlay(Minecraft minecraft) {
 		this.minecraft = minecraft;
@@ -35,7 +35,7 @@ public class FrostMobEffectOverlay implements IIngameOverlay {
 		}
 	}
 	
-	protected void renderFrostMobEffectOverlay(int width, int height, float frostPercent) {
+	private void renderFrostMobEffectOverlay(int width, int height, float frostPercent) {
 		RenderSystem.disableDepthTest();
 		RenderSystem.depthMask(false);
 		RenderSystem.defaultBlendFunc();
