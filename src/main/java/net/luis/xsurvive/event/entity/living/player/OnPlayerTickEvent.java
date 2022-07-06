@@ -8,7 +8,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.block.AirBlock;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -35,7 +34,7 @@ public class OnPlayerTickEvent {
 		if (hasVoidWalker) {
 			player.fallDistance = 0.0F;
 		}
-		if (player.isShiftKeyDown() && hasVoidWalker && player.getLevel().getBlockState(pos).getBlock() instanceof AirBlock) {
+		if (player.isShiftKeyDown() && hasVoidWalker && player.getLevel().getBlockState(pos).isAir()) {
 			player.setDeltaMovement(player.getDeltaMovement().x(), -0.25, player.getDeltaMovement().z());
 		} else if (!player.isShiftKeyDown() && hasVoidWalker && player.getDeltaMovement().y() != 0.0) {
 			player.setDeltaMovement(player.getDeltaMovement().x(), 0.0, player.getDeltaMovement().z());
