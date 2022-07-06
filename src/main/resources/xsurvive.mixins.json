@@ -19,7 +19,8 @@
 		"EndCrystalMixin",
 		"WitherBossMixin",
 		"WitherSkullMixin",
-		"BlockItemMixin"
+		"BlockItemMixin",
+		"WitherSkullBlockMixin"
 	],
 	"client": [
 		"client.ItemRendererMixin",
