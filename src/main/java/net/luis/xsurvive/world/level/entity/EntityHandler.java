@@ -36,10 +36,11 @@ public class EntityHandler {
 	}
 	
 	public static boolean isAffectedByImpaling(Entity entity) {
-		if (entity instanceof MagmaCube || entity instanceof Ghast || entity instanceof Blaze || entity instanceof Strider) {
-			return true;
-		}
 		return entity instanceof AbstractFish || entity instanceof Dolphin || entity instanceof Squid || entity instanceof Guardian || entity instanceof ElderGuardian || entity instanceof Drowned || entity instanceof Turtle;
+	}
+	
+	public static boolean isAffectedByFrost(Entity entity) {
+		return entity instanceof MagmaCube || entity instanceof Ghast || entity instanceof Blaze || entity instanceof Strider;
 	}
 	
 	public static int getGrowthLevel(LivingEntity entity, EquipmentSlot slot, ItemStack stack) {

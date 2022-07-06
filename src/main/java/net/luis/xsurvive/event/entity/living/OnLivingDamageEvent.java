@@ -27,7 +27,8 @@ public class OnLivingDamageEvent {
 			int impaling = EnchantmentHandler.getEnchantmentLevel(Enchantments.IMPALING, player);
 			if (enderSlayer > 0 && EntityHandler.isAffectedByEnderSlayer(target)) {
 				newAmount = (float) (amount * 2.5);
-			} else if (impaling > 0 && EntityHandler.isAffectedByImpaling(target)) {
+			}
+			if (impaling > 0 && EntityHandler.isAffectedByImpaling(target)) {
 				newAmount = (float) (amount * 2.5);
 			}
 		}

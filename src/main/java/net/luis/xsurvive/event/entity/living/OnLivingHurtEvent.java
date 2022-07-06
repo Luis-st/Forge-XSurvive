@@ -29,7 +29,6 @@ public class OnLivingHurtEvent {
 			}
 			if (frostAspect > 0) {
 				livingTarget.addEffect(new MobEffectInstance(XSurviveMobEffects.FROST.get(), 100 * frostAspect), livingAttacker);
-				livingTarget.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100 * frostAspect, 2, false, false, false), livingAttacker);
 			}
 		}
 	}
