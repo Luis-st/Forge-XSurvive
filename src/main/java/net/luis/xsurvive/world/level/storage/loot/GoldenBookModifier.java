@@ -12,10 +12,12 @@ import net.luis.xsurvive.world.item.EnchantedGoldenBookItem;
 import net.luis.xsurvive.world.item.XSurviveItems;
 import net.luis.xsurvive.world.item.enchantment.IEnchantment;
 import net.luis.xsurvive.world.item.enchantment.XSurviveEnchantments;
+import net.minecraft.Util;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
@@ -24,14 +26,23 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class GoldenBookModifier extends LootModifier {
 	
-	protected static final Random RNG = new Random();
-	protected final List<Enchantment> trashEnchantments = Lists.newArrayList(Enchantments.FALL_PROTECTION, Enchantments.BLAST_PROTECTION, Enchantments.PROJECTILE_PROTECTION, Enchantments.KNOCKBACK);
-	protected final List<Enchantment> enchantments = Lists.newArrayList(Enchantments.SHARPNESS, Enchantments.ALL_DAMAGE_PROTECTION, Enchantments.BLOCK_EFFICIENCY, Enchantments.UNBREAKING, Enchantments.PIERCING, Enchantments.SMITE,
+	private static final Random RNG = new Random();
+
+	private final List<Enchantment> trashEnchantments = Lists.newArrayList(Enchantments.FIRE_PROTECTION, Enchantments.BLAST_PROTECTION, Enchantments.PROJECTILE_PROTECTION, Enchantments.KNOCKBACK);
+	private final List<Enchantment> enchantments = Lists.newArrayList(Enchantments.SHARPNESS, Enchantments.ALL_DAMAGE_PROTECTION, Enchantments.BLOCK_EFFICIENCY, Enchantments.UNBREAKING, Enchantments.PIERCING, Enchantments.SMITE,
 		Enchantments.PUNCH_ARROWS, Enchantments.POWER_ARROWS, Enchantments.FISHING_SPEED, Enchantments.BANE_OF_ARTHROPODS, XSurviveEnchantments.BLASTING.get(), XSurviveEnchantments.GROWTH.get(), XSurviveEnchantments.ENDER_SLAYER.get());
-	protected final List<Enchantment> rareEnchantments = Lists.newArrayList(Enchantments.FALL_PROTECTION, Enchantments.RESPIRATION, Enchantments.DEPTH_STRIDER, Enchantments.SWEEPING_EDGE, Enchantments.FISHING_LUCK, Enchantments.FIRE_ASPECT,
+	private final List<Enchantment> rareEnchantments = Lists.newArrayList(Enchantments.FALL_PROTECTION, Enchantments.RESPIRATION, Enchantments.DEPTH_STRIDER, Enchantments.SWEEPING_EDGE, Enchantments.FISHING_LUCK, Enchantments.FIRE_ASPECT,
 		Enchantments.QUICK_CHARGE, XSurviveEnchantments.FROST_ASPECT.get(), XSurviveEnchantments.POISON_ASPECT.get());
-	protected final List<Enchantment> veryRareEnchantments = Lists.newArrayList(Enchantments.BLOCK_FORTUNE, Enchantments.MOB_LOOTING, Enchantments.LOYALTY, Enchantments.RIPTIDE, XSurviveEnchantments.VOID_PROTECTION.get());
-	protected final List<Enchantment> treasureEnchantments = Lists.newArrayList(Enchantments.SOUL_SPEED, Enchantments.SWIFT_SNEAK, XSurviveEnchantments.MULTI_DROP.get());
+	private final List<Enchantment> veryRareEnchantments = Lists.newArrayList(Enchantments.BLOCK_FORTUNE, Enchantments.MOB_LOOTING, Enchantments.LOYALTY, Enchantments.RIPTIDE);
+	private final List<Enchantment> endVeryRareEnchantments = Util.make(Lists.newArrayList(), (list) -> {
+		list.addAll(this.veryRareEnchantments);
+		list.add(XSurviveEnchantments.VOID_PROTECTION.get());
+	});
+	private final List<Enchantment> treasureEnchantments = Lists.newArrayList(Enchantments.SWIFT_SNEAK, XSurviveEnchantments.MULTI_DROP.get());
+	private final List<Enchantment> netherTreasureEnchantments = Util.make(Lists.newArrayList(), (list) -> {
+		list.addAll(this.treasureEnchantments);
+		list.add(Enchantments.SOUL_SPEED);
+	});
 	
 	public GoldenBookModifier(LootItemCondition[] conditions) {
 		super(conditions);
@@ -43,9 +54,9 @@ public class GoldenBookModifier extends LootModifier {
 		return generatedLoot;
 	}
 	
-	protected ItemStack getGoldenBook(LootContext context) {
+	private ItemStack getGoldenBook(LootContext context) {
 		ItemStack stack = new ItemStack(XSurviveItems.ENCHANTED_GOLDEN_BOOK.get());
-		Enchantment enchantment = this.getRandomEnchantment();
+		Enchantment enchantment = this.getRandomEnchantment(context.getQueriedLootTableId());
 		if (enchantment != null) {
 			if (stack.getItem() instanceof EnchantedGoldenBookItem goldenBook) {
 				goldenBook.setEnchantment(stack, enchantment);
@@ -56,7 +67,7 @@ public class GoldenBookModifier extends LootModifier {
 		return ItemStack.EMPTY;
 	}
 	
-	protected Enchantment getRandomEnchantment() {
+	private Enchantment getRandomEnchantment(ResourceLocation location) {
 		Enchantment enchantment;
 		int i = RNG.nextInt(29);
 		if (i == 0) {
@@ -66,9 +77,17 @@ public class GoldenBookModifier extends LootModifier {
 		} else if (18 >= i) {
 			enchantment = this.rareEnchantments.get(RNG.nextInt(this.rareEnchantments.size()));
 		} else if (24 >= i) {
-			enchantment = this.veryRareEnchantments.get(RNG.nextInt(this.veryRareEnchantments.size()));
+			if (location.equals(BuiltInLootTables.END_CITY_TREASURE)) {
+				enchantment = this.endVeryRareEnchantments.get(RNG.nextInt(this.endVeryRareEnchantments.size()));
+			} else {
+				enchantment = this.veryRareEnchantments.get(RNG.nextInt(this.veryRareEnchantments.size()));
+			}
 		} else {
-			enchantment = this.treasureEnchantments.get(RNG.nextInt(this.treasureEnchantments.size()));
+			if (location.equals(BuiltInLootTables.BASTION_TREASURE)) {
+				enchantment = this.netherTreasureEnchantments.get(RNG.nextInt(this.netherTreasureEnchantments.size()));
+			} else {
+				enchantment = this.treasureEnchantments.get(RNG.nextInt(this.treasureEnchantments.size()));
+			}
 		}
 		if (enchantment instanceof IEnchantment) {
 			return enchantment;
