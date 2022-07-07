@@ -1,29 +1,42 @@
 package net.luis.xsurvive.mixin;
 
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.dimension.end.EndDragonFight;
+import net.minecraft.world.level.levelgen.feature.EndPodiumFeature;
+import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 
 @Mixin(EndDragonFight.class)
 public abstract class EndDragonFightMixin {
 	
 	@Shadow
-	private BlockPos portalLocation;
+	@Final
+	private ServerLevel level;
 	
-	@ModifyArg(method = "setDragonKilled", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;setBlockAndUpdate(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z"), index = 0)
-	private BlockPos getDragonEggPos(BlockPos pos) {
-		return new BlockPos(0, 100, 0);
-	}
-	
-	@Inject(method = "spawnExitPortal", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/levelgen/feature/Feature;place(Lnet/minecraft/world/level/levelgen/feature/configurations/FeatureConfiguration;Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/chunk/ChunkGenerator;Lnet/minecraft/util/RandomSource;Lnet/minecraft/core/BlockPos;)Z"))
-	private void placeExitPortal(CallbackInfo callback) {
-		this.portalLocation = new BlockPos(0, 99, 0);
+	@Inject(method = "spawnExitPortal", at = @At("HEAD"), cancellable = true)
+	private void spawnExitPortal(boolean active, CallbackInfo callback) {
+		EndPodiumFeature endpodiumfeature = new EndPodiumFeature(active);
+		endpodiumfeature.place(FeatureConfiguration.NONE, this.level, this.level.getChunkSource().getGenerator(), RandomSource.create(), new BlockPos(0, 75, 0));
+		for (int i = -1; i <= 1; i++) {
+			this.level.setBlockAndUpdate(new BlockPos(-3, 74, i), Blocks.AIR.defaultBlockState());
+			this.level.setBlockAndUpdate(new BlockPos(3, 74, i), Blocks.AIR.defaultBlockState());
+			this.level.setBlockAndUpdate(new BlockPos(i, 74, -3), Blocks.AIR.defaultBlockState());
+			this.level.setBlockAndUpdate(new BlockPos(i, 74, 3), Blocks.AIR.defaultBlockState());
+		}
+		this.level.setBlockAndUpdate(new BlockPos(-2, 74, -2), Blocks.AIR.defaultBlockState());
+		this.level.setBlockAndUpdate(new BlockPos(-2, 74, 2), Blocks.AIR.defaultBlockState());
+		this.level.setBlockAndUpdate(new BlockPos(2, 74, -2), Blocks.AIR.defaultBlockState());
+		this.level.setBlockAndUpdate(new BlockPos(2, 74, 2), Blocks.AIR.defaultBlockState());
+		callback.cancel();
 	}
 	
 }

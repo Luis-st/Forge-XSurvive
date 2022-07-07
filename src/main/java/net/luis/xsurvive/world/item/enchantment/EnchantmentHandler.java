@@ -2,11 +2,15 @@ package net.luis.xsurvive.world.item.enchantment;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 import net.luis.xsurvive.XSurvive;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -118,6 +122,17 @@ public class EnchantmentHandler {
 				replaceEnchantment(new EnchantmentInstance(enchantment, stack.getEnchantmentLevel(enchantment) - 1), stack);
 			}
 		}
+	}
+	
+	public static Map<EquipmentSlot, ItemStack> getItemsWith(Enchantment enchantment, Player player, Predicate<ItemStack> predicate) {
+		Map<EquipmentSlot, ItemStack> items = Maps.newHashMap();
+		for (EquipmentSlot slot : EquipmentSlot.values()) {
+			ItemStack stack = player.getItemBySlot(slot);
+			if (hasEnchantment(enchantment, stack) && predicate.test(stack)) {
+				items.put(slot, stack);
+			}
+		}
+		return items;
 	}
 	
 }
