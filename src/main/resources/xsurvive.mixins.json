@@ -21,7 +21,8 @@
 		"WitherSkullMixin",
 		"BlockItemMixin",
 		"WitherSkullBlockMixin",
-		"NoiseBasedChunkGeneratorMixin"
+		"NoiseBasedChunkGeneratorMixin",
+		"EndDragonFightMixin"
 	],
 	"client": [
 		"client.ItemRendererMixin",
