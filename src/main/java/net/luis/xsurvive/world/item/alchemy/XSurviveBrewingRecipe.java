@@ -42,17 +42,19 @@ public class XSurviveBrewingRecipe implements IBrewingRecipe {
 			Potion inputPotion = PotionUtils.getPotion(input);
 			if (inputPotion == Potions.AWKWARD) {
 				return true;
-			} if (this.isUpgradeValid(this.timeUpgrade, inputPotion)) {
+			} else if (this.isValidUpgradeInput(this.timeUpgrade, inputPotion)) {
 				return true;
-			} else if (this.isUpgradeValid(this.powerUpgrade, inputPotion)) {
+			} else if (this.isValidUpgradeInput(this.powerUpgrade, inputPotion)) {
+				return true;
+			} else if (inputPotion == Potions.WATER && this.waterApplyable) {
 				return true;
 			}
-			return inputPotion == Potions.WATER && this.waterApplyable;
+			return false;
 		}
 		return false;
 	}
 	
-	protected boolean isUpgradeValid(Optional<PotionUpgrade> optional, Potion inputPotion) {
+	private boolean isValidUpgradeInput(Optional<PotionUpgrade> optional, Potion inputPotion) {
 		if (optional.isPresent()) {
 			PotionUpgrade upgrade = optional.get();
 			Potion basePotion = upgrade.basePotion(); 
@@ -65,10 +67,17 @@ public class XSurviveBrewingRecipe implements IBrewingRecipe {
 	public boolean isIngredient(ItemStack ingredient) {
 		if (this.ingredient == ingredient.getItem()) {
 			return true;
-		} else if (this.timeUpgrade.isPresent()) {
-			return this.timeUpgrade.get().upgradeItem() == ingredient.getItem();
-		} else if (this.powerUpgrade.isPresent()) {
-			return this.powerUpgrade.get().upgradeItem() == ingredient.getItem();
+		} else if (this.isValidUpgradeIngredient(this.timeUpgrade, ingredient)) {
+			return true;
+		} else if (this.isValidUpgradeIngredient(this.powerUpgrade, ingredient)) {
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean isValidUpgradeIngredient(Optional<PotionUpgrade> optional, ItemStack ingredient) {
+		if (optional.isPresent()) {
+			return optional.get().upgradeItem() == ingredient.getItem();
 		}
 		return false;
 	}
@@ -87,21 +96,21 @@ public class XSurviveBrewingRecipe implements IBrewingRecipe {
 		return ItemStack.EMPTY;
 	}
 	
-	protected boolean isValidUpgradeOutput(Optional<PotionUpgrade> optional, Item ingredient) {
+	private boolean isValidUpgradeOutput(Optional<PotionUpgrade> optional, Item ingredient) {
 		if (optional.isPresent()) {
 			return optional.get().upgradeItem() == ingredient;
 		}
 		return false;
 	}
 	
-	protected ItemStack getPotionItem(ItemStack input) {
+	private ItemStack getPotionItem(ItemStack input) {
 		if (input.getItem() instanceof PotionItem item) {
 			return new ItemStack(item);
 		}
 		throw new IllegalArgumentException("Expected a potion item but got: " + ForgeRegistries.ITEMS.getKey(input.getItem()));
 	}
 	
-	protected ItemStack getUpgradeOutput(Optional<PotionUpgrade> optional, ItemStack input) {
+	private ItemStack getUpgradeOutput(Optional<PotionUpgrade> optional, ItemStack input) {
 		PotionUpgrade upgrade = optional.orElseThrow();
 		return PotionUtils.setPotion(this.getPotionItem(input), upgrade.resultPotion());
 	}
@@ -131,7 +140,7 @@ public class XSurviveBrewingRecipe implements IBrewingRecipe {
 		StringBuilder builder = new StringBuilder("XSurviveBrewingRecipe{");
 		builder.append("input=").append(this.input).append(",");
 		builder.append("ingredient=").append(this.ingredient).append(",");
-		builder.append("potion=").append(this.potion).append(",");
+		builder.append("potion=").append(ForgeRegistries.POTIONS.getKey(this.potion)).append(",");
 		builder.append("waterApplyable=").append(this.waterApplyable).append(",");
 		Util.ifElse(this.timeUpgrade, (potionUpgrade) -> {
 			builder.append("timeUpgrade=").append(this.toSting(potionUpgrade)).append(",");
@@ -146,11 +155,11 @@ public class XSurviveBrewingRecipe implements IBrewingRecipe {
 		return builder.toString();
 	}
 	
-	protected String toSting(PotionUpgrade potionUpgrade) {
+	private String toSting(PotionUpgrade potionUpgrade) {
 		StringBuilder builder = new StringBuilder("PotionUpgrade{");
-		builder.append("basePotion=").append(potionUpgrade.basePotion()).append(",");
+		builder.append("basePotion=").append(ForgeRegistries.POTIONS.getKey(potionUpgrade.basePotion())).append(",");
 		builder.append("upgradeItem=").append(potionUpgrade.upgradeItem()).append(",");
-		builder.append("resultPotion=").append(potionUpgrade.resultPotion()).append("}");
+		builder.append("resultPotion=").append(ForgeRegistries.POTIONS.getKey(potionUpgrade.resultPotion())).append("}");
 		return builder.toString();
 	}
 	
@@ -194,7 +203,7 @@ public class XSurviveBrewingRecipe implements IBrewingRecipe {
 		}
 		
 		public Builder addPowerUpgrade(Potion resultPotion) {
-			return this.addTimeUpgrade(Items.GLOWSTONE_DUST, resultPotion);
+			return this.addPowerUpgrade(Items.GLOWSTONE_DUST, resultPotion);
 		}
 		
 		public Builder addPowerUpgrade(Item upgradeItem, Potion resultPotion) {
