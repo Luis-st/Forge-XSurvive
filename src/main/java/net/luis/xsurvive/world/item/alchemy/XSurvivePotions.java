@@ -3,6 +3,7 @@ package net.luis.xsurvive.world.item.alchemy;
 import net.luis.xsurvive.XSurvive;
 import net.luis.xsurvive.world.effect.XSurviveMobEffects;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -21,6 +22,15 @@ public class XSurvivePotions {
 	});
 	public static final RegistryObject<Potion> STRONG_FORST = POTIONS.register("strong_frost", () -> {
 		return new Potion(new MobEffectInstance(XSurviveMobEffects.FROST.get(), 1800, 1));
+	});
+	public static final RegistryObject<Potion> WITHER = POTIONS.register("wither", () -> {
+		return new Potion(new MobEffectInstance(MobEffects.WITHER, 600));
+	});
+	public static final RegistryObject<Potion> LONG_WITHER = POTIONS.register("long_wither", () -> {
+		return new Potion(new MobEffectInstance(MobEffects.WITHER, 1200));
+	});
+	public static final RegistryObject<Potion> STRONG_WITHER = POTIONS.register("strong_wither", () -> {
+		return new Potion(new MobEffectInstance(MobEffects.WITHER, 400, 1));
 	});
 	
 }

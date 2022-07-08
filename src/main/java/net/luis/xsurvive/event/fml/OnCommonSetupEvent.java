@@ -19,6 +19,8 @@ public class OnCommonSetupEvent {
 		XSurviveNetworkHandler.init();
 		BrewingRecipeRegistry.addRecipe(new XSurviveBrewingRecipe.Builder(Items.SNOWBALL, XSurvivePotions.FORST.get()).useDefaultInput().addTimeUpgrade(XSurvivePotions.LONG_FORST.get())
 			.addPowerUpgrade(XSurvivePotions.STRONG_FORST.get()).build());
+		BrewingRecipeRegistry.addRecipe(new XSurviveBrewingRecipe.Builder(Items.WITHER_ROSE, XSurvivePotions.WITHER.get()).useDefaultInput().addTimeUpgrade(XSurvivePotions.LONG_WITHER.get())
+			.addPowerUpgrade(XSurvivePotions.STRONG_WITHER.get()).build());
 	}
 	
 }
