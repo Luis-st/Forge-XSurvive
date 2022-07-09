@@ -9,6 +9,7 @@ import net.luis.xsurvive.data.provider.loottable.XSurviveLootTableProvider;
 import net.luis.xsurvive.data.provider.recipe.XSurviveRecipeProvider;
 import net.luis.xsurvive.data.provider.tag.XSurviveBlockTagsProvider;
 import net.luis.xsurvive.data.provider.tag.XSurviveItemTagsProvider;
+import net.luis.xsurvive.data.provider.tag.XSurvivePoiTypeTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -30,6 +31,7 @@ public class OnGatherDataEvent {
 			XSurviveBlockTagsProvider blockTagsProvider = new XSurviveBlockTagsProvider(generator, event.getExistingFileHelper());
 			generator.addProvider(event.includeServer(), blockTagsProvider);
 			generator.addProvider(event.includeServer(), new XSurviveItemTagsProvider(generator, blockTagsProvider, event.getExistingFileHelper()));
+			generator.addProvider(event.includeServer(), new XSurvivePoiTypeTagsProvider(generator, event.getExistingFileHelper()));
 			generator.addProvider(event.includeServer(), new XSurviveGlobalLootModifierProvider(generator));
 		}
 	}

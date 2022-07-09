@@ -9,6 +9,8 @@ import net.luis.xsurvive.world.item.XSurviveCreativeModeTab;
 import net.luis.xsurvive.world.item.XSurviveItems;
 import net.luis.xsurvive.world.item.alchemy.XSurvivePotions;
 import net.luis.xsurvive.world.item.enchantment.XSurviveEnchantments;
+import net.luis.xsurvive.world.level.entity.ai.village.poi.XSurvivePoiTypes;
+import net.luis.xsurvive.world.level.entity.npc.XSurviveVillagerProfessions;
 import net.luis.xsurvive.world.level.storage.loot.XSurviveGlobalLootModifiers;
 import net.luis.xsurvive.world.level.storage.loot.predicates.XSurviveLootItemConditions;
 import net.minecraft.world.item.CreativeModeTab;
@@ -32,6 +34,8 @@ public class XSurvive {
 		XSurviveItems.ITEMS.register(modEventBus);
 		XSurviveMobEffects.MOB_EFFECTS.register(modEventBus);
 		XSurvivePotions.POTIONS.register(modEventBus);
+		XSurvivePoiTypes.POI_TYPES.register(modEventBus);
+		XSurviveVillagerProfessions.PROFESSIONS.register(modEventBus);
 	}
 	
 }
