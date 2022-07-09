@@ -56,5 +56,8 @@ public class XSurviveEnchantments {
 	public static final RegistryObject<VoidProtectionEnchantment> VOID_PROTECTION = ENCHANTMENTS.register("void_protection", () -> { 
 		return new VoidProtectionEnchantment(Rarity.VERY_RARE, XSurviveEnchantmentCategory.ELYTRA, EquipmentSlot.CHEST);
 	});
+	public static final RegistryObject<HarvestingEnchantment> HARVESTING = ENCHANTMENTS.register("harvesting", () -> { 
+		return new HarvestingEnchantment(Rarity.UNCOMMON, EnchantmentCategory.DIGGER, EquipmentSlot.MAINHAND);
+	});
 	
 }
