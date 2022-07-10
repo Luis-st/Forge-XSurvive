@@ -1,0 +1,9 @@
+{
+  "type": "xsurvive:smelting",
+  "cookingtime": 100,
+  "experience": 0.5,
+  "ingredient": {
+    "item": "minecraft:yellow_terracotta"
+  },
+  "result": "minecraft:yellow_glazed_terracotta"
+}

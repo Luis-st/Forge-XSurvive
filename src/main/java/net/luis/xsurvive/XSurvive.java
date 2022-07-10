@@ -9,6 +9,7 @@ import net.luis.xsurvive.world.inventory.XSurviveMenuTypes;
 import net.luis.xsurvive.world.item.XSurviveCreativeModeTab;
 import net.luis.xsurvive.world.item.XSurviveItems;
 import net.luis.xsurvive.world.item.alchemy.XSurvivePotions;
+import net.luis.xsurvive.world.item.crafting.XSurviveRecipeSerializers;
 import net.luis.xsurvive.world.item.crafting.XSurviveRecipeTypes;
 import net.luis.xsurvive.world.item.enchantment.XSurviveEnchantments;
 import net.luis.xsurvive.world.level.block.XSurviveBlocks;
@@ -45,6 +46,7 @@ public class XSurvive {
 		XSurviveBlockEntityTypes.BLOCK_ENTITIES.register(eventBus);
 		XSurviveMenuTypes.MENUS.register(eventBus);
 		XSurviveRecipeTypes.RECIPE_TYPES.register(eventBus);
+		XSurviveRecipeSerializers.RECIPE_SERIALIZERS.register(eventBus);
 	}
 	
 }

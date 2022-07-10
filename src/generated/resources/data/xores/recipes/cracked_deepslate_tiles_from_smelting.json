@@ -1,0 +1,9 @@
+{
+  "type": "xsurvive:smelting",
+  "cookingtime": 100,
+  "experience": 0.5,
+  "ingredient": {
+    "item": "minecraft:deepslate_tiles"
+  },
+  "result": "minecraft:cracked_deepslate_tiles"
+}

@@ -1,0 +1,9 @@
+{
+  "type": "xsurvive:smelting",
+  "cookingtime": 100,
+  "experience": 0.5,
+  "ingredient": {
+    "item": "minecraft:purple_terracotta"
+  },
+  "result": "minecraft:purple_glazed_terracotta"
+}
