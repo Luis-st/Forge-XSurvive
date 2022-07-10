@@ -5,6 +5,7 @@ import net.luis.xsurvive.world.effect.XSurviveMobEffects;
 import net.luis.xsurvive.world.item.XSurviveItems;
 import net.luis.xsurvive.world.item.alchemy.XSurvivePotions;
 import net.luis.xsurvive.world.item.enchantment.XSurviveEnchantments;
+import net.luis.xsurvive.world.level.block.XSurviveBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
@@ -29,6 +30,9 @@ public class XSurviveLanguageProvider extends LanguageProvider {
 		for (Item item : XSurviveItems.ITEMS.getEntries().stream().map(RegistryObject::get).toList()) {
 			this.add(item, this.getName(ForgeRegistries.ITEMS.getKey(item)));
 		}
+		for (Item item : XSurviveBlocks.ITEMS.getEntries().stream().map(RegistryObject::get).toList()) {
+			this.add(item, this.getName(ForgeRegistries.ITEMS.getKey(item)));
+		}
 		for (MobEffect mobEffect : XSurviveMobEffects.MOB_EFFECTS.getEntries().stream().map(RegistryObject::get).toList()) {
 			this.add(mobEffect, this.getName(ForgeRegistries.MOB_EFFECTS.getKey(mobEffect)));
 		}
@@ -38,6 +42,8 @@ public class XSurviveLanguageProvider extends LanguageProvider {
 		this.add(XSurvive.TAB.getDisplayName().getString(), XSurvive.MOD_NAME);
 		this.add("death.attack.curse_of_harming", "%1$s die by his own weapon");
 		this.add("death.attack.curse_of_harming.player", "%1$s die by his own weapon whilst fighting %2$s");
+		this.add(XSurvive.MOD_ID + ".container.smelting_furnace", "Smelting Furnace");
+		this.add(XSurvive.MOD_ID + ".gui.recipebook.toggleRecipes.smeltable", "Showing Smeltable");
 	}
 	
 	protected void add(Potion potion) {

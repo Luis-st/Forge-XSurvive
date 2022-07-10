@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "xsurvive:block/smelting_furnace_front",
+    "side": "xsurvive:block/smelting_furnace_side",
+    "top": "xsurvive:block/smelting_furnace_top"
+  }
+}

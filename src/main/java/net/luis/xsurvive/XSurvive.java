@@ -5,10 +5,14 @@ import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
 
 import net.luis.xsurvive.world.effect.XSurviveMobEffects;
+import net.luis.xsurvive.world.inventory.XSurviveMenuTypes;
 import net.luis.xsurvive.world.item.XSurviveCreativeModeTab;
 import net.luis.xsurvive.world.item.XSurviveItems;
 import net.luis.xsurvive.world.item.alchemy.XSurvivePotions;
+import net.luis.xsurvive.world.item.crafting.XSurviveRecipeTypes;
 import net.luis.xsurvive.world.item.enchantment.XSurviveEnchantments;
+import net.luis.xsurvive.world.level.block.XSurviveBlocks;
+import net.luis.xsurvive.world.level.block.entity.XSurviveBlockEntityTypes;
 import net.luis.xsurvive.world.level.entity.ai.village.poi.XSurvivePoiTypes;
 import net.luis.xsurvive.world.level.entity.npc.XSurviveVillagerProfessions;
 import net.luis.xsurvive.world.level.storage.loot.XSurviveGlobalLootModifiers;
@@ -27,15 +31,20 @@ public class XSurvive {
 	public static final CreativeModeTab TAB = new XSurviveCreativeModeTab(XSurvive.MOD_ID);
 	
 	public XSurvive() {
-		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-		XSurviveEnchantments.ENCHANTMENTS.register(modEventBus);
-		XSurviveLootItemConditions.LOOT_ITEM_CONDITIONS.register(modEventBus);
-		XSurviveGlobalLootModifiers.LOOT_MODIFIERS.register(modEventBus);
-		XSurviveItems.ITEMS.register(modEventBus);
-		XSurviveMobEffects.MOB_EFFECTS.register(modEventBus);
-		XSurvivePotions.POTIONS.register(modEventBus);
-		XSurvivePoiTypes.POI_TYPES.register(modEventBus);
-		XSurviveVillagerProfessions.PROFESSIONS.register(modEventBus);
+		IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+		XSurviveEnchantments.ENCHANTMENTS.register(eventBus);
+		XSurviveLootItemConditions.LOOT_ITEM_CONDITIONS.register(eventBus);
+		XSurviveGlobalLootModifiers.LOOT_MODIFIERS.register(eventBus);
+		XSurviveBlocks.BLOCKS.register(eventBus);
+		XSurviveBlocks.ITEMS.register(eventBus);
+		XSurviveItems.ITEMS.register(eventBus);
+		XSurviveMobEffects.MOB_EFFECTS.register(eventBus);
+		XSurvivePotions.POTIONS.register(eventBus);
+		XSurvivePoiTypes.POI_TYPES.register(eventBus);
+		XSurviveVillagerProfessions.PROFESSIONS.register(eventBus);
+		XSurviveBlockEntityTypes.BLOCK_ENTITIES.register(eventBus);
+		XSurviveMenuTypes.MENUS.register(eventBus);
+		XSurviveRecipeTypes.RECIPE_TYPES.register(eventBus);
 	}
 	
 }

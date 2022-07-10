@@ -1,4 +1,5 @@
 {
+  "block.xsurvive.smelting_furnace": "Smelting Furnace",
   "death.attack.curse_of_harming": "%1$s die by his own weapon",
   "death.attack.curse_of_harming.player": "%1$s die by his own weapon whilst fighting %2$s",
   "effect.xsurvive.frost": "Frost",
@@ -58,5 +59,7 @@
   "item.xsurvive.red_rune": "Red Rune",
   "item.xsurvive.white_rune": "White Rune",
   "item.xsurvive.yellow_rune": "Yellow Rune",
-  "itemGroup.xsurvive": "XSurvive"
+  "itemGroup.xsurvive": "XSurvive",
+  "xsurvive.container.smelting_furnace": "Smelting Furnace",
+  "xsurvive.gui.recipebook.toggleRecipes.smeltable": "Showing Smeltable"
 }

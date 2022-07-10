@@ -1,13 +1,23 @@
 package net.luis.xsurvive.event.fml;
 
+import com.google.common.collect.Lists;
+
 import net.luis.xsurvive.XSurvive;
 import net.luis.xsurvive.client.DoubleRangeOption;
+import net.luis.xsurvive.client.XSurviveRecipeBookCategories;
+import net.luis.xsurvive.client.gui.screens.SmeltingFurnaceScreen;
 import net.luis.xsurvive.client.renderer.gui.overlay.FrostMobEffectOverlay;
+import net.luis.xsurvive.world.inventory.XSurviveMenuTypes;
+import net.luis.xsurvive.world.inventory.XSurviveRecipeBookTypes;
+import net.luis.xsurvive.world.item.crafting.XSurviveRecipeTypes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.OptionInstance;
 import net.minecraft.client.Options;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.BlockItem;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.RecipeBookRegistry;
 import net.minecraftforge.client.gui.ForgeIngameGui;
 import net.minecraftforge.client.gui.OverlayRegistry;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -22,6 +32,18 @@ public class OnClientSetupEvent {
 	public static void clientSetup(FMLClientSetupEvent event) {
 		Minecraft minecraft = Minecraft.getInstance();
 		OverlayRegistry.registerOverlayAbove(ForgeIngameGui.FROSTBITE_ELEMENT, "Frost Mob Effect Overlay", new FrostMobEffectOverlay(minecraft));
+		event.enqueueWork(() -> {
+			MenuScreens.register(XSurviveMenuTypes.SMELTING_FURNACE.get(), SmeltingFurnaceScreen::new);
+		});
+		RecipeBookRegistry.addCategoriesToType(XSurviveRecipeBookTypes.SMELTING, Lists.newArrayList(XSurviveRecipeBookCategories.SMELTING_FURNACE_SEARCH, XSurviveRecipeBookCategories.SMELTING_FURNACE_BLOCKS, 
+			XSurviveRecipeBookCategories.SMELTING_FURNACE_MISC));
+		RecipeBookRegistry.addAggregateCategories(XSurviveRecipeBookCategories.SMELTING_FURNACE_SEARCH, Lists.newArrayList(XSurviveRecipeBookCategories.SMELTING_FURNACE_BLOCKS, XSurviveRecipeBookCategories.SMELTING_FURNACE_MISC));
+		RecipeBookRegistry.addCategoriesFinder(XSurviveRecipeTypes.SMELTING.get(), (recipe) -> {
+			if (recipe.getResultItem().getItem() instanceof BlockItem) {
+				return XSurviveRecipeBookCategories.SMELTING_FURNACE_BLOCKS;
+			}
+			return XSurviveRecipeBookCategories.SMELTING_FURNACE_MISC;
+		});
 		replaceGammaOption(minecraft);
 		XSurvive.LOGGER.info("Replace gamma option and reload options");
 		minecraft.options.load();
@@ -29,14 +51,14 @@ public class OnClientSetupEvent {
 	}
 
 	private static void replaceGammaOption(Minecraft minecraft) {
-		minecraft.options.gamma = new OptionInstance<Double>("options.gamma", OptionInstance.noTooltip(), (p_231913_, p_231914_) -> {
-			int i = (int) (p_231914_ * 100.0D);
+		minecraft.options.gamma = new OptionInstance<Double>("options.gamma", OptionInstance.noTooltip(), (component, value) -> {
+			int i = (int) (value * 100.0D);
 			if (i == 0) {
-				return Options.genericValueLabel(p_231913_, Component.translatable("options.gamma.min"));
+				return Options.genericValueLabel(component, Component.translatable("options.gamma.min"));
 			} else if (i == 50) {
-				return Options.genericValueLabel(p_231913_, Component.translatable("options.gamma.default"));
+				return Options.genericValueLabel(component, Component.translatable("options.gamma.default"));
 			} else {
-				return i == 100 ? Options.genericValueLabel(p_231913_, Component.translatable("options.gamma.max")) : Options.genericValueLabel(p_231913_, i);
+				return i == 100 ? Options.genericValueLabel(component, Component.translatable("options.gamma.max")) : Options.genericValueLabel(component, i);
 			}
 		}, new DoubleRangeOption(0.0, 100.0), 0.5, (value) -> {
 			
