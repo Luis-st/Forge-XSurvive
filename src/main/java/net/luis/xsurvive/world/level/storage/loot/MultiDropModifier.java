@@ -3,23 +3,31 @@ package net.luis.xsurvive.world.level.storage.loot;
 import java.util.List;
 
 import com.google.common.collect.Lists;
-import com.google.gson.JsonObject;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.luis.xsurvive.XSurvive;
 import net.luis.xsurvive.world.item.enchantment.XSurviveEnchantments;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.common.loot.LootModifier;
 
 public class MultiDropModifier extends LootModifier {
 	
+	public static final Codec<MultiDropModifier> CODEC = RecordCodecBuilder.create((instance) -> {
+		return LootModifier.codecStart(instance).apply(instance, MultiDropModifier::new);
+	});
+	
 	public MultiDropModifier(LootItemCondition[] conditions) {
 		super(conditions);
+	}
+	
+	@Override
+	public Codec<MultiDropModifier> codec() {
+		return XSurviveGlobalLootModifiers.MULTI_DROP_MODIFIER.get();
 	}
 	
 	@Override
@@ -66,20 +74,6 @@ public class MultiDropModifier extends LootModifier {
 		ItemStack lootStack = stack.copy();
 		lootStack.setCount(count);
 		return lootStack;
-	}
-	
-	public static class Serializer extends GlobalLootModifierSerializer<MultiDropModifier> {
-
-		@Override
-		public MultiDropModifier read(ResourceLocation location, JsonObject object, LootItemCondition[] lootCondition) {
-			return new MultiDropModifier(lootCondition);
-		}
-
-		@Override
-		public JsonObject write(MultiDropModifier instance) {
-			return this.makeConditions(instance.conditions);
-		}
-		
 	}
 	
 }

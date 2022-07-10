@@ -3,7 +3,7 @@ package net.luis.xsurvive.event.entity.living;
 import net.luis.xsurvive.XSurvive;
 import net.luis.xsurvive.world.item.enchantment.EnchantmentHandler;
 import net.luis.xsurvive.world.item.enchantment.XSurviveEnchantments;
-import net.luis.xsurvive.world.level.entity.EntityHandler;
+import net.luis.xsurvive.world.level.entity.EntityHelper;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.EntityDamageSource;
 import net.minecraft.world.entity.Entity;
@@ -25,10 +25,10 @@ public class OnLivingDamageEvent {
 		if (source instanceof EntityDamageSource entitySource && entitySource.getEntity() instanceof Player player) {
 			int enderSlayer = EnchantmentHandler.getEnchantmentLevel(XSurviveEnchantments.ENDER_SLAYER.get(), player);
 			int impaling = EnchantmentHandler.getEnchantmentLevel(Enchantments.IMPALING, player);
-			if (enderSlayer > 0 && EntityHandler.isAffectedByEnderSlayer(target)) {
+			if (enderSlayer > 0 && EntityHelper.isAffectedByEnderSlayer(target)) {
 				newAmount = (float) (amount * 2.5);
 			}
-			if (impaling > 0 && EntityHandler.isAffectedByImpaling(target)) {
+			if (impaling > 0 && EntityHelper.isAffectedByImpaling(target)) {
 				newAmount = (float) (amount * 2.5);
 			}
 		}

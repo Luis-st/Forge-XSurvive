@@ -5,21 +5,23 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 import com.google.common.collect.Lists;
-import com.google.gson.JsonObject;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.luis.xsurvive.world.item.RuneItem;
 import net.luis.xsurvive.world.item.XSurviveItems;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.common.loot.LootModifier;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class RuneItemModifier extends LootModifier {
 	
+	public static final Codec<RuneItemModifier> CODEC = RecordCodecBuilder.create((instance) -> {
+		return LootModifier.codecStart(instance).apply(instance, RuneItemModifier::new);
+	});
 	private static final Random RNG = new Random();
 	
 	private final List<RuneItem> runes = Lists.newArrayList(XSurviveItems.WHITE_RUNE.get(), XSurviveItems.GRAY_RUNE.get(), XSurviveItems.LIGHT_GRAY_RUNE.get(), XSurviveItems.BROWN_RUNE.get(), XSurviveItems.BLACK_RUNE.get());
@@ -32,7 +34,12 @@ public class RuneItemModifier extends LootModifier {
 	public RuneItemModifier(LootItemCondition[] conditions) {
 		super(conditions);
 	}
-
+	
+	@Override
+	public Codec<RuneItemModifier> codec() {
+		return XSurviveGlobalLootModifiers.RUNE_ITEM_MODIFIER.get();
+	}
+	
 	@Override
 	protected ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
 		for (int i = 0; i < 2; i++) {
@@ -47,20 +54,6 @@ public class RuneItemModifier extends LootModifier {
 			return new ItemStack(this.coloredRunes.get(RNG.nextInt(this.coloredRunes.size())));
 		}
 		return new ItemStack(this.runes.get(RNG.nextInt(this.runes.size())));
-	}
-	
-	public static class Serializer extends GlobalLootModifierSerializer<RuneItemModifier> {
-
-		@Override
-		public RuneItemModifier read(ResourceLocation location, JsonObject object, LootItemCondition[] conditions) {
-			return new RuneItemModifier(conditions);
-		}
-
-		@Override
-		public JsonObject write(RuneItemModifier instance) {
-			return this.makeConditions(instance.conditions);
-		}
-		
 	}
 	
 }

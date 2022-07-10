@@ -29,7 +29,7 @@ import net.minecraft.world.entity.monster.Strider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
-public class EntityHandler {
+public class EntityHelper {
 	
 	public static boolean isAffectedByEnderSlayer(Entity entity) {
 		return entity instanceof EnderMan || entity instanceof Endermite || entity instanceof Shulker || entity instanceof EnderDragon;

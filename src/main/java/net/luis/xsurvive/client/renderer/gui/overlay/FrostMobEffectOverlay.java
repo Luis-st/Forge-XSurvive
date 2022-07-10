@@ -13,10 +13,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.client.gui.ForgeIngameGui;
-import net.minecraftforge.client.gui.IIngameOverlay;
+import net.minecraftforge.client.gui.overlay.ForgeGui;
+import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
-public class FrostMobEffectOverlay implements IIngameOverlay {
+public class FrostMobEffectOverlay implements IGuiOverlay {
 	
 	private static final ResourceLocation FROST_EFFECT = new ResourceLocation("textures/misc/powder_snow_outline.png");
 	
@@ -27,7 +27,7 @@ public class FrostMobEffectOverlay implements IIngameOverlay {
 	}
 	
 	@Override
-	public void render(ForgeIngameGui gui, PoseStack poseStack, float partialTick, int width, int height) {
+	public void render(ForgeGui gui, PoseStack poseStack, float partialTick, int width, int height) {
 		Player player = this.minecraft.player;
 		if (!this.minecraft.options.hideGui && player.hasEffect(XSurviveMobEffects.FROST.get()) && 0 >= player.getPercentFrozen()) {
 			gui.setupOverlayRenderState(true, false);

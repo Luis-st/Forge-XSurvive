@@ -1,6 +1,6 @@
 package net.luis.xsurvive.world.effect;
 
-import net.luis.xsurvive.world.level.entity.EntityHandler;
+import net.luis.xsurvive.world.level.entity.EntityHelper;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -14,7 +14,7 @@ public class FrostMobEffect extends MobEffect {
 	
 	@Override
 	public void applyEffectTick(LivingEntity entity, int amplifier) {
-		if (EntityHandler.isAffectedByFrost(entity)) {
+		if (EntityHelper.isAffectedByFrost(entity)) {
 			entity.hurt(DamageSource.FREEZE, amplifier * 2.0F);
 		}
 	}

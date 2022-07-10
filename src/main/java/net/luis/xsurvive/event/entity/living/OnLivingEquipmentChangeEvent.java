@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import net.luis.xsurvive.XSurvive;
 import net.luis.xsurvive.world.item.enchantment.XSurviveEnchantments;
-import net.luis.xsurvive.world.level.entity.EntityHandler;
+import net.luis.xsurvive.world.level.entity.EntityHelper;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -29,11 +29,11 @@ public class OnLivingEquipmentChangeEvent {
 			if (event.getSlot() == EquipmentSlot.FEET) {
 				int voidWalkerTo = toStack.getEnchantmentLevel(XSurviveEnchantments.VOID_WALKER.get());
 				int voidWalkerFrom = fromStack.getEnchantmentLevel(XSurviveEnchantments.VOID_WALKER.get());
-				EntityHandler.updateAttributeModifier(player, ForgeMod.ENTITY_GRAVITY.get(), Operation.MULTIPLY_TOTAL, GRAVITY_MODIFIER_UUID, "EntityGravity", voidWalkerTo, voidWalkerFrom);
+				EntityHelper.updateAttributeModifier(player, ForgeMod.ENTITY_GRAVITY.get(), Operation.MULTIPLY_TOTAL, GRAVITY_MODIFIER_UUID, "EntityGravity", voidWalkerTo, voidWalkerFrom);
 			}
-			int growthTo = EntityHandler.getGrowthLevel(player, event.getSlot(), toStack);
-			int growthFrom = EntityHandler.getGrowthLevel(player, event.getSlot(), fromStack);
-			EntityHandler.updateAttributeModifier(player, Attributes.MAX_HEALTH, Operation.ADDITION, HEALTH_MODIFIER_UUID, "MaxHealth", growthTo, growthFrom);
+			int growthTo = EntityHelper.getGrowthLevel(player, event.getSlot(), toStack);
+			int growthFrom = EntityHelper.getGrowthLevel(player, event.getSlot(), fromStack);
+			EntityHelper.updateAttributeModifier(player, Attributes.MAX_HEALTH, Operation.ADDITION, HEALTH_MODIFIER_UUID, "MaxHealth", growthTo, growthFrom);
 			player.setHealth(Math.min(player.getHealth(), (float) player.getAttribute(Attributes.MAX_HEALTH).getValue()));
 		}
 	}
