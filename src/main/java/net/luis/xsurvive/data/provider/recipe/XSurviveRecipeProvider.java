@@ -2,7 +2,7 @@ package net.luis.xsurvive.data.provider.recipe;
 
 import java.util.function.Consumer;
 
-import net.luis.xores.XOres;
+import net.luis.xsurvive.XSurvive;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
@@ -61,7 +61,7 @@ public class XSurviveRecipeProvider extends RecipeProvider {
 	}
 	
 	private void smeltingRecipe(Consumer<FinishedRecipe> consumer, Ingredient input, Item result) {
-		SmeltingRecipeBuilder.of(input, result, 0.5F, 100).unlockedBy("has_" + getId(result), has(result)).save(consumer, new ResourceLocation(XOres.MOD_ID, getId(result) + "_from_smelting"));
+		SmeltingRecipeBuilder.of(input, result, 0.5F, 100).unlockedBy("has_" + getId(result), has(result)).save(consumer, new ResourceLocation(XSurvive.MOD_ID, getId(result) + "_from_smelting"));
 	}
 	
 	private static String getId(Item item) {
