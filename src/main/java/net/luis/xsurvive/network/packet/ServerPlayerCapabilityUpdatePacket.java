@@ -31,7 +31,7 @@ public class ServerPlayerCapabilityUpdatePacket {
 			ServerPlayer player = context.get().getSender();
 			context.get().enqueueWork(() -> {
 				ServerPlayerCapabilityHandler handler = CapabilityUtil.getServerPlayer(player);
-				handler.deserializeFromClient(packet.tag);
+				handler.deserializeNetwork(packet.tag);
 			});
 			context.get().setPacketHandled(true);
 		}

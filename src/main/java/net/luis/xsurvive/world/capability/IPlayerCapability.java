@@ -30,12 +30,16 @@ public interface IPlayerCapability {
 		
 	}
 	
-	CompoundTag serialize();
+	CompoundTag serializeDisk();
+	
+	void deserializeDisk(CompoundTag tag);
+	
+	CompoundTag serializeNetwork();
+	
+	void deserializeNetwork(CompoundTag tag);
 	
 	CompoundTag serializePersistent();
-    
-    void deserialize(CompoundTag tag);
-    
-    void deserializePersistent(CompoundTag tag);
 	
+	void deserializePersistent(CompoundTag tag);
+    
 }

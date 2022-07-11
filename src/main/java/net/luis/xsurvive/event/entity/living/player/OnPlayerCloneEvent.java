@@ -20,7 +20,7 @@ public class OnPlayerCloneEvent {
 			if (event.isWasDeath()) {
 				handler.deserializePersistent(originalHandler.serializePersistent());
 			} else {
-				handler.deserialize(originalHandler.serialize());
+				handler.deserializeDisk(originalHandler.serializeDisk());
 			}
 			original.invalidateCaps();
 		}

@@ -23,12 +23,12 @@ public class PlayerCapabilityProvider implements ICapabilitySerializable<Compoun
 
 	@Override
 	public CompoundTag serializeNBT() {
-		return this.playerCapability.serialize();
+		return this.playerCapability.serializeDisk();
 	}
 
 	@Override
 	public void deserializeNBT(CompoundTag tag) {
-		this.playerCapability.deserialize(tag);
+		this.playerCapability.deserializeDisk(tag);
 	}
 
 }

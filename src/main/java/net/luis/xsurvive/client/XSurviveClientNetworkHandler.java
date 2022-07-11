@@ -12,7 +12,7 @@ public class XSurviveClientNetworkHandler {
 	public static void handleCapabilityUpdate(CompoundTag tag) {
 		LocalPlayer player = Minecraft.getInstance().player;
 		LocalPlayerCapabilityHandler handler = CapabilityUtil.getLocalPlayer(player);
-		handler.deserializeFromServer(tag);
+		handler.deserializeNetwork(tag);
 	}
 	
 }

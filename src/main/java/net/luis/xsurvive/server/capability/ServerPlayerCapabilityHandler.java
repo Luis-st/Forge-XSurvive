@@ -86,11 +86,11 @@ public class ServerPlayerCapabilityHandler implements IPlayerCapability {
 
 	@Override
 	public void broadcastChanges() {
-		XSurviveNetworkHandler.sendToPlayer(this.player, new LocalPlayerCapabilityUpdatePacket(this.serialize()));
+		XSurviveNetworkHandler.sendToPlayer(this.player, new LocalPlayerCapabilityUpdatePacket(this.serializeNetwork()));
 	}
 	
 	@Override
-	public CompoundTag serialize() {
+	public CompoundTag serializeDisk() {
 		CompoundTag tag = new CompoundTag();
 		tag.putInt("tick", this.tick);
 		tag.putInt("frost_time", this.frostTime);
@@ -101,16 +101,7 @@ public class ServerPlayerCapabilityHandler implements IPlayerCapability {
 	}
 	
 	@Override
-	public CompoundTag serializePersistent() {
-		CompoundTag tag = new CompoundTag();
-		tag.putInt("tick", this.tick);
-		tag.putInt("last_sync", this.lastSync);
-		tag.putBoolean("changed", this.changed);
-		return tag;
-	}
-
-	@Override
-	public void deserialize(CompoundTag tag) {
+	public void deserializeDisk(CompoundTag tag) {
 		this.tick = tag.getInt("tick");
 		this.frostTime = tag.getInt("frost_time");
 		this.startFrostTime = tag.getInt("start_frost_time");
@@ -119,14 +110,33 @@ public class ServerPlayerCapabilityHandler implements IPlayerCapability {
 	}
 	
 	@Override
+	public CompoundTag serializeNetwork() {
+		CompoundTag tag = new CompoundTag();
+		tag.putInt("tick", this.tick);
+		tag.putInt("frost_time", this.frostTime);
+		tag.putInt("start_frost_time", this.startFrostTime);
+		return tag;
+	}
+	
+	@Override
+	public void deserializeNetwork(CompoundTag tag) {
+		
+	}
+	
+	@Override
+	public CompoundTag serializePersistent() {
+		CompoundTag tag = new CompoundTag();
+		tag.putInt("tick", this.tick);
+		tag.putInt("last_sync", this.lastSync);
+		tag.putBoolean("changed", this.changed);
+		return tag;
+	}
+	
+	@Override
 	public void deserializePersistent(CompoundTag tag) {
 		this.tick = tag.getInt("tick");
 		this.lastSync = tag.getInt("last_sync");
 		this.changed = tag.getBoolean("changed");
-	}
-	
-	public void deserializeFromClient(CompoundTag tag) {
-		
 	}
 	
 }
