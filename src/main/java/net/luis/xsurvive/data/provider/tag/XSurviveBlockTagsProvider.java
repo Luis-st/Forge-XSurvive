@@ -1,6 +1,5 @@
 package net.luis.xsurvive.data.provider.tag;
 
-import net.luis.xores.tags.XOresBlockTags;
 import net.luis.xsurvive.XSurvive;
 import net.luis.xsurvive.tag.XSurviveBlockTags;
 import net.luis.xsurvive.world.level.block.XSurviveBlocks;
@@ -19,7 +18,6 @@ public class XSurviveBlockTagsProvider extends BlockTagsProvider {
 	@Override
 	protected void addTags() {
 		this.tag(XSurviveBlockTags.OCEAN_MONUMENT_BLOCKS).add(Blocks.PRISMARINE, Blocks.PRISMARINE_BRICKS, Blocks.DARK_PRISMARINE, Blocks.SEA_LANTERN);
-		this.tag(XOresBlockTags.NEEDS_TOOL_LEVEL_1).add(XSurviveBlocks.SMELTING_FURNACE.get());
 		this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(XSurviveBlocks.SMELTING_FURNACE.get());
 	}
 	
