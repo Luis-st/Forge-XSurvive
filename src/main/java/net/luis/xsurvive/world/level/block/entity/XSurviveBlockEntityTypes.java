@@ -9,10 +9,10 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class XSurviveBlockEntityTypes {
 	
-	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, XSurvive.MOD_ID);
+	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, XSurvive.MOD_ID);
 	
 	
-	public static final RegistryObject<BlockEntityType<SmeltingFurnaceBlockEntity>> SMELTING_FURNACE = BLOCK_ENTITIES.register("smelting_furnace", () -> {
+	public static final RegistryObject<BlockEntityType<SmeltingFurnaceBlockEntity>> SMELTING_FURNACE = BLOCK_ENTITY_TYPES.register("smelting_furnace", () -> {
 		return BlockEntityType.Builder.of(SmeltingFurnaceBlockEntity::new, XSurviveBlocks.SMELTING_FURNACE.get()).build(null);
 	});
 	

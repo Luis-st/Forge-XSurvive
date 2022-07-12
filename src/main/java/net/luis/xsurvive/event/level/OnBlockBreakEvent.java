@@ -10,7 +10,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
@@ -34,8 +34,8 @@ public class OnBlockBreakEvent {
 			player.level.explode(player, pos.getX(), pos.getY(), pos.getZ(), 2.0f * (blasting + 1), Explosion.BlockInteraction.BREAK);
 		}
 		if (harvesting > 0) {
-			if (event.getWorld().getBlockState(pos).is(BlockTags.LOGS)) {
-				WoodHarvester harvester = new WoodHarvester((Level) event.getWorld(), pos, event.getWorld().getBlockState(pos), harvesting, player);
+			if (event.getLevel().getBlockState(pos).is(BlockTags.LOGS)) {
+				WoodHarvester harvester = new WoodHarvester((Level) event.getLevel(), pos, event.getLevel().getBlockState(pos), harvesting, player);
 				harvester.harvest();
 			}
 		}

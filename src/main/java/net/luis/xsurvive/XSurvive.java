@@ -42,9 +42,9 @@ public class XSurvive {
 		XSurviveMobEffects.MOB_EFFECTS.register(eventBus);
 		XSurvivePotions.POTIONS.register(eventBus);
 		XSurvivePoiTypes.POI_TYPES.register(eventBus);
-		XSurviveVillagerProfessions.PROFESSIONS.register(eventBus);
-		XSurviveBlockEntityTypes.BLOCK_ENTITIES.register(eventBus);
-		XSurviveMenuTypes.MENUS.register(eventBus);
+		XSurviveVillagerProfessions.VILLAGER_PROFESSIONS.register(eventBus);
+		XSurviveBlockEntityTypes.BLOCK_ENTITY_TYPES.register(eventBus);
+		XSurviveMenuTypes.MENU_TYPES.register(eventBus);
 		XSurviveRecipeTypes.RECIPE_TYPES.register(eventBus);
 		XSurviveRecipeSerializers.RECIPE_SERIALIZERS.register(eventBus);
 	}

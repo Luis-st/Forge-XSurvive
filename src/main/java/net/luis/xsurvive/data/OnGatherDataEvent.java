@@ -11,10 +11,10 @@ import net.luis.xsurvive.data.provider.tag.XSurviveBlockTagsProvider;
 import net.luis.xsurvive.data.provider.tag.XSurviveItemTagsProvider;
 import net.luis.xsurvive.data.provider.tag.XSurvivePoiTypeTagsProvider;
 import net.minecraft.data.DataGenerator;
+import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
-import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 
 @EventBusSubscriber(modid = XSurvive.MOD_ID, bus = Bus.MOD)
 public class OnGatherDataEvent {

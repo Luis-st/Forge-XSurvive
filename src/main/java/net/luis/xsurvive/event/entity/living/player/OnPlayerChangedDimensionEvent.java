@@ -12,7 +12,7 @@ public class OnPlayerChangedDimensionEvent {
 	
 	@SubscribeEvent
 	public static void playerChangedDimension(PlayerChangedDimensionEvent event) {
-		if (event.getPlayer() instanceof ServerPlayer player) {
+		if (event.getEntity() instanceof ServerPlayer player) {
 			CapabilityUtil.getServerPlayer(player).setChanged();
 		}
 	}

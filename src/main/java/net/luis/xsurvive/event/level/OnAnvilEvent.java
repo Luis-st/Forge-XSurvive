@@ -59,7 +59,7 @@ public class OnAnvilEvent {
 	
 	@SubscribeEvent
 	public static void anvilRepair(AnvilRepairEvent event) {
-		if (event.getIngredientInput().getItem() instanceof EnchantedGoldenBookItem) {
+		if (event.getRight().getItem() instanceof EnchantedGoldenBookItem) {
 			event.setBreakChance(0.0F);
 		} else {
 			event.setBreakChance(0.06F);

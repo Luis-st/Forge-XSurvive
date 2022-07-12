@@ -13,7 +13,7 @@ public class OnPlayerCloneEvent {
 	
 	@SubscribeEvent
 	public static void playerClone(PlayerEvent.Clone event) {
-		if (event.getOriginal() instanceof ServerPlayer original && event.getPlayer() instanceof ServerPlayer player) {
+		if (event.getOriginal() instanceof ServerPlayer original && event.getEntity() instanceof ServerPlayer player) {
 			original.reviveCaps();
 			IPlayerCapability originalHandler = CapabilityUtil.getPlayer(original);
 			IPlayerCapability handler = CapabilityUtil.getPlayer(player);

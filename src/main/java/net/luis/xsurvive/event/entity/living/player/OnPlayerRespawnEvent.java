@@ -11,7 +11,7 @@ public class OnPlayerRespawnEvent {
 	
 	@SubscribeEvent
 	public static void playerRespawn(PlayerRespawnEvent event) {
-		CapabilityUtil.getPlayer(event.getPlayer()).setChanged();
+		CapabilityUtil.getPlayer(event.getEntity()).setChanged();
 	}
 	
 }

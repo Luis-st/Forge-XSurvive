@@ -10,7 +10,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
-import net.minecraftforge.event.world.WorldEvent.CreateSpawnPosition;
+import net.minecraftforge.event.level.LevelEvent.CreateSpawnPosition;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
@@ -19,7 +19,7 @@ public class OnCreateSpawnPositionEvent {
 	
 	@SubscribeEvent
 	public static void createSpawnPosition(CreateSpawnPosition event) {
-		if (event.getWorld() instanceof ServerLevel level) {
+		if (event.getLevel() instanceof ServerLevel level) {
 			Pair<BlockPos, Holder<Biome>> pair = level.findClosestBiome3d((holder) -> {
 				return holder.is(Biomes.SPARSE_JUNGLE);
 			}, BlockPos.ZERO, 6400, 32, 64);

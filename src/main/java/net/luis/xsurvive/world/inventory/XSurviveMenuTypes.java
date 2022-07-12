@@ -9,10 +9,10 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class XSurviveMenuTypes {
 	
-	public static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(ForgeRegistries.CONTAINERS, XSurvive.MOD_ID);
+	public static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(ForgeRegistries.MENU_TYPES, XSurvive.MOD_ID);
 	
 	
-	public static final RegistryObject<MenuType<SmeltingFurnaceMenu>> SMELTING_FURNACE = MENUS.register("smelting_furnace", () -> {
+	public static final RegistryObject<MenuType<SmeltingFurnaceMenu>> SMELTING_FURNACE = MENU_TYPES.register("smelting_furnace", () -> {
 		return IForgeMenuType.create(SmeltingFurnaceMenu::new);
 	});
 	

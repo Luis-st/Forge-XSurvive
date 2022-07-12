@@ -13,7 +13,7 @@ public class OnPlayerBreakSpeedEvent {
 	
 	@SubscribeEvent
 	public static void playerBreakSpeed(PlayerEvent.BreakSpeed event) {
-		Player player = event.getPlayer();
+		Player player = event.getEntity();
 		if (!player.isOnGround() && player.getItemBySlot(EquipmentSlot.FEET).getEnchantmentLevel(XSurviveEnchantments.VOID_WALKER.get()) > 0) {
 			event.setNewSpeed(event.getOriginalSpeed() * 5.0F);
 		}

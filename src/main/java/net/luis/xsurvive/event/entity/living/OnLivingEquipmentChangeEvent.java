@@ -23,7 +23,7 @@ public class OnLivingEquipmentChangeEvent {
 	
 	@SubscribeEvent
 	public static void livingEquipmentChange(LivingEquipmentChangeEvent event) {
-		if (event.getEntityLiving() instanceof Player player && event.getSlot().getType() != EquipmentSlot.Type.HAND) {
+		if (event.getEntity() instanceof Player player && event.getSlot().getType() != EquipmentSlot.Type.HAND) {
 			ItemStack toStack = event.getTo();
 			ItemStack fromStack = event.getFrom();
 			if (event.getSlot() == EquipmentSlot.FEET) {

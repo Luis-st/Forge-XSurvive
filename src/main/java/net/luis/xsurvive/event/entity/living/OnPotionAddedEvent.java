@@ -6,7 +6,7 @@ import net.luis.xsurvive.world.capability.CapabilityUtil;
 import net.luis.xsurvive.world.effect.XSurviveMobEffects;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraftforge.event.entity.living.PotionEvent.PotionAddedEvent;
+import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
@@ -14,9 +14,9 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class OnPotionAddedEvent {
 	
 	@SubscribeEvent
-	public static void potionAdded(PotionAddedEvent event) {
-		MobEffectInstance instance = event.getPotionEffect();
-		if (event.getEntityLiving() instanceof ServerPlayer player && instance.getEffect() == XSurviveMobEffects.FROST.get()) {
+	public static void potionAdded(MobEffectEvent.Added event) {
+		MobEffectInstance instance = event.getEffectInstance();
+		if (event.getEntity() instanceof ServerPlayer player && instance.getEffect() == XSurviveMobEffects.FROST.get()) {
 			ServerPlayerCapabilityHandler handler = CapabilityUtil.getServerPlayer(player);
 			handler.setFrostTime(instance.getDuration());
 		}

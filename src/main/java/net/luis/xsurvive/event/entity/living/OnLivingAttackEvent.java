@@ -29,7 +29,7 @@ public class OnLivingAttackEvent {
 	
 	@SubscribeEvent
 	public static void livingAttack(LivingAttackEvent event) {
-		Entity target = event.getEntityLiving();
+		Entity target = event.getEntity();
 		DamageSource source = event.getSource();
 		float amount = event.getAmount();
 		if (source instanceof EntityDamageSource entitySource && entitySource.getEntity() instanceof Player player) {
