@@ -24,17 +24,17 @@ public class XSurviveGlobalLootModifierProvider extends GlobalLootModifierProvid
 
 	@Override
 	protected void start() {
-		this.add("multi_drop", new MultiDropModifier(new LootItemCondition[] {
+		this.add("multi_drop_modifier", new MultiDropModifier(new LootItemCondition[] {
 				new MatchTool(ItemPredicate.ANY)
 		}));
-		this.add("smelting", new SmeltingModifier(new LootItemCondition[] {
+		this.add("smelting_modifier", new SmeltingModifier(new LootItemCondition[] {
 				new MatchTool(ItemPredicate.Builder.item().hasEnchantment(new EnchantmentPredicate(XSurviveEnchantments.SMELTING.get(), MinMaxBounds.Ints.atLeast(1))).build())
 		}));
-		this.add("rune_item", new RuneItemModifier(new LootItemCondition[] {
+		this.add("rune_item_modifier", new RuneItemModifier(new LootItemCondition[] {
 				new LootTableIdsCondition.Builder("chests/stronghold_library").add("minecraft:chests/stronghold_crossing").add("minecraft:chests/stronghold_corridor").add("minecraft:chests/bastion_bridge").add("minecraft:chests/bastion_hoglin_stable")
 					.add("minecraft:chests/bastion_other").add("minecraft:chests/bastion_treasure").add("minecraft:chests/end_city_treasure").add("minecraft:chests/ancient_city").add("minecraft:chests/ancient_city_ice_box").build()
 		}));
-		this.add("golden_book", new GoldenBookModifier(new LootItemCondition[] {
+		this.add("golden_book_modifier", new GoldenBookModifier(new LootItemCondition[] {
 				new LootTableIdsCondition.Builder(new ResourceLocation("chests/stronghold_library")).add("minecraft:chests/bastion_treasure").add("minecraft:chests/end_city_treasure").add("minecraft:chests/ancient_city")
 					.add("minecraft:chests/ancient_city_ice_box").build()
 		}));

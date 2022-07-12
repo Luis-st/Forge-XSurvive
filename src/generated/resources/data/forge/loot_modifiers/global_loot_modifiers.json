@@ -1,9 +1,9 @@
 {
   "entries": [
-    "xsurvive:multi_drop",
-    "xsurvive:golden_book",
-    "xsurvive:rune_item",
-    "xsurvive:smelting"
+    "xsurvive:multi_drop_modifier",
+    "xsurvive:golden_book_modifier",
+    "xsurvive:rune_item_modifier",
+    "xsurvive:smelting_modifier"
   ],
   "replace": false
 }
