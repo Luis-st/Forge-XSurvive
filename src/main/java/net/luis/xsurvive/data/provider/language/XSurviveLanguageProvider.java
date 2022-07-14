@@ -6,9 +6,11 @@ import net.luis.xsurvive.world.item.XSurviveItems;
 import net.luis.xsurvive.world.item.alchemy.XSurvivePotions;
 import net.luis.xsurvive.world.item.enchantment.XSurviveEnchantments;
 import net.luis.xsurvive.world.level.block.XSurviveBlocks;
+import net.luis.xsurvive.world.level.entity.npc.XSurviveVillagerProfessions;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -38,6 +40,10 @@ public class XSurviveLanguageProvider extends LanguageProvider {
 		}
 		for (Potion potion : XSurvivePotions.POTIONS.getEntries().stream().map(RegistryObject::get).toList()) {
 			this.add(potion);
+		}
+		for (VillagerProfession profession : XSurviveVillagerProfessions.VILLAGER_PROFESSIONS.getEntries().stream().map(RegistryObject::get).toList()) {
+			ResourceLocation location = ForgeRegistries.VILLAGER_PROFESSIONS.getKey(profession);
+			this.add("entity.minecraft.villager." + XSurvive.MOD_ID + "." + location.getPath(), this.getName(location));
 		}
 		this.add(XSurvive.TAB.getDisplayName().getString(), XSurvive.MOD_NAME);
 		this.add("death.attack.curse_of_harming", "%1$s die by his own weapon");
